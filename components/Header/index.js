@@ -8,5 +8,9 @@ const Title = styled.h1`
 `;
 
 export default function Header() {
-  return <Title> Placeholder DIY-APP </Title>;
+  return (
+    <header>
+      <Title> Placeholder DIY-APP </Title>
+    </header>
+  );
 }
