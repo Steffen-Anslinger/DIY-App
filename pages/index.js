@@ -1,7 +1,11 @@
+import Header from "@/components/Header";
+import Projects from "@/components/Projects";
+
 export default function HomePage() {
   return (
     <div>
-      <h1>Hello from Next.js</h1>
+      <Header />
+      <Projects />
     </div>
   );
 }
