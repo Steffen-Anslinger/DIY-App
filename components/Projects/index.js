@@ -14,6 +14,7 @@ const ProjectCard = styled.li`
 const StyledList = styled.ul`
   margin: 0;
   padding: 0;
+  columns: 2;
 `;
 
 export default function Projects() {
