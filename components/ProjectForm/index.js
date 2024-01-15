@@ -1,3 +1,9 @@
+import styled from "styled-components";
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
 export default function ProjectForm({ project = {}, onSubmit }) {
   function handleSubmit(event) {
     event.preventDefault();
@@ -9,7 +15,7 @@ export default function ProjectForm({ project = {}, onSubmit }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         <label>
           Project title
           <input
@@ -18,16 +24,6 @@ export default function ProjectForm({ project = {}, onSubmit }) {
             placeholder="Enter the project title"
             required
             autoFocus
-          />
-        </label>
-
-        <label>
-          Slug
-          <input
-            name="slug"
-            defaultValue={project.slug}
-            placeholder="Enter the slug"
-            required
           />
         </label>
 
@@ -53,32 +49,25 @@ export default function ProjectForm({ project = {}, onSubmit }) {
 
         <label>
           Duration
-          <input
-            name="duration"
-            defaultValue={project.duration}
-            placeholder="Enter the project duration"
-            required
-          />
+          <select>
+            <option disabled selected hidden value="selection">
+              Please select
+            </option>
+            <option value="short">Short</option>
+            <option value="medium">Medium</option>
+            <option value="long">Long</option>
+          </select>
         </label>
-
-        <label>
-          Cost
-          <input
-            name="cost"
-            defaultValue={project.cost}
-            placeholder="Enter the project cost"
-            required
-          />
-        </label>
-
         <label>
           Difficulty
-          <input
-            name="difficulty"
-            defaultValue={project.difficulty}
-            placeholder="Enter the project difficulty"
-            required
-          />
+          <select>
+            <option disabled selected hidden value="selection">
+              Please select
+            </option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
         </label>
 
         <label>
@@ -102,7 +91,7 @@ export default function ProjectForm({ project = {}, onSubmit }) {
         </label>
 
         <button>Save</button>
-      </form>
+      </StyledForm>
     </>
   );
 }
