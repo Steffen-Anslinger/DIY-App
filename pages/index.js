@@ -1,3 +1,5 @@
+import { initialProjects } from "@/lib/data";
+
 export default function HomePage() {
   return (
     <div>
