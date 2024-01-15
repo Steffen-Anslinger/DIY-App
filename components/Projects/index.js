@@ -3,18 +3,25 @@ import styled from "styled-components";
 import Image from "next/image";
 
 const ProjectCard = styled.li`
-  list-style: none;
   background-color: lightgray;
-  width: 50%;
-  margin: 20px;
   display: flex;
   flex-direction: column;
+  flex: 0 0 calc(50% - 1rem);
+  max-width: calc(50% - 1rem);
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  padding: 1rem;
 `;
 
 const StyledList = styled.ul`
   margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
   padding: 0;
-  columns: 2;
+  margin-top: 1rem;
 `;
 
 export default function Projects() {
@@ -25,8 +32,8 @@ export default function Projects() {
           {" "}
           <Image
             src={project.image}
-            width={200}
-            height={200}
+            width={150}
+            height={150}
             alt={project.title}
           />{" "}
           {project.title}
