@@ -11,6 +11,7 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  align-items: center;
 `;
 
 export default function ProjectForm({ projects, onAddProject }) {
@@ -33,6 +34,7 @@ export default function ProjectForm({ projects, onAddProject }) {
   return (
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <h2>Create new project</h2>
         <label>
           Project title
           <input
@@ -57,26 +59,27 @@ export default function ProjectForm({ projects, onAddProject }) {
           />
           <StyledErrorMessage>{errors.description?.message}</StyledErrorMessage>
         </label>
-
-        <label>
-          Duration
-          <select {...register("duration")} defaultValue={"select..."}>
-            <option value="select...">select...</option>
-            <option value="short">short</option>
-            <option value="medium">medium</option>
-            <option value="long">long</option>
-          </select>
-        </label>
-        <label>
-          Difficulty
-          <select {...register("difficulty")} defaultValue={"select..."}>
-            <option value="select...">select...</option>
-            <option value="easy">easy</option>
-            <option value="medium">medium</option>
-            <option value="hard">hard</option>
-          </select>
-        </label>
-
+        <div>
+          <label>
+            Duration
+            <select {...register("duration")} defaultValue={"select..."}>
+              <option value="select...">select...</option>
+              <option value="short">short</option>
+              <option value="medium">medium</option>
+              <option value="long">long</option>
+            </select>
+          </label>
+          &nbsp;
+          <label>
+            Difficulty
+            <select {...register("difficulty")} defaultValue={"select..."}>
+              <option value="select...">select...</option>
+              <option value="easy">easy</option>
+              <option value="medium">medium</option>
+              <option value="hard">hard</option>
+            </select>
+          </label>
+        </div>
         <label>
           Materials
           <input
@@ -85,6 +88,7 @@ export default function ProjectForm({ projects, onAddProject }) {
             })}
             type="number"
             placeholder="Number"
+            min="1"
           />
           <StyledErrorMessage>
             {errors.material_amount?.message}
@@ -110,10 +114,13 @@ export default function ProjectForm({ projects, onAddProject }) {
             {errors.instructions?.message}
           </StyledErrorMessage>
         </label>
-        <Link href="/">
-          <button>Cancel</button>
-        </Link>
-        <button type="submit">Create</button>
+        <div>
+          <Link href="/">
+            <button>Cancel</button>
+          </Link>
+          &nbsp;
+          <button type="submit">Create</button>
+        </div>
       </StyledForm>
     </>
   );
