@@ -72,7 +72,7 @@ export default function ProjectForm() {
         <label>
           Materials
           <input
-            {...register("material_amount", {
+            {...register("material.0.amount", {
               required: "Amount is required",
             })}
             type="number"
@@ -82,7 +82,9 @@ export default function ProjectForm() {
             {errors.material_amount?.message}
           </StyledErrorMessage>
           <input
-            {...register("material", { required: "Material is required" })}
+            {...register("material.0.material", {
+              required: "Material is required",
+            })}
             placeholder="Material"
           />
           <StyledErrorMessage>{errors.material?.message}</StyledErrorMessage>
@@ -91,7 +93,7 @@ export default function ProjectForm() {
         <label>
           Instructions
           <textarea
-            {...register("instructions", {
+            {...register("instruction.0.steps", {
               required: "Instructions are required",
             })}
             placeholder="Instructions"
