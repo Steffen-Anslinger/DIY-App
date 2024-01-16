@@ -5,6 +5,7 @@ import Image from "next/image";
 const StyledSection = styled.section`
   margin: 0 auto;
   max-width: 650px;
+  padding-top: 35px;
 `;
 
 const ProjectCard = styled.li`
