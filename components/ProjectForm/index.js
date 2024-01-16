@@ -1,96 +1,107 @@
+import { useForm } from "react-hook-form";
 import styled from "styled-components";
+
+const StyledErrorMessage = styled.p`
+  color: red;
+`;
+
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
 `;
-export default function ProjectForm({ project = {}, onSubmit }) {
-  function handleSubmit(event) {
-    event.preventDefault();
 
-    const data = Object.fromEntries(new FormData(event.target));
+export default function ProjectForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    onSubmit(data);
-  }
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <>
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <label>
           Project title
           <input
-            name="title"
-            defaultValue={project.title}
-            placeholder="Enter the project title"
-            required
-            autoFocus
+            {...register("title", { required: "Title is required" })}
+            placeholder="Title"
           />
+          <StyledErrorMessage>{errors.title?.message}</StyledErrorMessage>
         </label>
 
         <label>
           Image
-          <input
-            name="image"
-            defaultValue={project.image}
-            placeholder="Enter the project image"
-            required
-          />
+          <input {...register("image")} placeholder="Select Image" />
         </label>
 
         <label>
           Description
           <textarea
-            name="description"
-            defaultValue={project.description}
-            placeholder="Enter the project description"
-            required
+            {...register("description", {
+              required: "Description is required",
+            })}
+            placeholder="Description"
           />
+          <StyledErrorMessage>{errors.description?.message}</StyledErrorMessage>
         </label>
 
         <label>
           Duration
-          <select>
-            <option disabled selected hidden value="selection">
-              Please select
-            </option>
-            <option value="short">Short</option>
-            <option value="medium">Medium</option>
-            <option value="long">Long</option>
+          <select {...register("duration")} defaultValue={"select..."}>
+            <option value="select...">select...</option>
+            <option value="short">short</option>
+            <option value="medium">medium</option>
+            <option value="long">long</option>
           </select>
         </label>
         <label>
           Difficulty
-          <select>
-            <option disabled selected hidden value="selection">
-              Please select
-            </option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
+          <select {...register("difficulty")} defaultValue={"select..."}>
+            <option value="select...">select...</option>
+            <option value="easy">easy</option>
+            <option value="medium">medium</option>
+            <option value="hard">hard</option>
           </select>
         </label>
 
         <label>
-          Material
+          Materials
           <input
-            name="material"
-            defaultValue={project.material}
-            placeholder="Enter the project material"
-            required
+            {...register("material_amount", {
+              required: "Amount is required",
+            })}
+            type="number"
+            placeholder="Number"
           />
+          <StyledErrorMessage>
+            {errors.material_amount?.message}
+          </StyledErrorMessage>
+          <input
+            {...register("material", { required: "Material is required" })}
+            placeholder="Material"
+          />
+          <StyledErrorMessage>{errors.material?.message}</StyledErrorMessage>
         </label>
 
         <label>
           Instructions
-          <input
-            name="instruction"
-            defaultValue={project.instructions}
-            placeholder="Enter the project instructions"
-            required
+          <textarea
+            {...register("instructions", {
+              required: "Instructions are required",
+            })}
+            placeholder="Instructions"
           />
+          <StyledErrorMessage>
+            {errors.instructions?.message}
+          </StyledErrorMessage>
         </label>
 
-        <button>Save</button>
+        <input type="submit" />
       </StyledForm>
     </>
   );
