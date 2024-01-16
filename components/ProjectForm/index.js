@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const StyledErrorMessage = styled.p`
   color: red;
@@ -11,15 +13,21 @@ const StyledForm = styled.form`
   gap: 2rem;
 `;
 
-export default function ProjectForm() {
+export default function ProjectForm({ projects, onAddProject }) {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    onAddProject(data);
+    console.log(projects);
+    reset();
+    router.push("/");
   };
 
   return (
@@ -102,8 +110,10 @@ export default function ProjectForm() {
             {errors.instructions?.message}
           </StyledErrorMessage>
         </label>
-
-        <input type="submit" />
+        <Link href="/">
+          <button>Cancel</button>
+        </Link>
+        <button type="submit">Create</button>
       </StyledForm>
     </>
   );

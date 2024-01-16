@@ -1,10 +1,26 @@
 import GlobalStyle from "../styles";
+import { initialProjects } from "@/lib/data";
+import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
+  // const [projects, setProjects] = useState(initialProjects);
+  const [projects, setProjects] = useLocalStorageState("projects", {
+    defaultValue: initialProjects,
+  });
+
+  function handleAddEntry(newEntry) {
+    setProjects([...projects, { ...newEntry }]);
+  }
+
   return (
     <>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <Component
+        {...pageProps}
+        onAddProject={handleAddEntry}
+        projects={projects}
+      />
     </>
   );
 }

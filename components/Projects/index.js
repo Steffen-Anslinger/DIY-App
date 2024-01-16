@@ -28,11 +28,11 @@ const StyledList = styled.ul`
   margin-top: 1rem;
 `;
 
-export default function Projects() {
+export default function Projects({ projects }) {
   return (
     <StyledSection>
       <StyledList>
-        {initialProjects.map((project) => (
+        {projects.map((project) => (
           <ProjectCard key={project.slug}>
             {" "}
             <Image
