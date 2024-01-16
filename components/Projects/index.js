@@ -35,13 +35,12 @@ export default function Projects({ projects }) {
       <StyledList>
         {projects.map((project) => (
           <ProjectCard key={project.slug}>
-            {" "}
             <Image
               src={project.image}
               width={150}
               height={150}
               alt={project.title}
-            />{" "}
+            />
             {project.title}
           </ProjectCard>
         ))}
