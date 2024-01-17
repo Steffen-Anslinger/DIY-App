@@ -1,46 +1,42 @@
 import Image from "next/image";
 import StyledLink from "../Layout/StyledLinkButton";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ProjectDetails({ projects, slug }) {
-  const result = projects.filter((project) => project.slug === slug);
+  const result = projects.find((project) => project.slug === slug);
 
-  if (result.length === 0) {
+  if (!result) {
     return <p>Project not found</p>;
   }
 
   return (
     <>
       <h2>Detail Page</h2>
-      <h3>{result[0].title}</h3>
-      <Image
-        src={result[0].image}
-        height={200}
-        width={400}
-        alt={result[0].title}
-      />
-      <p>{result[0].description}</p>
+      <h3>{result.title}</h3>
+      <Image src={result.image} height={200} width={400} alt={result.title} />
+      <p>{result.description}</p>
 
       <strong>Duration:</strong>
-      {result[0].duration}
+      {result.duration}
       <strong> Difficulty:</strong>
-      {result[0].difficulty}
+      {result.difficulty}
 
-      {result[0].material && (
+      {result.material && (
         <ul>
           <h3>Material</h3>
-          {result[0].material.map((material, index) => (
-            <li key={index}>
+          {result.material.map((material) => (
+            <li key={uuidv4()}>
               {material.amount} {material.material}
             </li>
           ))}
         </ul>
       )}
 
-      {result[0].instructions && (
+      {result.instructions && (
         <ul>
           <h3>Instructions</h3>
-          {result[0].instructions.map((step, index) => (
-            <li key={index}>{step}</li>
+          {result.instructions.map((step) => (
+            <li key={uuidv4()}>{step}</li>
           ))}
         </ul>
       )}
