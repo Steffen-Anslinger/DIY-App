@@ -1,22 +1,9 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "../Header";
-
-const StyledLink = styled(Link)`
-  background-color: lightgray;
-  color: black;
-  padding: 1em 1.5em;
-  text-decoration: none;
-  border-radius: 5px;
-`;
-
-const StyledSection = styled.section`
-  margin: 0 auto;
-  max-width: 650px;
-  padding-top: 35px;
-`;
+import StyledLink from "../Layout/StyledLinkButton";
+import StyledSection from "../Layout/StyledSection";
 
 const StyledErrorMessage = styled.p`
   color: red;
