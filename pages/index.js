@@ -14,11 +14,10 @@ const StyledLink = styled(Link)`
 
 export default function HomePage({ projects }) {
   return (
-    <div>
+    <>
       <Header />
-
       <Projects projects={projects} />
       <Navigation />
-    </div>
+    </>
   );
 }

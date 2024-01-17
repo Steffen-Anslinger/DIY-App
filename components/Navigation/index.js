@@ -13,7 +13,6 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledNav = styled.nav`
-  align-items: center;
   border: solid 2px black;
   background-color: lightgray;
   position: fixed;
