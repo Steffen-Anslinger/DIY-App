@@ -5,6 +5,7 @@ import Image from "next/image";
 const StyledSection = styled.section`
   margin: 0 auto;
   max-width: 650px;
+  padding-top: 35px;
 `;
 
 const ProjectCard = styled.li`
@@ -28,19 +29,18 @@ const StyledList = styled.ul`
   margin-top: 1rem;
 `;
 
-export default function Projects() {
+export default function Projects({ projects }) {
   return (
     <StyledSection>
       <StyledList>
-        {initialProjects.map((project) => (
+        {projects.map((project) => (
           <ProjectCard key={project.slug}>
-            {" "}
             <Image
               src={project.image}
               width={150}
               height={150}
               alt={project.title}
-            />{" "}
+            />
             {project.title}
           </ProjectCard>
         ))}
