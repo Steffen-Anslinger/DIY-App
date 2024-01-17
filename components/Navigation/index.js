@@ -16,7 +16,7 @@ const StyledNav = styled.nav`
   align-items: center;
   border: solid 2px black;
   background-color: lightgray;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   width: 100%;
 `;
