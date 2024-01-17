@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1rem;
   color: black;
 
   &:hover {
@@ -15,8 +15,10 @@ const StyledLink = styled(Link)`
 const StyledNav = styled.nav`
   align-items: center;
   border: solid 2px black;
-  padding: 1rem;
   background-color: lightgray;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
 `;
 
 const StyledList = styled.ul`
