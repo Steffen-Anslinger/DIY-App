@@ -1,12 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
+import StyledLink from "../Layout/StyledLinkButton";
 
 export default function ProjectDetails({ projects, slug }) {
   const result = projects.filter((project) => project.slug === slug);
 
-  // Check if the result array is empty
   if (result.length === 0) {
-    // Handle the case where no matching project is found, for example, redirect to a 404 page.
     return <p>Project not found</p>;
   }
 
@@ -21,9 +19,11 @@ export default function ProjectDetails({ projects, slug }) {
         alt={result[0].title}
       />
       <p>{result[0].description}</p>
-      <div>
-        {result[0].duration} {result[0].difficulty}
-      </div>
+
+      <strong>Duration:</strong>
+      {result[0].duration}
+      <strong> Difficulty:</strong>
+      {result[0].difficulty}
 
       {result[0].material && (
         <ul>
@@ -44,7 +44,7 @@ export default function ProjectDetails({ projects, slug }) {
           ))}
         </ul>
       )}
-      <Link href="/">Back</Link>
+      <StyledLink href="/">Back</StyledLink>
     </>
   );
 }

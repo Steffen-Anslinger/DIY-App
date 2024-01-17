@@ -1,5 +1,5 @@
-export default function DetailPage() {
-    return (
-        <h2>Detail Page</h2>
-    )
+import Projects from "@/components/Projects";
+
+export default function DetailPage({ projects }) {
+  return <Projects projects={projects} />;
 }

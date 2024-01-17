@@ -1,12 +1,7 @@
-import { initialProjects } from "@/lib/data";
 import styled from "styled-components";
 import Image from "next/image";
-
-const StyledSection = styled.section`
-  margin: 0 auto;
-  max-width: 650px;
-  padding-top: 35px;
-`;
+import Link from "next/link";
+import StyledSection from "../Layout/StyledSection";
 
 const ProjectCard = styled.li`
   background-color: lightgray;
@@ -35,12 +30,14 @@ export default function Projects({ projects }) {
       <StyledList>
         {projects.map((project) => (
           <ProjectCard key={project.slug}>
-            <Image
-              src={project.image}
-              width={150}
-              height={150}
-              alt={project.title}
-            />
+            <Link href={`/projects/${project.slug}`}>
+              <Image
+                src={project.image}
+                width={150}
+                height={150}
+                alt={project.title}
+              />
+            </Link>
             {project.title}
           </ProjectCard>
         ))}
