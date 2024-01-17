@@ -3,14 +3,13 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-
 const StyledLink = styled(Link)`
-background-color: lightgray;
-color: black;
-padding: 1em 1.5em;
-text-decoration: none;
-border-radius: 5px;
-`
+  background-color: lightgray;
+  color: black;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  border-radius: 5px;
+`;
 
 const StyledErrorMessage = styled.p`
   color: red;
@@ -89,23 +88,29 @@ export default function ProjectForm({ projects, onAddProject }) {
       </div>
       <fieldset>
         <legend>Materials</legend>
-        <input
-          {...register("material.0.amount", {
-            required: "Amount is required",
-          })}
-          type="number"
-          placeholder="Number"
-          min="1"
-        />
+        <label>
+          Amount
+          <input
+            {...register("material.0.amount", {
+              required: "Amount is required",
+            })}
+            type="number"
+            placeholder="Number"
+            min="1"
+          />
+        </label>
         <StyledErrorMessage>
           {errors.material_amount?.message}
         </StyledErrorMessage>
-        <input
-          {...register("material.0.material", {
-            required: "Material is required",
-          })}
-          placeholder="Material"
-        />
+        <label>
+          Material
+          <input
+            {...register("material.0.material", {
+              required: "Material is required",
+            })}
+            placeholder="Material"
+          />
+        </label>
         <StyledErrorMessage>{errors.material?.message}</StyledErrorMessage>
       </fieldset>
 
