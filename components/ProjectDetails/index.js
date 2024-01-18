@@ -2,7 +2,12 @@ import Image from "next/image";
 import StyledLink from "../Layout/StyledLinkButton";
 import { v4 as uuidv4 } from "uuid";
 
-export default function ProjectDetails({ projects, slug }) {
+export default function ProjectDetails({
+  projects,
+  slug,
+  favourites,
+  onToggleFavourite,
+}) {
   const result = projects.find((project) => project.slug === slug);
 
   if (!result) {
