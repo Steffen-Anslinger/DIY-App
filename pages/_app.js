@@ -6,11 +6,13 @@ export default function App({ Component, pageProps }) {
   const [projects, setProjects] = useLocalStorageState("projects", {
     defaultValue: initialProjects,
   });
+
   const [favourites, setFavourites] = useLocalStorageState("favourites", {
     defaultValue: [],
   });
 
-  function handleToggleFavourite(slug) {
+  function handleToggleFavourite(slug, event) {
+    event.preventDefault();
     const favourite = favourites.find((favourite) => favourite.slug === slug);
     if (favourite) {
       setFavourites(
@@ -23,7 +25,6 @@ export default function App({ Component, pageProps }) {
     } else {
       setFavourites([...favourites, { slug, isFavourite: true }]);
     }
-    console.log("buttonclicked");
   }
 
   function handleAddEntry(newEntry) {

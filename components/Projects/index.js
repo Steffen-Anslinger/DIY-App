@@ -25,7 +25,7 @@ const StyledList = styled.ul`
   margin-top: 1rem;
 `;
 
-export default function Projects({ projects }) {
+export default function Projects({ projects, favourites, onToggleFavourite }) {
   return (
     <StyledSection>
       <StyledList>
@@ -40,7 +40,12 @@ export default function Projects({ projects }) {
               />
             </Link>
             <p>
-              {project.title} <FavouriteButton />
+              {project.title}{" "}
+              <FavouriteButton
+                slug={project.slug}
+                favourites={favourites}
+                onToggleFavourite={onToggleFavourite}
+              />
             </p>
           </ProjectCard>
         ))}
