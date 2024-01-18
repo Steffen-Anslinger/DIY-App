@@ -12,7 +12,7 @@ const Button = styled.button`
 
 export default function FavouriteButton({
   onToggleFavourite,
-  favourites,
+  favourites = [],
   slug,
 }) {
   const findFavourite = favourites.find((favourite) => favourite.slug === slug);
