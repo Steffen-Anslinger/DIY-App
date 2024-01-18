@@ -37,6 +37,9 @@ export default function Navigation() {
         <li>
           <StyledLink href="/create">Create</StyledLink>
         </li>
+        <li>
+          <StyledLink href="/favourite">Favourite</StyledLink>
+        </li>
       </StyledList>
     </StyledNav>
   );
