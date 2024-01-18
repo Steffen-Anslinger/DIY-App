@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import StyledSection from "../Layout/StyledSection";
+import FavouriteButton from "../FavouriteButton";
 
 const ProjectCard = styled.li`
   background-color: lightgray;
@@ -38,7 +39,9 @@ export default function Projects({ projects }) {
                 alt={project.title}
               />
             </Link>
-            {project.title}
+            <p>
+              {project.title} <FavouriteButton />
+            </p>
           </ProjectCard>
         ))}
       </StyledList>
