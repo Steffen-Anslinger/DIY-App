@@ -13,7 +13,7 @@ const Title = styled.h1`
 export default function Header() {
   return (
     <header>
-      <Title> Placeholder DIY-APP </Title>
+      <Title> Craftify </Title>
     </header>
   );
 }
