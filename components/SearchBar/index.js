@@ -7,7 +7,7 @@ const StyledSearchBar = styled.div`
   padding-top: 20px;
 `;
 
-const SearchBar = ({ projects }) => {
+export default function SearchBar({ projects }) {
   const [searchPattern, setSearchPattern] = useState("");
   const [filteredProjects, setFilteredProjects] = useState([]);
 
@@ -41,6 +41,4 @@ const SearchBar = ({ projects }) => {
       <Projects projects={searchPattern ? filteredProjects : projects} />
     </StyledSearchBar>
   );
-};
-
-export default SearchBar;
+}
