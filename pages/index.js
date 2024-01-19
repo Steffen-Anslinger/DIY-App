@@ -9,8 +9,7 @@ export default function HomePage({ projects, favourites, onToggleFavourite }) {
     <>
       <Header />
       <StyledSection>
-        <SearchBar projects={projects} />
-        <Projects
+        <SearchBar
           projects={projects}
           favourites={favourites}
           onToggleFavourite={onToggleFavourite}

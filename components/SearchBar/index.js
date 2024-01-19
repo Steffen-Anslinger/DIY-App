@@ -7,7 +7,7 @@ const StyledSearchBar = styled.div`
   padding-top: 20px;
 `;
 
-export default function SearchBar({ projects }) {
+export default function SearchBar({ projects, favourites, onToggleFavourite }) {
   const [searchPattern, setSearchPattern] = useState("");
   const [filteredProjects, setFilteredProjects] = useState([]);
 
@@ -38,7 +38,11 @@ export default function SearchBar({ projects }) {
         onChange={handleSearchChange}
       />
 
-      <Projects projects={searchPattern ? filteredProjects : projects} />
+      <Projects
+        projects={searchPattern ? filteredProjects : projects}
+        favourites={favourites}
+        onToggleFavourite={onToggleFavourite}
+      />
     </StyledSearchBar>
   );
 }
