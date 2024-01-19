@@ -27,29 +27,27 @@ const StyledList = styled.ul`
 
 export default function Projects({ projects, favourites, onToggleFavourite }) {
   return (
-    <StyledSection>
-      <StyledList>
-        {projects.map((project) => (
-          <ProjectCard key={project.slug}>
-            <Link href={`/projects/${project.slug}`}>
-              <Image
-                src={project.image}
-                width={150}
-                height={150}
-                alt={project.title}
-              />
-            </Link>
-            <p>
-              {project.title}{" "}
-              <FavouriteButton
-                slug={project.slug}
-                favourites={favourites}
-                onToggleFavourite={onToggleFavourite}
-              />
-            </p>
-          </ProjectCard>
-        ))}
-      </StyledList>
-    </StyledSection>
+    <StyledList>
+      {projects.map((project) => (
+        <ProjectCard key={project.slug}>
+          <Link href={`/projects/${project.slug}`}>
+            <Image
+              src={project.image}
+              width={150}
+              height={150}
+              alt={project.title}
+            />
+          </Link>
+          <p>
+            {project.title}{" "}
+            <FavouriteButton
+              slug={project.slug}
+              favourites={favourites}
+              onToggleFavourite={onToggleFavourite}
+            />
+          </p>
+        </ProjectCard>
+      ))}
+    </StyledList>
   );
 }
