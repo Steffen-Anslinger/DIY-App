@@ -1,8 +1,15 @@
 import Image from "next/image";
 import StyledLink from "../Layout/StyledLinkButton";
 import { v4 as uuidv4 } from "uuid";
+import FavouriteButton from "../FavouriteButton";
 
-export default function ProjectDetails({ projects, slug }) {
+export default function ProjectDetails({
+  projects,
+  slug,
+  isFavourite,
+  onToggleFavourite,
+  favourites,
+}) {
   const result = projects.find((project) => project.slug === slug);
 
   if (!result) {
@@ -14,6 +21,12 @@ export default function ProjectDetails({ projects, slug }) {
       <h2>Detail Page</h2>
       <h3>{result.title}</h3>
       <Image src={result.image} height={200} width={400} alt={result.title} />
+      <FavouriteButton
+        slug={result.slug}
+        favourites={favourites}
+        isFavourite={isFavourite}
+        onToggleFavourite={onToggleFavourite}
+      />
       <p>{result.description}</p>
 
       <strong>Duration:</strong>

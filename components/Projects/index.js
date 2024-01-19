@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import StyledSection from "../Layout/StyledSection";
+import FavouriteButton from "../FavouriteButton";
 
 const ProjectCard = styled.li`
   background-color: lightgray;
@@ -24,7 +25,7 @@ const StyledList = styled.ul`
   margin-top: 1rem;
 `;
 
-export default function Projects({ projects }) {
+export default function Projects({ projects, favourites, onToggleFavourite }) {
   return (
     <StyledSection>
       <StyledList>
@@ -38,7 +39,14 @@ export default function Projects({ projects }) {
                 alt={project.title}
               />
             </Link>
-            {project.title}
+            <p>
+              {project.title}{" "}
+              <FavouriteButton
+                slug={project.slug}
+                favourites={favourites}
+                onToggleFavourite={onToggleFavourite}
+              />
+            </p>
           </ProjectCard>
         ))}
       </StyledList>
