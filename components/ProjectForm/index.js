@@ -1,9 +1,7 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import Header from "../Header";
 import StyledLink from "../Layout/StyledLinkButton";
-import StyledSection from "../Layout/StyledSection";
 
 const StyledErrorMessage = styled.p`
   color: red;
@@ -16,7 +14,7 @@ const StyledForm = styled.form`
   align-items: center;
 `;
 
-export default function ProjectForm({ projects, onAddProject }) {
+export default function ProjectForm({ onAddProject }) {
   const router = useRouter();
 
   const {
@@ -63,7 +61,7 @@ export default function ProjectForm({ projects, onAddProject }) {
         <div>
           <label>
             Duration
-            <select {...register("duration")} defaultValue={"select..."}>
+            <select {...register("duration")} defaultValue={""}>
               <option value="select...">select...</option>
               <option value="short">short</option>
               <option value="medium">medium</option>
@@ -73,7 +71,7 @@ export default function ProjectForm({ projects, onAddProject }) {
           &nbsp;
           <label>
             Difficulty
-            <select {...register("difficulty")} defaultValue={"select..."}>
+            <select {...register("difficulty")} defaultValue={""}>
               <option value="select...">select...</option>
               <option value="easy">easy</option>
               <option value="medium">medium</option>
