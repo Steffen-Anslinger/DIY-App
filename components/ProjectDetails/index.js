@@ -19,7 +19,6 @@ export default function ProjectDetails({
   const [editMode, setEditMode] = useState(false);
 
   const onSubmit = async (formData) => {
-    console.log(formData);
     const response = await fetch(`/api/projects/${id}`, {
       method: "PUT",
       headers: {
@@ -29,15 +28,8 @@ export default function ProjectDetails({
     });
 
     if (response.ok) {
-      mutate();
-
-      // Aktualisiere das Projekt-Objekt mit den neuen Daten
-      project.title = formData.title;
-
-      // Beende den Bearbeitungsmodus
       setEditMode(false);
-
-      // Rufe mutate auf, um die Daten neu abzurufen und die Ansicht zu aktualisieren
+      mutate();
     }
   };
 

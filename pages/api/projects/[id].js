@@ -17,7 +17,7 @@ export default async function handler(request, response) {
 
   if (request.method === "PUT") {
     const updatedProject = request.body;
-    Project.findByIdAndUpdate(id, updatedProject);
+    await Project.findByIdAndUpdate(id, updatedProject);
     response.status(200).json({ status: `Project successfully updated!` });
   }
 }
