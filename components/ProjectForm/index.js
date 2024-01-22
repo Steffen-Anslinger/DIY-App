@@ -3,16 +3,10 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import StyledLink from "../Layout/StyledLinkButton";
 import useSWR from "swr";
+import StyledForm from "../Layout/StyledForm";
 
 const StyledErrorMessage = styled.p`
   color: red;
-`;
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
 `;
 
 export default function ProjectForm() {
@@ -27,7 +21,6 @@ export default function ProjectForm() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const request = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -36,7 +29,6 @@ export default function ProjectForm() {
 
     const response = await fetch("/api/projects", request);
     const jsonData = await response.json();
-    console.log(jsonData);
     mutate();
     reset();
     router.push("/");

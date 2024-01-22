@@ -45,17 +45,12 @@ export default function App({ Component, pageProps }) {
     return;
   }
 
-  // function handleAddEntry(newEntry) {
-  //   setProjects([...projects, { ...newEntry }]);
-  // }
-
   return (
     <>
       <SWRConfig value={{ fetcher }}>
         <GlobalStyle />
         <Component
           {...pageProps}
-          // onAddProject={handleAddEntry}
           projects={projects}
           onToggleFavourite={handleToggleFavourite}
           favourites={favourites}

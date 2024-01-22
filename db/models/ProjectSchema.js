@@ -7,11 +7,6 @@ const materialSchema = new Schema({
   material: { type: String, required: true },
 });
 
-// const instructionSchema = new Schema({
-//   type: { type: String, enum: ["text"], default: "text" },
-//   content: { type: String, required: true },
-// });
-
 const projectSchema = new Schema(
   {
     title: { type: String, required: true },
