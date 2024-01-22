@@ -12,7 +12,7 @@ export default function ProjectDetails({
   const router = useRouter();
   const { id } = router.query;
 
-  const { data: project, isLoading } = useSWR(`/api/projects/${id}`);
+  const { data: project, isLoading, mutate } = useSWR(`/api/projects/${id}`);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -21,6 +21,38 @@ export default function ProjectDetails({
   if (!project) {
     return;
   }
+
+  // async function handleEdit(event) {
+  //   event.preventDefault();
+  //   // const formData = new FormData(event.target);
+  //   // const jokeData = Object.fromEntries(formData);
+
+  //   const response = await fetch(`/api/projects/${id}`, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   });
+
+  //   if (response.ok) {
+  //     mutate();
+  //   }
+  // }
+
+  const onSubmit = async (projectData) => {
+    const response = await fetch(`/api/jokes/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(projectData),
+    });
+
+    if (response.ok) {
+      mutate();
+    }
+  };
 
   return (
     <>
@@ -54,6 +86,7 @@ export default function ProjectDetails({
       <h3>Instructions</h3>
       <p>{project.instructions}</p>
       <StyledLink href="/">Back</StyledLink>
+      <button onClick={onSubmit}>Edit</button>
     </>
   );
 }
