@@ -128,7 +128,6 @@ export default function ProjectDetails({
               <option value="hard">hard</option>
             </select>
           </label>
-          <button type="submit">Save</button>
         </form>
       ) : (
         <>
@@ -184,7 +183,6 @@ export default function ProjectDetails({
               defaultValue={project.instructions}
             />
           </label>
-          <button type="submit">Save</button>
         </form>
       ) : (
         <>
@@ -199,7 +197,7 @@ export default function ProjectDetails({
         <StyledLink href="/">Back</StyledLink>
       )}
       {editMode ? (
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <button type="submit">Save</button>
         </form>
       ) : (
