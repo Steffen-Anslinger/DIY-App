@@ -10,7 +10,7 @@ export default function FavouritePage({
 }) {
   const justFavourites = projects.filter((project) =>
     favourites.find(
-      (favourite) => favourite.slug === project.slug && favourite.isFavourite
+      (favourite) => favourite.id === project._id && favourite.isFavourite
     )
   );
 

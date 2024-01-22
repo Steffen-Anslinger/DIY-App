@@ -1,58 +1,58 @@
 import Image from "next/image";
 import StyledLink from "../Layout/StyledLinkButton";
-import { v4 as uuidv4 } from "uuid";
 import FavouriteButton from "../FavouriteButton";
+import useSWR from "swr";
+import { useRouter } from "next/router";
 
 export default function ProjectDetails({
-  projects,
-  slug,
   isFavourite,
   onToggleFavourite,
   favourites,
 }) {
-  const result = projects.find((project) => project.slug === slug);
+  const router = useRouter();
+  const { id } = router.query;
 
-  if (!result) {
-    return <p>Project not found</p>;
+  const { data: project, isLoading } = useSWR(`/api/projects/${id}`);
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!project) {
+    return;
   }
 
   return (
     <>
       <h2>Detail Page</h2>
-      <h3>{result.title}</h3>
-      <Image src={result.image} height={200} width={400} alt={result.title} />
+      <h3>{project.title}</h3>
+      <Image src={project.image} height={200} width={400} alt={project.title} />
       <FavouriteButton
-        slug={result.slug}
+        onToggleFavourite={onToggleFavourite}
+        id={project._id}
         favourites={favourites}
         isFavourite={isFavourite}
-        onToggleFavourite={onToggleFavourite}
       />
-      <p>{result.description}</p>
+      <p>{project.description}</p>
 
       <strong>Duration:</strong>
-      {result.duration}
+      {project.duration}
       <strong> Difficulty:</strong>
-      {result.difficulty}
+      {project.difficulty}
 
-      {result.material && (
+      {project.material && (
         <ul>
           <h3>Material</h3>
-          {result.material.map((material) => (
-            <li key={uuidv4()}>
+          {project.material.map((material) => (
+            <li key={project._id}>
               {material.amount} {material.material}
             </li>
           ))}
         </ul>
       )}
 
-      {result.instructions && (
-        <ul>
-          <h3>Instructions</h3>
-          {result.instructions.map((step) => (
-            <li key={uuidv4()}>{step}</li>
-          ))}
-        </ul>
-      )}
+      <h3>Instructions</h3>
+      <p>{project.instructions}</p>
       <StyledLink href="/">Back</StyledLink>
     </>
   );

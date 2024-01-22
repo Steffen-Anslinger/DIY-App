@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import StyledLink from "../Layout/StyledLinkButton";
+import useSWR from "swr";
 
 const StyledErrorMessage = styled.p`
   color: red;
@@ -14,7 +15,8 @@ const StyledForm = styled.form`
   align-items: center;
 `;
 
-export default function ProjectForm({ onAddProject }) {
+export default function ProjectForm() {
+  const { mutate } = useSWR("/api/projects");
   const router = useRouter();
 
   const {
@@ -24,8 +26,18 @@ export default function ProjectForm({ onAddProject }) {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    onAddProject(data);
+  const onSubmit = async (data) => {
+    console.log(data);
+    const request = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    };
+
+    const response = await fetch("/api/projects", request);
+    const jsonData = await response.json();
+    console.log(jsonData);
+    mutate();
     reset();
     router.push("/");
   };
@@ -110,7 +122,7 @@ export default function ProjectForm({ onAddProject }) {
         <label>
           Instructions
           <textarea
-            {...register("instruction.0.steps", {
+            {...register("instructions", {
               required: "Instructions are required",
             })}
             placeholder="Instructions"

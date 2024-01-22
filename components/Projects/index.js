@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import useSWR from "swr";
 import Image from "next/image";
 import Link from "next/link";
-import StyledSection from "../Layout/StyledSection";
 import FavouriteButton from "../FavouriteButton";
 
 const ProjectCard = styled.li`
@@ -26,21 +24,12 @@ const StyledList = styled.ul`
   margin-top: 1rem;
 `;
 
-export default function Projects({ favourites, onToggleFavourite }) {
-  const { data, isLoading } = useSWR("/api/projects");
-  console.log(data);
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (!data) {
-    return;
-  }
+export default function Projects({ projects, favourites, onToggleFavourite }) {
   return (
     <StyledList>
-      {data.map((project) => (
+      {projects.map((project) => (
         <ProjectCard key={project._id}>
-          <Link href={`/api/projects/${project._id}`}>
+          <Link href={`/${project._id}`}>
             <Image
               src={project.image}
               width={150}
@@ -49,11 +38,11 @@ export default function Projects({ favourites, onToggleFavourite }) {
             />
           </Link>
           <p>
-            {project.title}{" "}
+            {project.title}
             <FavouriteButton
-              slug={project.slug}
-              favourites={favourites}
               onToggleFavourite={onToggleFavourite}
+              id={project._id}
+              favourites={favourites}
             />
           </p>
         </ProjectCard>
