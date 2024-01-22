@@ -45,42 +45,43 @@ export default function ProjectDetails({
     <>
       <h2>Detail Page</h2>
 
-      <Image src={project.image} height={200} width={400} alt={project.title} />
       {editMode ? (
-        // Bearbeitungsmodus für jeden Abschnitt
         <form onSubmit={handleSubmit(onSubmit)}>
           <label>
             Image:
             <input {...register("image")} defaultValue={project.image} />
           </label>
-          <button type="submit">Save</button>
         </form>
-      ) : null}
-      <FavouriteButton
-        onToggleFavourite={onToggleFavourite}
-        id={project._id}
-        favourites={favourites}
-        isFavourite={isFavourite}
-      />
+      ) : (
+        <>
+          <Image
+            src={project.image}
+            height={200}
+            width={400}
+            alt={project.title}
+          />
 
-      {
-        editMode ? (
-          // Bearbeitungsmodus für jeden Abschnitt
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <label>
-              Title:
-              <input {...register("title")} defaultValue={project.title} />
-            </label>
-            <button type="submit">Save</button>
-          </form>
-        ) : null
-        // Wenn nicht im Bearbeitungsmodus, zeige den "Edit"-Button direkt über dem Titel
-      }
-
-      <p>{project.description}</p>
+          <FavouriteButton
+            onToggleFavourite={onToggleFavourite}
+            id={project._id}
+            favourites={favourites}
+            isFavourite={isFavourite}
+          />
+        </>
+      )}
 
       {editMode ? (
-        // Bearbeitungsmodus für jeden Abschnitt
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label>
+            Title:
+            <input {...register("title")} defaultValue={project.title} />
+          </label>
+        </form>
+      ) : (
+        <h3>{project.title}</h3>
+      )}
+
+      {editMode ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <label>
             Description:
@@ -89,45 +90,56 @@ export default function ProjectDetails({
               defaultValue={project.description}
             />
           </label>
-          <button type="submit">Save</button>
         </form>
-      ) : null}
-
-      <strong>Duration:</strong>
-      {project.duration}
+      ) : (
+        <p>{project.description}</p>
+      )}
 
       {editMode ? (
-        // Bearbeitungsmodus für jeden Abschnitt
         <form onSubmit={handleSubmit(onSubmit)}>
           <label>
             Duration:
-            <input {...register("duration")} defaultValue={project.duration} />
+            <select {...register("duration")} defaultValue={project.duration}>
+              <option value="select...">select...</option>
+              <option value="short">short</option>
+              <option value="medium">medium</option>
+              <option value="long">long</option>
+            </select>
           </label>
-          <button type="submit">Save</button>
         </form>
-      ) : null}
-
-      <strong> Difficulty:</strong>
-      {project.difficulty}
+      ) : (
+        <>
+          <strong>Duration:</strong>
+          {project.duration}
+        </>
+      )}
 
       {editMode ? (
-        // Bearbeitungsmodus für jeden Abschnitt
         <form onSubmit={handleSubmit(onSubmit)}>
           <label>
             Difficulty:
-            <input
+            <select
               {...register("difficulty")}
               defaultValue={project.difficulty}
-            />
+            >
+              <option value="select...">select...</option>
+              <option value="easy">easy</option>
+              <option value="medium">medium</option>
+              <option value="hard">hard</option>
+            </select>
           </label>
           <button type="submit">Save</button>
         </form>
-      ) : null}
+      ) : (
+        <>
+          <strong> Difficulty:</strong>
+          {project.difficulty}
+        </>
+      )}
 
       {project.material && (
         <>
           {editMode ? (
-            // Bearbeitungsmodus für jeden Abschnitt
             <form onSubmit={handleSubmit(onSubmit)}>
               <h3>Material</h3>
               {project.material.map((material, index) => (
@@ -148,10 +160,8 @@ export default function ProjectDetails({
                   </label>
                 </div>
               ))}
-              <button type="submit">Save</button>
             </form>
           ) : (
-            // Wenn nicht im Bearbeitungsmodus, zeige Material direkt an
             <ul>
               <h3>Material</h3>
               {project.material.map((material, index) => (
@@ -164,10 +174,7 @@ export default function ProjectDetails({
         </>
       )}
 
-      <h3>Instructions</h3>
-      <p>{project.instructions}</p>
       {editMode ? (
-        // Bearbeitungsmodus für jeden Abschnitt
         <form onSubmit={handleSubmit(onSubmit)}>
           <h3>Instructions</h3>
           <label>
@@ -179,10 +186,25 @@ export default function ProjectDetails({
           </label>
           <button type="submit">Save</button>
         </form>
-      ) : null}
+      ) : (
+        <>
+          <h3>Instructions</h3>
+          <p>{project.instructions}</p>
+        </>
+      )}
 
-      <StyledLink href="/">Back</StyledLink>
-      <button onClick={() => setEditMode(true)}>Edit</button>
+      {editMode ? (
+        <button onClick={() => setEditMode(false)}>Cancel</button>
+      ) : (
+        <StyledLink href="/">Back</StyledLink>
+      )}
+      {editMode ? (
+        <form>
+          <button type="submit">Save</button>
+        </form>
+      ) : (
+        <button onClick={() => setEditMode(true)}>Edit</button>
+      )}
     </>
   );
 }
