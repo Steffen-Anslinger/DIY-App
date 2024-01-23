@@ -1,4 +1,4 @@
-import ProjectDetails from "@/components/ProjectDetails";
+import ProjectDetails from "@/components/DetailsPage";
 import Header from "@/components/Header";
 import StyledSection from "@/components/Layout/StyledSection";
 import Navigation from "@/components/Navigation";
