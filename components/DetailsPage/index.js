@@ -41,6 +41,19 @@ export default function DetailsPage({
   if (!project) {
     return <h1>Project not found</h1>;
   }
+  async function handleDeleteProject() {
+    const response = await fetch(`/api/projects/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      router.push("/");
+    }
+    if (!response.ok) {
+      response.status(404).json({ status: "Could not be deleted" });
+    }
+  }
+
   return (
     <>
       <h2>Detail Page</h2>
@@ -68,6 +81,15 @@ export default function DetailsPage({
           />
           <StyledLink href="/">Back</StyledLink>
           <button onClick={() => setEditMode(true)}>Edit</button>
+
+          <button
+            type="button"
+            onClick={() => {
+              handleDeleteProject(id);
+            }}
+          >
+            Delete
+          </button>
         </>
       )}
     </>
