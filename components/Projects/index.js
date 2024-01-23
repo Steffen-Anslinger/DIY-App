@@ -29,7 +29,7 @@ export default function Projects({ projects, favourites, onToggleFavourite }) {
     <StyledList>
       {projects.map((project) => (
         <ProjectCard key={project._id}>
-          <Link href={`/${project._id}`}>
+          <Link href={`/projects/${project._id}`}>
             <Image
               src={project.image}
               width={150}
