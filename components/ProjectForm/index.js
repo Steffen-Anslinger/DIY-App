@@ -28,10 +28,12 @@ export default function ProjectForm() {
     };
 
     const response = await fetch("/api/projects", request);
-    const jsonData = await response.json();
-    mutate();
-    reset();
-    router.push("/");
+
+    if (response.ok) {
+      mutate();
+      reset();
+      router.push("/");
+    }
   };
 
   return (
