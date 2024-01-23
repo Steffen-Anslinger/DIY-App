@@ -3,12 +3,12 @@ import StyledSection from "@/components/Layout/StyledSection";
 import Navigation from "@/components/Navigation";
 import ProjectForm from "@/components/ProjectForm";
 
-export default function CreatePage({ onAddProject, projects }) {
+export default function CreatePage() {
   return (
     <>
       <Header />
       <StyledSection>
-        <ProjectForm onAddProject={onAddProject} projects={projects} />
+        <ProjectForm />
       </StyledSection>
       <Navigation />
     </>

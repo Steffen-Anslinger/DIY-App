@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { useState } from "react";
 
 const Button = styled.button`
   border: none;
@@ -13,12 +12,12 @@ const Button = styled.button`
 export default function FavouriteButton({
   onToggleFavourite,
   favourites = [],
-  slug,
+  id,
 }) {
-  const findFavourite = favourites.find((favourite) => favourite.slug === slug);
+  const findFavourite = favourites.find((favourite) => favourite.id === id);
   const isFavourite = findFavourite ? findFavourite.isFavourite : false;
   return (
-    <Button type="button" onClick={(event) => onToggleFavourite(slug, event)}>
+    <Button type="button" onClick={(event) => onToggleFavourite(id, event)}>
       <Image
         src={
           isFavourite

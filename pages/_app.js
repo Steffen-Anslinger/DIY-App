@@ -1,46 +1,61 @@
 import GlobalStyle from "../styles";
-import { initialProjects } from "@/lib/data";
 import useLocalStorageState from "use-local-storage-state";
+import { SWRConfig } from "swr";
+import useSWR from "swr";
+
+const fetcher = async (url) => {
+  const response = await fetch(url);
+  if (!response.ok) {
+    const error = new Error("An error occurred while fetching the data.");
+    error.info = await response.json();
+    error.status = response.status;
+    throw error;
+  }
+
+  return response.json();
+};
 
 export default function App({ Component, pageProps }) {
-  const [projects, setProjects] = useLocalStorageState("projects", {
-    defaultValue: initialProjects,
-  });
-
   const [favourites, setFavourites] = useLocalStorageState("favourites", {
     defaultValue: [],
   });
 
-  function handleToggleFavourite(slug, event) {
+  function handleToggleFavourite(id, event) {
     event.preventDefault();
-    const favourite = favourites.find((favourite) => favourite.slug === slug);
+    const favourite = favourites.find((favourite) => favourite.id === id);
     if (favourite) {
       setFavourites(
         favourites.map((favourite) =>
-          favourite.slug === slug
-            ? { slug, isFavourite: !favourite.isFavourite }
+          favourite.id === id
+            ? { id, isFavourite: !favourite.isFavourite }
             : favourite
         )
       );
     } else {
-      setFavourites([...favourites, { slug, isFavourite: true }]);
+      setFavourites([...favourites, { id, isFavourite: true }]);
     }
   }
 
-  function handleAddEntry(newEntry) {
-    setProjects([...projects, { ...newEntry }]);
+  const { data: projects, isLoading } = useSWR("/api/projects", fetcher);
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!projects) {
+    return;
   }
 
   return (
     <>
-      <GlobalStyle />
-      <Component
-        {...pageProps}
-        onAddProject={handleAddEntry}
-        projects={projects}
-        onToggleFavourite={handleToggleFavourite}
-        favourites={favourites}
-      />
+      <SWRConfig value={{ fetcher }}>
+        <GlobalStyle />
+        <Component
+          {...pageProps}
+          projects={projects}
+          onToggleFavourite={handleToggleFavourite}
+          favourites={favourites}
+        />
+      </SWRConfig>
     </>
   );
 }
