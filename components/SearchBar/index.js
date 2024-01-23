@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import Fuse from "fuse.js";
+import React from "react";
 import styled from "styled-components";
-import Projects from "@/components/Projects";
 
 const StyledSearchBar = styled.div`
   padding-top: 20px;
