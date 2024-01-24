@@ -2,7 +2,6 @@ import React from "react";
 import ProjectDetails from "../ProjectDetails";
 import EditForm from "../EditForm";
 import StyledLink from "../Layout/StyledLinkButton";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 export default function EditDetails({
