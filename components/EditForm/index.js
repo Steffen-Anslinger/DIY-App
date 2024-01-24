@@ -10,14 +10,14 @@ export default function EditForm({ project, setEditMode }) {
   const { id } = router.query;
 
   const onSubmit = async (formData) => {
-    await fetch(`/api/projects/${id}`, {
+    const response = await fetch(`/api/projects/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     });
-    const response = await fetch(`/api/projects/${id}`);
+
     if (response.ok) {
       setEditMode(false);
       mutate(`/api/projects/${id}`);
