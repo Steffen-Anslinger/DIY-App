@@ -1,19 +1,15 @@
 import Link from "next/link";
 import styled from "styled-components";
+import color from "../Layout/Colors";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
   font-size: 1rem;
   color: black;
-
-  &:hover {
-    text-decoration: underline red;
-    background-color: lightgray;
-  }
 `;
 
 const StyledNav = styled.nav`
-  background-color: lightgray;
+  background-color: ${color.grey[50]};
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -22,23 +18,42 @@ const StyledNav = styled.nav`
 const StyledList = styled.ul`
   list-style: none;
   display: flex;
-  gap: 1rem;
   justify-content: space-around;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 50px;
+`;
+
+const StyledLinkNav = styled.li`
+  background-color: ${color.grey[50]};
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${color.orange[600]};
+  }
 `;
 
 export default function Navigation() {
   return (
     <StyledNav>
       <StyledList>
-        <li>
+        <StyledLinkNav>
           <StyledLink href="/">Home</StyledLink>
-        </li>
-        <li>
+        </StyledLinkNav>
+        <StyledLinkNav>
           <StyledLink href="/create">Create</StyledLink>
-        </li>
-        <li>
+        </StyledLinkNav>
+        <StyledLinkNav>
           <StyledLink href="/favourite">Favourite</StyledLink>
-        </li>
+        </StyledLinkNav>
       </StyledList>
     </StyledNav>
   );

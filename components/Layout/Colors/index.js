@@ -13,7 +13,7 @@ const color = {
     950: "#461404",
   },
   grey: {
-    50: "#f7f7f8", // main color light
+    50: "#f7f7f8",
     100: "#efeef0",
     200: "#dad9de",
     300: "#b9b7c2",
