@@ -1,5 +1,5 @@
 import React from "react";
-import Details from "../ProjectDetails";
+import ProjectDetails from "../ProjectDetails";
 import EditForm from "../EditForm";
 import StyledLink from "../Layout/StyledLinkButton";
 import useSWR from "swr";
@@ -12,12 +12,11 @@ export default function DetailsPage({
   onToggleFavourite,
   favourites,
 }) {
+  const [editMode, setEditMode] = useState(false);
   const router = useRouter();
   const { id } = router.query;
   const { data: project, isLoading, mutate } = useSWR(`/api/projects/${id}`);
   const { register, handleSubmit } = useForm();
-
-  const [editMode, setEditMode] = useState(false);
 
   const onSubmit = async (formData) => {
     const response = await fetch(`/api/projects/${id}`, {
@@ -41,16 +40,13 @@ export default function DetailsPage({
   if (!project) {
     return <h1>Project not found</h1>;
   }
-  async function handleDeleteProject() {
-    const response = await fetch(`/api/projects/${id}`, {
-      method: "DELETE",
-    });
 
-    if (response.ok) {
+  async function handleDeleteProject() {
+    if (window.confirm("Are you sure you want to delete this project?")) {
+      await fetch(`/api/projects/${id}`, { method: "DELETE" });
+      const response = await fetch("/api/projects");
+      mutate("/api/projects", response.json());
       router.push("/");
-    }
-    if (!response.ok) {
-      response.status(404).json({ status: "Could not be deleted" });
     }
   }
 
@@ -73,7 +69,7 @@ export default function DetailsPage({
         </>
       ) : (
         <>
-          <Details
+          <ProjectDetails
             project={project}
             onToggleFavourite={onToggleFavourite}
             isFavourite={isFavourite}
@@ -82,13 +78,8 @@ export default function DetailsPage({
           <StyledLink href="/">Back</StyledLink>
           <button onClick={() => setEditMode(true)}>Edit</button>
 
-          <button
-            type="button"
-            onClick={() => {
-              handleDeleteProject(id);
-            }}
-          >
-            Delete
+          <button type="button" onClick={handleSubmit(handleDeleteProject)}>
+            ❌ Delete
           </button>
         </>
       )}

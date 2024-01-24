@@ -20,10 +20,9 @@ export default async function handler(request, response) {
     await Project.findByIdAndUpdate(id, updatedProject);
     response.status(200).json({ status: `Project successfully updated!` });
   }
+
   if (request.method === "DELETE") {
     await Project.findByIdAndDelete(id);
-    response
-      .status(200)
-      .json({ status: `Project ${id} successfully deleted.` });
+    response.status(200).json({ status: `Project successfully deleted.` });
   }
 }
