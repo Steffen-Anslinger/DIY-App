@@ -13,7 +13,6 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledNav = styled.nav`
-  border: solid 2px black;
   background-color: lightgray;
   position: fixed;
   bottom: 0;
