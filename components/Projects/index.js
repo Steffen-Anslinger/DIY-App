@@ -4,17 +4,18 @@ import Link from "next/link";
 import FavouriteButton from "../FavouriteButton";
 import ProjectCard from "../ProjectCard";
 import { React } from "react";
+import Masonry from "@mui/lab/Masonry";
 
 const StyledList = styled.ul`
-  margin: 0;
+  //   margin: 0;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  //   flex-wrap: wrap;
+  //   gap: 1rem;
   list-style: none;
   padding: 0;
-  margin-top: 1rem;
-  height: max-content;
+  //   margin-top: 1rem;
+  //   height: max-content;
 `;
 
 const StyledImage = styled(Image)`
@@ -38,24 +39,26 @@ const StyledCardTitle = styled.h2`
 export default function Projects({ projects, favourites, onToggleFavourite }) {
   return (
     <StyledList>
-      {projects.map((project) => (
-        <ProjectCard key={project._id}>
-          <Link href={`/projects/${project._id}`}>
-            <StyledImage
-              src={project.image}
-              width={150}
-              height={150}
-              alt={project.title}
+      <Masonry columns={2} spacing={2}>
+        {projects.map((project) => (
+          <ProjectCard key={project._id}>
+            <Link href={`/projects/${project._id}`}>
+              <StyledImage
+                src={project.image}
+                width={150}
+                height={150}
+                alt={project.title}
+              />
+              <StyledCardTitle>{project.title}</StyledCardTitle>
+            </Link>
+            <FavouriteButton
+              onToggleFavourite={onToggleFavourite}
+              id={project._id}
+              favourites={favourites}
             />
-            <StyledCardTitle>{project.title}</StyledCardTitle>
-          </Link>
-          <FavouriteButton
-            onToggleFavourite={onToggleFavourite}
-            id={project._id}
-            favourites={favourites}
-          />
-        </ProjectCard>
-      ))}
+          </ProjectCard>
+        ))}
+      </Masonry>
     </StyledList>
   );
 }
