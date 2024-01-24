@@ -2,11 +2,10 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import FavouriteButton from "../FavouriteButton";
-import Masonry from "react-masonry-css";
 import ProjectCard from "../ProjectCard";
 import { React } from "react";
 
-const StyledList = styled(Masonry)`
+const StyledList = styled.ul`
   margin: 0;
   display: flex;
   justify-content: center;
@@ -15,7 +14,7 @@ const StyledList = styled(Masonry)`
   list-style: none;
   padding: 0;
   margin-top: 1rem;
-  display: -webkit-box;
+  height: max-content;
 `;
 
 const StyledImage = styled(Image)`
@@ -23,6 +22,7 @@ const StyledImage = styled(Image)`
   height: auto;
   object-fit: cover;
   border-radius: 5px;
+  filter: brightness(70%);
 `;
 
 const StyledCardTitle = styled.h2`
@@ -36,17 +36,8 @@ const StyledCardTitle = styled.h2`
 `;
 
 export default function Projects({ projects, favourites, onToggleFavourite }) {
-  const breakpointColumnsObj = {
-    default: 3,
-    1100: 2,
-    700: 1,
-  };
   return (
-    <StyledList
-      breakpointCols={breakpointColumnsObj}
-      className="my-masonry-grid"
-      columnClassName="my-masonry-grid_column"
-    >
+    <StyledList>
       {projects.map((project) => (
         <ProjectCard key={project._id}>
           <Link href={`/projects/${project._id}`}>
@@ -56,13 +47,13 @@ export default function Projects({ projects, favourites, onToggleFavourite }) {
               height={150}
               alt={project.title}
             />
+            <StyledCardTitle>{project.title}</StyledCardTitle>
           </Link>
           <FavouriteButton
             onToggleFavourite={onToggleFavourite}
             id={project._id}
             favourites={favourites}
           />
-          <StyledCardTitle>{project.title}</StyledCardTitle>
         </ProjectCard>
       ))}
     </StyledList>
