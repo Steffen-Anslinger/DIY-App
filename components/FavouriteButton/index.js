@@ -1,18 +1,21 @@
 import styled from "styled-components";
 import Image from "next/image";
+import color from "../Layout/Colors";
 
 const Button = styled.button`
   border: none;
   max-width: 100px;
-  scale: 200%;
-  background: orange;
+  transform: scale(2);
+  background: ${color.orange[600]};
   border-radius: 5px;
   padding: 0;
   margin: 0;
   display: flex;
+  justify-content: center;
   position: absolute;
-  top: 15px;
+  top: 20px;
   left: 85%;
+  width: 25px;
   cursor: pointer;
 `;
 
