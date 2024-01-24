@@ -8,12 +8,13 @@ const Title = styled.h1`
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1;
 `;
 
 export default function Header() {
   return (
     <header>
-      <Title> Craftify </Title>
+      <Title> Placeholder DIY-APP </Title>
     </header>
   );
 }

@@ -5,7 +5,14 @@ const Button = styled.button`
   border: none;
   max-width: 100px;
   scale: 200%;
-  background: transparent;
+  background: orange;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  position: absolute;
+  top: 15px;
+  left: 85%;
   cursor: pointer;
 `;
 

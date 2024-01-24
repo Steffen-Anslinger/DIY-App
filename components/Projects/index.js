@@ -2,18 +2,11 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import FavouriteButton from "../FavouriteButton";
+import Masonry from "react-masonry-css";
+import ProjectCard from "../ProjectCard";
+import { React } from "react";
 
-const ProjectCard = styled.li`
-  background-color: lightgray;
-  display: flex;
-  flex-direction: column;
-  flex: 0 0 calc(50% - 1rem);
-  box-sizing: border-box;
-  border-radius: 0.5rem;
-  padding: 1rem;
-`;
-
-const StyledList = styled.ul`
+const StyledList = styled(Masonry)`
   margin: 0;
   display: flex;
   justify-content: center;
@@ -22,29 +15,54 @@ const StyledList = styled.ul`
   list-style: none;
   padding: 0;
   margin-top: 1rem;
+  display: -webkit-box;
+`;
+
+const StyledImage = styled(Image)`
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+`;
+
+const StyledCardTitle = styled.h2`
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  margin: 0;
+  padding: 1rem;
+  color: white;
+  width: 100%;
 `;
 
 export default function Projects({ projects, favourites, onToggleFavourite }) {
+  const breakpointColumnsObj = {
+    default: 3,
+    1100: 2,
+    700: 1,
+  };
   return (
-    <StyledList>
+    <StyledList
+      breakpointCols={breakpointColumnsObj}
+      className="my-masonry-grid"
+      columnClassName="my-masonry-grid_column"
+    >
       {projects.map((project) => (
         <ProjectCard key={project._id}>
           <Link href={`/projects/${project._id}`}>
-            <Image
+            <StyledImage
               src={project.image}
               width={150}
               height={150}
               alt={project.title}
             />
           </Link>
-          <p>
-            {project.title}
-            <FavouriteButton
-              onToggleFavourite={onToggleFavourite}
-              id={project._id}
-              favourites={favourites}
-            />
-          </p>
+          <FavouriteButton
+            onToggleFavourite={onToggleFavourite}
+            id={project._id}
+            favourites={favourites}
+          />
+          <StyledCardTitle>{project.title}</StyledCardTitle>
         </ProjectCard>
       ))}
     </StyledList>
