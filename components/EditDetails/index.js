@@ -3,6 +3,8 @@ import ProjectDetails from "../ProjectDetails";
 import EditForm from "../EditForm";
 import StyledLink from "../Layout/StyledLinkButton";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { mutate } from "swr";
 
 export default function EditDetails({
   isFavourite,
@@ -11,18 +13,21 @@ export default function EditDetails({
   project,
 }) {
   const [editMode, setEditMode] = useState(false);
+  const router = useRouter();
+  const { id } = router.query;
 
   async function handleDeleteProject() {
     if (window.confirm("Are you sure you want to delete this project?")) {
       await fetch(`/api/projects/${id}`, { method: "DELETE" });
-    }
-    const response = await fetch("/api/projects");
-    if (response.ok) {
-      mutate("/api/projects");
-      router.push("/");
-    }
-    if (!response.ok) {
-      response.status(404).json({ status: "Could not be deleted" });
+
+      const response = await fetch("/api/projects");
+      if (response.ok) {
+        mutate("/api/projects");
+        router.push("/");
+      }
+      if (!response.ok) {
+        response.status(404).json({ status: "Could not be deleted" });
+      }
     }
   }
 
