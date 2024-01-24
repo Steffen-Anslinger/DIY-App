@@ -22,7 +22,12 @@ export default async function handler(request, response) {
   }
 
   if (request.method === "DELETE") {
-    await Project.findByIdAndDelete(id);
-    response.status(200).json({ status: `Project successfully deleted.` });
+    const deletedProject = await Project.findByIdAndDelete(id);
+    if (deletedProject) {
+      response.status(200).json({ status: `Project successfully deleted.` });
+    }
+    if (!deletedProject) {
+      response.status(404).json({ status: `Project could not be deleted.` });
+    }
   }
 }

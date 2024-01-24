@@ -2,6 +2,9 @@ import GlobalStyle from "../styles";
 import useLocalStorageState from "use-local-storage-state";
 import { SWRConfig } from "swr";
 import useSWR from "swr";
+import Navigation from "@/components/Navigation";
+import Header from "@/components/Header";
+import StyledSection from "@/components/Layout/StyledSection";
 
 const fetcher = async (url) => {
   const response = await fetch(url);
@@ -49,12 +52,16 @@ export default function App({ Component, pageProps }) {
     <>
       <SWRConfig value={{ fetcher }}>
         <GlobalStyle />
-        <Component
-          {...pageProps}
-          projects={projects}
-          onToggleFavourite={handleToggleFavourite}
-          favourites={favourites}
-        />
+        <Header />
+        <StyledSection>
+          <Component
+            {...pageProps}
+            projects={projects}
+            onToggleFavourite={handleToggleFavourite}
+            favourites={favourites}
+          />
+        </StyledSection>
+        <Navigation />
       </SWRConfig>
     </>
   );
