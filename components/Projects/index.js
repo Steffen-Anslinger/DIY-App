@@ -7,15 +7,10 @@ import { React } from "react";
 import Masonry from "@mui/lab/Masonry";
 
 const StyledList = styled.ul`
-  //   margin: 0;
   display: flex;
   justify-content: center;
-  //   flex-wrap: wrap;
-  //   gap: 1rem;
   list-style: none;
   padding: 0;
-  //   margin-top: 1rem;
-  //   height: max-content;
 `;
 
 const StyledImage = styled(Image)`
