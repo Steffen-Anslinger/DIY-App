@@ -35,11 +35,21 @@ const Container = styled.div`
   align-content: space-between;
   position: absolute;
   height: 100%;
+  width: 100%;
   top: 0px;
   padding: 12px;
   z-index: 1;
   gap: 5px;
   flex-wrap: wrap;
+`;
+
+const TagButtonLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 5px;
+  flex-wrap: wrap;
+  height: fit-content;
 `;
 
 const TagLine = styled.div`
@@ -76,7 +86,7 @@ const TagDifficulty = styled.p`
 export default function Projects({ projects, favourites, onToggleFavourite }) {
   return (
     <StyledList>
-      <Masonry columns={{ 0: 1, 400: 2, 850: 3 }} spacing={2}>
+      <Masonry columns={2} spacing={2}>
         {projects.map((project) => (
           <ProjectCard key={project._id}>
             <Link href={`/projects/${project._id}`}>
@@ -86,19 +96,21 @@ export default function Projects({ projects, favourites, onToggleFavourite }) {
                 height={150}
                 alt={project.title}
               />
+              <Container>
+                <TagButtonLine>
+                  <TagLine>
+                    <TagDuration>{project.duration}</TagDuration>
+                    <TagDifficulty>{project.difficulty}</TagDifficulty>
+                  </TagLine>
+                  <FavouriteButton
+                    onToggleFavourite={onToggleFavourite}
+                    id={project._id}
+                    favourites={favourites}
+                  />
+                </TagButtonLine>
+                <StyledCardTitle>{project.title}</StyledCardTitle>
+              </Container>
             </Link>
-            <Container>
-              <TagLine>
-                <TagDuration>{project.duration}</TagDuration>
-                <TagDifficulty>{project.difficulty}</TagDifficulty>
-                <FavouriteButton
-                  onToggleFavourite={onToggleFavourite}
-                  id={project._id}
-                  favourites={favourites}
-                />
-              </TagLine>
-              <StyledCardTitle>{project.title}</StyledCardTitle>
-            </Container>
           </ProjectCard>
         ))}
       </Masonry>
