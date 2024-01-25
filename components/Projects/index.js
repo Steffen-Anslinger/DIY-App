@@ -86,7 +86,7 @@ const TagDifficulty = styled.p`
 export default function Projects({ projects, favourites, onToggleFavourite }) {
   return (
     <StyledList>
-      <Masonry columns={2} spacing={2}>
+      <Masonry columns={{ xs: 1, sm: 2, md: 3 }} spacing={2}>
         {projects.map((project) => (
           <ProjectCard key={project._id}>
             <Link href={`/projects/${project._id}`}>
