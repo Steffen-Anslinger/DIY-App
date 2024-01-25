@@ -1,6 +1,3 @@
-import Navigation from "@/components/Navigation";
-import Header from "@/components/Header";
-import StyledSection from "@/components/Layout/StyledSection";
 import Projects from "@/components/Projects";
 
 export default function FavouritePage({
@@ -16,17 +13,13 @@ export default function FavouritePage({
 
   return (
     <>
-      <Header />
-      <StyledSection>
-        <h2>Favourite Page</h2>
-        <Projects
-          projects={justFavourites}
-          favourites={favourites}
-          onToggleFavourite={onToggleFavourite}
-        />
-        {!justFavourites.length ? <p>No favourites selected.</p> : ""}
-      </StyledSection>
-      <Navigation />
+      <h2>Favourite Page</h2>
+      <Projects
+        projects={justFavourites}
+        favourites={favourites}
+        onToggleFavourite={onToggleFavourite}
+      />
+      {!justFavourites.length ? <p>No favourites selected.</p> : ""}
     </>
   );
 }
