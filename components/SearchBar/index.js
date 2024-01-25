@@ -2,6 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledSearchBar = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   background-color: white;
@@ -10,7 +15,7 @@ const StyledSearchBar = styled.div`
   padding: 8px;
   margin-left: calc(8px);
   margin-right: calc(8px);
-  margin-top: calc(15px);
+  margin-top: calc(50px);
 `;
 
 const StyledSearchInput = styled.input`
@@ -18,7 +23,6 @@ const StyledSearchInput = styled.input`
   outline: none;
   padding: 8px;
   font-size: 16px;
-  width: 200px;
 `;
 
 export default function SearchBar({ searchPattern, onChange }) {

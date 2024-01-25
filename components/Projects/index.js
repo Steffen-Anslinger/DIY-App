@@ -11,6 +11,7 @@ const StyledList = styled.ul`
   justify-content: center;
   list-style: none;
   padding: 0;
+  margin-top: 75px;
 `;
 
 const StyledImage = styled(Image)`
