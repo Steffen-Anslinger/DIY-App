@@ -10,7 +10,6 @@ const StyledSearchBar = styled.div`
   display: flex;
   justify-content: center;
   background-color: white;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   padding: 8px;
 `;
 
@@ -24,6 +23,7 @@ const StyledSearchInput = styled.input`
   margin-left: calc(8px);
   margin-right: calc(8px);
   margin-top: calc(50px);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export default function SearchBar({ searchPattern, onChange }) {
