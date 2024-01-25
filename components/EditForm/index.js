@@ -3,9 +3,18 @@ import StyledForm from "../Layout/StyledForm";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
+import styled from "styled-components";
+
+const StyledErrorMessage = styled.p`
+  color: red;
+`;
 
 export default function EditForm({ project, setEditMode }) {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const router = useRouter();
   const { id } = router.query;
 
@@ -31,8 +40,13 @@ export default function EditForm({ project, setEditMode }) {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <label>
           Title:
-          <input {...register("title")} defaultValue={project.title} />
+          <input
+            {...register("title", { required: "Title is required" })}
+            placeholder="Title"
+            defaultValue={project.title}
+          />
         </label>
+        <StyledErrorMessage>{errors.title?.message}</StyledErrorMessage>
         <label>
           Image:
           <input {...register("image")} defaultValue={project.image} />
@@ -40,27 +54,45 @@ export default function EditForm({ project, setEditMode }) {
         <label>
           Description:
           <textarea
-            {...register("description")}
+            {...register("description", {
+              required: "Description is required",
+            })}
+            placeholder="Description"
             defaultValue={project.description}
           />
+          <StyledErrorMessage>{errors.description?.message}</StyledErrorMessage>
         </label>
         <label>
           Duration:
-          <select {...register("duration")} defaultValue={project.duration}>
-            <option value="select...">select...</option>
+          <select
+            name="duration"
+            {...register("duration", {
+              required: "Please select an option!",
+            })}
+            defaultValue={project.duration}
+          >
+            <option value="">select...</option>
             <option value="short">short</option>
             <option value="medium">medium</option>
             <option value="long">long</option>
           </select>
+          <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
         </label>
         <label>
           Difficulty:
-          <select {...register("difficulty")} defaultValue={project.difficulty}>
-            <option value="select...">select...</option>
+          <select
+            name="difficulty"
+            {...register("difficulty", {
+              required: "Please select an option!",
+            })}
+            defaultValue={project.difficulty}
+          >
+            <option value="">select...</option>
             <option value="easy">easy</option>
             <option value="medium">medium</option>
             <option value="hard">hard</option>
           </select>
+          <StyledErrorMessage>{errors.difficulty?.message}</StyledErrorMessage>
         </label>
         {project.material && (
           <div>
@@ -70,16 +102,30 @@ export default function EditForm({ project, setEditMode }) {
                 <label>
                   Amount:
                   <input
-                    {...register(`material[${_id}].amount`)}
+                    {...register("material.0.amount", {
+                      required: "Amount is required",
+                    })}
+                    type="number"
+                    placeholder="Number"
+                    min="1"
                     defaultValue={material.amount}
                   />
+                  <StyledErrorMessage>
+                    {errors.material?.[0]?.amount?.message}
+                  </StyledErrorMessage>
                 </label>
                 <label>
                   Material:
                   <input
-                    {...register(`material[${_id}].material`)}
+                    {...register("material.0.material", {
+                      required: "Material is required",
+                    })}
+                    placeholder="Material"
                     defaultValue={material.material}
                   />
+                  <StyledErrorMessage>
+                    {errors.material?.[0]?.material?.message}
+                  </StyledErrorMessage>
                 </label>
               </div>
             ))}
@@ -88,9 +134,15 @@ export default function EditForm({ project, setEditMode }) {
         <label>
           Instructions:
           <textarea
-            {...register("instructions")}
+            {...register("instructions", {
+              required: "Instructions are required",
+            })}
+            placeholder="Instructions"
             defaultValue={project.instructions}
           />
+          <StyledErrorMessage>
+            {errors.instructions?.message}
+          </StyledErrorMessage>
         </label>
         <button onClick={() => setEditMode(false)}>Cancel</button>
         <button type="submit">Save</button>
