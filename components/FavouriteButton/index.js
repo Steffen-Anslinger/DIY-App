@@ -5,17 +5,15 @@ import color from "../Layout/Colors";
 const Button = styled.button`
   border: none;
   max-width: 100px;
-  transform: scale(2);
   background: ${color.orange[600]};
   border-radius: 5px;
-  padding: 0;
+  padding: 2.5px 10px;
   margin: 0;
   display: flex;
   justify-content: center;
   position: absolute;
-  top: 20px;
-  left: 85%;
-  width: 25px;
+  top: 12px;
+  right: 6%;
   cursor: pointer;
 `;
 
@@ -35,8 +33,8 @@ export default function FavouriteButton({
             : "/assets/favorite_FILL0_wght400_GRAD0_opsz24.svg"
         }
         alt="Favorite Button"
-        width={15}
-        height={15}
+        width={25}
+        height={25}
       />
     </Button>
   );

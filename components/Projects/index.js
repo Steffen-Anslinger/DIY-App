@@ -5,13 +5,14 @@ import FavouriteButton from "../FavouriteButton";
 import ProjectCard from "../ProjectCard";
 import { React } from "react";
 import Masonry from "@mui/lab/Masonry";
+import color from "../Layout/Colors";
 
 const StyledList = styled.ul`
   display: flex;
   justify-content: center;
   list-style: none;
   padding: 0;
-  margin-top: 75px;
+  margin-top: 90px;
 `;
 
 const StyledImage = styled(Image)`
@@ -32,6 +33,38 @@ const StyledCardTitle = styled.h2`
   width: 100%;
 `;
 
+const TagLine = styled.div`
+  display: flex;
+  position: absolute;
+  top: 12px;
+  left: 6%;
+  z-index: 1;
+  gap: 5px;
+`;
+
+const TagDuration = styled.p`
+  background: rgba(255, 255, 255, 0.6);
+  max-width: 100px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  color: ${color.grey[950]};
+  font-weight: 500;
+`;
+const TagDifficulty = styled.p`
+  background: rgba(255, 255, 255, 0.6);
+  max-width: 100px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  color: ${color.grey[950]};
+  font-weight: 500;
+`;
+
 export default function Projects({ projects, favourites, onToggleFavourite }) {
   return (
     <StyledList>
@@ -39,6 +72,10 @@ export default function Projects({ projects, favourites, onToggleFavourite }) {
         {projects.map((project) => (
           <ProjectCard key={project._id}>
             <Link href={`/projects/${project._id}`}>
+              <TagLine>
+                <TagDuration>{project.duration}</TagDuration>
+                <TagDifficulty>{project.difficulty}</TagDifficulty>
+              </TagLine>
               <StyledImage
                 src={project.image}
                 width={150}

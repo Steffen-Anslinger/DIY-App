@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import color from "../Layout/Colors";
 
 const StyledSearchBar = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   justify-content: center;
-  background-color: white;
+  background-color: ${color.grey[50]};
   padding: 8px;
+  padding-top: 20px;
 `;
 
 const StyledSearchInput = styled.input`
