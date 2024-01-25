@@ -21,6 +21,8 @@ export default function EditForm({ project, setEditMode }) {
     if (response.ok) {
       setEditMode(false);
       mutate(`/api/projects/${id}`);
+    } else {
+      response.status(404).json({ status: `Project could not be updated!` });
     }
   };
 
