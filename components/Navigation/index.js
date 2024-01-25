@@ -27,6 +27,7 @@ const StyledNav = styled.nav`
   bottom: 0;
   width: 100%;
   z-index: 2;
+  box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.08);
 `;
 
 const StyledList = styled.ul`
