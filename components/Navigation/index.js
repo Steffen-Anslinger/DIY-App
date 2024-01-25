@@ -26,6 +26,7 @@ const StyledNav = styled.nav`
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 2;
 `;
 
 const StyledList = styled.ul`

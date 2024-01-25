@@ -11,9 +11,6 @@ const Button = styled.button`
   margin: 0;
   display: flex;
   justify-content: center;
-  position: absolute;
-  top: 12px;
-  right: 6%;
   cursor: pointer;
 `;
 

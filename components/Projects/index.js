@@ -24,22 +24,29 @@ const StyledImage = styled(Image)`
 `;
 
 const StyledCardTitle = styled.h2`
-  position: absolute;
-  bottom: 15px;
-  left: 0;
   margin: 0;
-  padding: 1rem;
   color: white;
   width: 100%;
+  height: fit-content;
+`;
+
+const Container = styled.div`
+  display: flex;
+  align-content: space-between;
+  position: absolute;
+  height: 100%;
+  top: 0px;
+  padding: 12px;
+  z-index: 1;
+  gap: 5px;
+  flex-wrap: wrap;
 `;
 
 const TagLine = styled.div`
   display: flex;
-  position: absolute;
-  top: 12px;
-  left: 6%;
-  z-index: 1;
   gap: 5px;
+  flex-wrap: wrap;
+  height: fit-content;
 `;
 
 const TagDuration = styled.p`
@@ -53,6 +60,7 @@ const TagDuration = styled.p`
   color: ${color.grey[950]};
   font-weight: 500;
 `;
+
 const TagDifficulty = styled.p`
   background: rgba(255, 255, 255, 0.6);
   max-width: 100px;
@@ -68,27 +76,29 @@ const TagDifficulty = styled.p`
 export default function Projects({ projects, favourites, onToggleFavourite }) {
   return (
     <StyledList>
-      <Masonry columns={2} spacing={2}>
+      <Masonry columns={{ 0: 1, 400: 2, 850: 3 }} spacing={2}>
         {projects.map((project) => (
           <ProjectCard key={project._id}>
             <Link href={`/projects/${project._id}`}>
-              <TagLine>
-                <TagDuration>{project.duration}</TagDuration>
-                <TagDifficulty>{project.difficulty}</TagDifficulty>
-              </TagLine>
               <StyledImage
                 src={project.image}
                 width={150}
                 height={150}
                 alt={project.title}
               />
-              <StyledCardTitle>{project.title}</StyledCardTitle>
             </Link>
-            <FavouriteButton
-              onToggleFavourite={onToggleFavourite}
-              id={project._id}
-              favourites={favourites}
-            />
+            <Container>
+              <TagLine>
+                <TagDuration>{project.duration}</TagDuration>
+                <TagDifficulty>{project.difficulty}</TagDifficulty>
+                <FavouriteButton
+                  onToggleFavourite={onToggleFavourite}
+                  id={project._id}
+                  favourites={favourites}
+                />
+              </TagLine>
+              <StyledCardTitle>{project.title}</StyledCardTitle>
+            </Container>
           </ProjectCard>
         ))}
       </Masonry>
