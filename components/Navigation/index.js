@@ -5,7 +5,19 @@ import color from "../Layout/Colors";
 const StyledLink = styled(Link)`
   text-decoration: none;
   font-size: 1rem;
-  color: black;
+  color: ${color.grey[950]};
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: ${color.orange[600]};
+  }
+  &:active {
+    background-color: ${color.orange[600]};
+  }
 `;
 
 const StyledNav = styled.nav`
@@ -29,16 +41,7 @@ const StyledLinkNav = styled.li`
   background-color: ${color.grey[50]};
   width: 100%;
   height: 100%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.3s;
   cursor: pointer;
-
-  &:hover {
-    background-color: ${color.orange[600]};
-  }
 `;
 
 export default function Navigation() {
