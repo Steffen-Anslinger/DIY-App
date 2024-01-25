@@ -8,21 +8,22 @@ const StyledSearchBar = styled.div`
   right: 0;
   z-index: 1;
   display: flex;
-  align-items: center;
+  justify-content: center;
   background-color: white;
-  border-radius: 4px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   padding: 8px;
-  margin-left: calc(8px);
-  margin-right: calc(8px);
-  margin-top: calc(50px);
 `;
 
 const StyledSearchInput = styled.input`
   border: none;
   outline: none;
+  width: 100%;
+  border-radius: 4px;
   padding: 8px;
   font-size: 16px;
+  margin-left: calc(8px);
+  margin-right: calc(8px);
+  margin-top: calc(50px);
 `;
 
 export default function SearchBar({ searchPattern, onChange }) {
