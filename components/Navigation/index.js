@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import color from "../Layout/Colors";
+import { usePathname } from "next/navigation";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -15,7 +16,7 @@ const StyledLink = styled(Link)`
   &:hover {
     background-color: ${color.orange[600]};
   }
-  &:active {
+  &.active {
     background-color: ${color.orange[600]};
   }
 `;
@@ -45,17 +46,30 @@ const StyledLinkNav = styled.li`
 `;
 
 export default function Navigation() {
+  const pathname = usePathname();
   return (
     <StyledNav>
       <StyledList>
         <StyledLinkNav>
-          <StyledLink href="/">Home</StyledLink>
+          <StyledLink className={pathname == "/" ? "active" : ""} href="/">
+            Home
+          </StyledLink>
         </StyledLinkNav>
         <StyledLinkNav>
-          <StyledLink href="/create">Create</StyledLink>
+          <StyledLink
+            className={pathname == "/create" ? "active" : ""}
+            href="/create"
+          >
+            Create
+          </StyledLink>
         </StyledLinkNav>
         <StyledLinkNav>
-          <StyledLink href="/favourite">Favourite</StyledLink>
+          <StyledLink
+            className={pathname == "/favourite" ? "active" : ""}
+            href="/favourite"
+          >
+            Favourite
+          </StyledLink>
         </StyledLinkNav>
       </StyledList>
     </StyledNav>
