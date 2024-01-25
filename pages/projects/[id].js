@@ -1,19 +1,25 @@
-import ProjectDetails from "@/components/DetailsPage";
-import Header from "@/components/Header";
-import StyledSection from "@/components/Layout/StyledSection";
-import Navigation from "@/components/Navigation";
+import EditDetails from "@/components/EditDetails";
+import { useRouter } from "next/router";
+import useSWR from "swr";
 
-export default function ProductDetailsPage({ favourites, onToggleFavourite }) {
+export default function ProjectDetailsPage({ favourites, onToggleFavourite }) {
+  const router = useRouter();
+  const { id } = router.query;
+  const { data: project, isLoading } = useSWR(`/api/projects/${id}`);
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!project) {
+    return <h1>Project not found</h1>;
+  }
+
   return (
-    <>
-      <Header />
-      <StyledSection>
-        <ProjectDetails
-          onToggleFavourite={onToggleFavourite}
-          favourites={favourites}
-        />
-      </StyledSection>
-      <Navigation />
-    </>
+    <EditDetails
+      project={project}
+      onToggleFavourite={onToggleFavourite}
+      favourites={favourites}
+    />
   );
 }

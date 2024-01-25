@@ -14,13 +14,11 @@ const projectSchema = new Schema(
     description: { type: String, required: true },
     duration: {
       type: String,
-      enum: ["short", "medium", "long"],
-      required: true,
+      enum: ["select...", "short", "medium", "long"],
     },
     difficulty: {
       type: String,
-      enum: ["easy", "medium", "hard"],
-      required: true,
+      enum: ["select...", "easy", "medium", "hard"],
     },
     material: { type: [materialSchema], required: true },
     instructions: { type: String, required: true },

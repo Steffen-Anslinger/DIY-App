@@ -67,22 +67,36 @@ export default function ProjectForm() {
         <div>
           <label>
             Duration
-            <select {...register("duration")} defaultValue={""}>
-              <option value="select...">select...</option>
+            <select
+              name="duration"
+              {...register("duration", {
+                required: "Please select an option!",
+              })}
+              defaultValue={""}
+            >
+              <option value="">select...</option>
               <option value="short">short</option>
               <option value="medium">medium</option>
               <option value="long">long</option>
             </select>
+            <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
           </label>
           &nbsp;
           <label>
             Difficulty
-            <select {...register("difficulty")} defaultValue={""}>
-              <option value="select...">select...</option>
+            <select
+              name="difficulty"
+              {...register("difficulty", {
+                required: "Please select an option!",
+              })}
+              defaultValue={""}
+            >
+              <option value="">select...</option>
               <option value="easy">easy</option>
               <option value="medium">medium</option>
               <option value="hard">hard</option>
             </select>
+            <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
           </label>
         </div>
         <fieldset>
@@ -99,7 +113,7 @@ export default function ProjectForm() {
             />
           </label>
           <StyledErrorMessage>
-            {errors.material_amount?.message}
+            {errors.material?.[0]?.amount?.message}
           </StyledErrorMessage>
           <label>
             Material
@@ -110,7 +124,9 @@ export default function ProjectForm() {
               placeholder="Material"
             />
           </label>
-          <StyledErrorMessage>{errors.material?.message}</StyledErrorMessage>
+          <StyledErrorMessage>
+            {errors.material?.[0]?.material?.message}
+          </StyledErrorMessage>
         </fieldset>
 
         <label>
