@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import StyledLink from "../Layout/StyledLinkButton";
@@ -16,9 +16,19 @@ export default function ProjectForm() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      test: [{ amount: 1, material: "" }],
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "test",
+  });
 
   const onSubmit = async (data) => {
     const request = {
@@ -101,32 +111,54 @@ export default function ProjectForm() {
         </div>
         <fieldset>
           <legend>Materials</legend>
-          <label>
-            Amount
-            <input
-              {...register("material.0.amount", {
-                required: "Amount is required",
-              })}
-              type="number"
-              placeholder="Number"
-              min="1"
-            />
-          </label>
-          <StyledErrorMessage>
-            {errors.material?.[0]?.amount?.message}
-          </StyledErrorMessage>
-          <label>
-            Material
-            <input
-              {...register("material.0.material", {
-                required: "Material is required",
-              })}
-              placeholder="Material"
-            />
-          </label>
-          <StyledErrorMessage>
-            {errors.material?.[0]?.material?.message}
-          </StyledErrorMessage>
+          {fields.map((item, _id) => {
+            return (
+              <div key={item.id}>
+                <label>
+                  <span>Amount</span>
+                  <input
+                    {...register(`test.${_id}.material.0.amount`, {
+                      required: "Amount is required",
+                    })}
+                    type="number"
+                    placeholder="Number"
+                    min="1"
+                    defaultValue={1}
+                  />
+                </label>
+                <StyledErrorMessage>
+                  {errors.material?.[0]?.amount?.message}
+                </StyledErrorMessage>
+
+                <label>
+                  <span>Material</span>
+                  <input
+                    {...register(`test.${_id}.material.0.material`, {
+                      required: "Material is required",
+                    })}
+                    // {...register("material.0.material", {
+                    //   required: "Material is required",
+                    // })}
+                    placeholder="Material"
+                  />
+                </label>
+                <button type="button" onClick={() => remove(index)}>
+                  Delete
+                </button>
+                <StyledErrorMessage>
+                  {errors.material?.[0]?.material?.message}
+                </StyledErrorMessage>
+              </div>
+            );
+          })}
+          <button
+            type="button"
+            onClick={() => {
+              append({ amount: 1, material: "" });
+            }}
+          >
+            Add
+          </button>
         </fieldset>
 
         <label>
