@@ -21,20 +21,30 @@ export default function ProjectForm() {
     reset,
   } = useForm({
     defaultValues: {
-      test: [{ amount: 1, material: "" }],
+      material: [{ amount: 1, material: "" }],
     },
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "test",
+    name: "material",
   });
 
   const onSubmit = async (data) => {
+    const requestData = {
+      ...data,
+      material: data.material.map((item) => ({
+        ...item,
+        amount: parseInt(item.amount, 10),
+      })),
+    };
+
+    console.log(requestData);
+
     const request = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(requestData),
     };
 
     const response = await fetch("/api/projects", request);
@@ -111,34 +121,30 @@ export default function ProjectForm() {
         </div>
         <fieldset>
           <legend>Materials</legend>
-          {fields.map((item, _id) => {
+          {fields.map((item, index) => {
             return (
               <div key={item.id}>
                 <label>
                   <span>Amount</span>
                   <input
-                    {...register(`test.${_id}.material.0.amount`, {
+                    {...register(`material.${index}.amount`, {
                       required: "Amount is required",
                     })}
                     type="number"
                     placeholder="Number"
                     min="1"
-                    defaultValue={1}
                   />
                 </label>
                 <StyledErrorMessage>
-                  {errors.material?.[0]?.amount?.message}
+                  {errors.material?.[index]?.amount?.message}
                 </StyledErrorMessage>
 
                 <label>
                   <span>Material</span>
                   <input
-                    {...register(`test.${_id}.material.0.material`, {
+                    {...register(`material.${index}.material`, {
                       required: "Material is required",
                     })}
-                    // {...register("material.0.material", {
-                    //   required: "Material is required",
-                    // })}
                     placeholder="Material"
                   />
                 </label>
@@ -146,7 +152,7 @@ export default function ProjectForm() {
                   Delete
                 </button>
                 <StyledErrorMessage>
-                  {errors.material?.[0]?.material?.message}
+                  {errors.material?.[index]?.material?.message}
                 </StyledErrorMessage>
               </div>
             );
