@@ -52,12 +52,10 @@ export default function ProjectForm() {
         {errors.title && (
           <StyledErrorMessage>{errors.title.message}</StyledErrorMessage>
         )}
-
         <StyledLabel>
           Image
           <StyledInput {...register("image")} placeholder="Select Image" />
         </StyledLabel>
-
         <StyledLabel>
           Description
           <StyledTextarea

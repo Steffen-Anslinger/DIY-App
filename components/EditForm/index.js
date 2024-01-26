@@ -3,11 +3,14 @@ import StyledForm from "../Layout/FormStyles/StyledForm";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
-import styled from "styled-components";
-
-const StyledErrorMessage = styled.p`
-  color: red;
-`;
+import StyledLabel from "../Layout/FormStyles/StyledLabel";
+import StyledInput from "../Layout/FormStyles/StyledInput";
+import StyledFieldset from "../Layout/FormStyles/StyledFieldset";
+import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
+import StyledSelect from "../Layout/FormStyles/StyledSelect";
+import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
+import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
+import StyledCancelButton from "../Layout/FormStyles/StyledCancelButton";
 
 export default function EditForm({ project, setEditMode }) {
   const {
@@ -39,33 +42,39 @@ export default function EditForm({ project, setEditMode }) {
   return (
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <label>
+        <StyledLabel>
           Title:
-          <input
+          <StyledInput
             {...register("title", { required: "Title is required" })}
             placeholder="Title"
             defaultValue={project.title}
           />
-        </label>
-        <StyledErrorMessage>{errors.title?.message}</StyledErrorMessage>
-        <label>
+        </StyledLabel>
+        {errors.title && (
+          <StyledErrorMessage>{errors.title.message}</StyledErrorMessage>
+        )}
+        <StyledLabel>
           Image:
-          <input {...register("image")} defaultValue={project.image} />
-        </label>
-        <label>
+          <StyledInput {...register("image")} defaultValue={project.image} />
+        </StyledLabel>
+        <StyledLabel>
           Description:
-          <textarea
+          <StyledTextarea
             {...register("description", {
               required: "Description is required",
             })}
             placeholder="Description"
             defaultValue={project.description}
           />
-          <StyledErrorMessage>{errors.description?.message}</StyledErrorMessage>
-        </label>
-        <label>
+          {errors.description && (
+            <StyledErrorMessage>
+              {errors.description.message}
+            </StyledErrorMessage>
+          )}
+        </StyledLabel>
+        <StyledLabel>
           Duration:
-          <select
+          <StyledSelect
             name="duration"
             {...register("duration", {
               required: "Please select an option!",
@@ -76,12 +85,14 @@ export default function EditForm({ project, setEditMode }) {
             <option value="short">short</option>
             <option value="medium">medium</option>
             <option value="long">long</option>
-          </select>
+          </StyledSelect>
+        </StyledLabel>
+        {errors.duration && (
           <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
-        </label>
-        <label>
+        )}
+        <StyledLabel>
           Difficulty:
-          <select
+          <StyledSelect
             name="difficulty"
             {...register("difficulty", {
               required: "Please select an option!",
@@ -92,17 +103,19 @@ export default function EditForm({ project, setEditMode }) {
             <option value="easy">easy</option>
             <option value="medium">medium</option>
             <option value="hard">hard</option>
-          </select>
+          </StyledSelect>
+        </StyledLabel>
+        {errors.difficulty && (
           <StyledErrorMessage>{errors.difficulty?.message}</StyledErrorMessage>
-        </label>
+        )}
         {project.material && (
-          <div>
+          <StyledFieldset>
             <h3>Material</h3>
             {project.material.map((material, _id) => (
               <div key={_id}>
-                <label>
+                <StyledLabel>
                   Amount:
-                  <input
+                  <StyledInput
                     {...register("material.0.amount", {
                       required: "Amount is required",
                     })}
@@ -111,42 +124,50 @@ export default function EditForm({ project, setEditMode }) {
                     min="1"
                     defaultValue={material.amount}
                   />
+                </StyledLabel>
+                {errors.material?.[0]?.amount && (
                   <StyledErrorMessage>
                     {errors.material?.[0]?.amount?.message}
                   </StyledErrorMessage>
-                </label>
-                <label>
+                )}
+                <StyledLabel>
                   Material:
-                  <input
+                  <StyledInput
                     {...register("material.0.material", {
                       required: "Material is required",
                     })}
                     placeholder="Material"
                     defaultValue={material.material}
                   />
+                </StyledLabel>
+                {errors.material?.[0]?.material && (
                   <StyledErrorMessage>
                     {errors.material?.[0]?.material?.message}
                   </StyledErrorMessage>
-                </label>
+                )}
               </div>
             ))}
-          </div>
+          </StyledFieldset>
         )}
-        <label>
+        <StyledLabel>
           Instructions:
-          <textarea
+          <StyledTextarea
             {...register("instructions", {
               required: "Instructions are required",
             })}
             placeholder="Instructions"
             defaultValue={project.instructions}
           />
+        </StyledLabel>
+        {errors.instructions && (
           <StyledErrorMessage>
             {errors.instructions?.message}
           </StyledErrorMessage>
-        </label>
-        <button onClick={() => setEditMode(false)}>Cancel</button>
-        <button type="submit">Save</button>
+        )}
+        <StyledCancelButton onClick={() => setEditMode(false)}>
+          Cancel
+        </StyledCancelButton>
+        <StyledSubmitButton type="submit">Save</StyledSubmitButton>
       </StyledForm>
     </>
   );
