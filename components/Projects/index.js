@@ -30,6 +30,13 @@ const StyledCardTitle = styled.h2`
   color: white;
   width: 100%;
   height: fit-content;
+
+  @media (max-width: 100px) {
+    font-size: medium;
+  }
+  @media (max-width: 200px) {
+    font-size: large;
+  }
 `;
 
 const Container = styled.div`
@@ -71,6 +78,13 @@ const TagDuration = styled.p`
   justify-content: center;
   color: ${color.grey[950]};
   font-weight: 500;
+
+  @media (max-width: 200px) {
+    font-size: xx-small;
+  }
+  @media (max-width: 400px) {
+    font-size: small;
+  }
 `;
 
 const TagDifficulty = styled.p`
@@ -83,6 +97,13 @@ const TagDifficulty = styled.p`
   justify-content: center;
   color: ${color.grey[950]};
   font-weight: 500;
+
+  @media (max-width: 200px) {
+    font-size: xx-small;
+  }
+  @media (max-width: 400px) {
+    font-size: small;
+  }
 `;
 
 const customBreakpoints = {
