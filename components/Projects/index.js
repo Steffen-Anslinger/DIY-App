@@ -6,6 +6,8 @@ import ProjectCard from "../ProjectCard";
 import { React } from "react";
 import Masonry from "@mui/lab/Masonry";
 import color from "../Layout/Colors";
+import { useTheme } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const StyledList = styled.ul`
   display: flex;
@@ -83,10 +85,25 @@ const TagDifficulty = styled.p`
   font-weight: 500;
 `;
 
+const customBreakpoints = {
+  values: {
+    xs: 0,
+    sm: 400,
+    md: 600,
+    lg: 960,
+    xl: 1280,
+    custom: 1600,
+  },
+};
+
+const theme = createTheme({
+  breakpoints: customBreakpoints,
+});
+
 export default function Projects({ projects, favourites, onToggleFavourite }) {
   return (
     <StyledList>
-      <Masonry columns={{ xs: 1, sm: 2, md: 3 }} spacing={2}>
+      <Masonry theme={theme} columns={{ xs: 1, sm: 2, md: 3 }} spacing={2}>
         {projects.map((project) => (
           <ProjectCard key={project._id}>
             <Link href={`/projects/${project._id}`}>
