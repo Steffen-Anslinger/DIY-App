@@ -25,6 +25,10 @@ const color = {
     900: "#3b3941",
     950: "#1c1b1f", // main color dark
   },
+  red: {
+    100: "#fbe6e5",
+    600: "#c73f3b",
+  },
 };
 
 export default color;

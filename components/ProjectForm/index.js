@@ -1,13 +1,10 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import StyledLink from "../Layout/StyledLinkButton";
 import useSWR from "swr";
 import StyledForm from "../Layout/StyledForm";
-
-const StyledErrorMessage = styled.p`
-  color: red;
-`;
+import color from "../Layout/Colors";
+import Link from "next/link";
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
@@ -36,38 +33,121 @@ export default function ProjectForm() {
     }
   };
 
+  const StyledLabel = styled.label`
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: ${color.grey[950]};
+  `;
+  const StyledInput = styled.input`
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid ${color.grey[300]};
+    border-radius: 4px;
+    box-sizing: border-box;
+  `;
+  const StyledFieldset = styled.fieldset`
+    margin-top: 20px;
+    border: 1px solid ${color.grey[300]};
+    border-radius: 10px;
+    padding: 15px;
+  `;
+  const StyledTextarea = styled.textarea`
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid ${color.grey[300]};
+    border-radius: 4px;
+    box-sizing: border-box;
+  `;
+
+  const StyledSelect = styled.select`
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  `;
+
+  const StyledSubmitButton = styled.button`
+    font-size: 14px;
+    background-color: ${color.orange[600]};
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${color.orange[700]};
+    }
+  `;
+
+  const StyledLink = styled(Link)`
+    font-size: 14px;
+    font-weight: 500;
+    color: ${color.grey[950]};
+    text-decoration: none;
+    margin-right: 10px;
+    background-color: ${color.grey[200]};
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: underline;
+      background-color: ${color.grey[300]};
+    }
+  `;
+
+  const StyledErrorMessage = styled.p`
+    color: ${color.red[600]};
+    background-color: ${color.red[100]};
+    margin-top: 4px;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  `;
+
   return (
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <h2>Create new project</h2>
-        <label>
+        <StyledLabel>
           Project title
-          <input
+          <StyledInput
             {...register("title", { required: "Title is required" })}
             placeholder="Title"
           />
-          <StyledErrorMessage>{errors.title?.message}</StyledErrorMessage>
-        </label>
+        </StyledLabel>
+        {errors.title && (
+          <StyledErrorMessage>{errors.title.message}</StyledErrorMessage>
+        )}
 
-        <label>
+        <StyledLabel>
           Image
-          <input {...register("image")} placeholder="Select Image" />
-        </label>
+          <StyledInput {...register("image")} placeholder="Select Image" />
+        </StyledLabel>
 
-        <label>
+        <StyledLabel>
           Description
-          <textarea
+          <StyledTextarea
             {...register("description", {
               required: "Description is required",
             })}
             placeholder="Description"
           />
-          <StyledErrorMessage>{errors.description?.message}</StyledErrorMessage>
-        </label>
+        </StyledLabel>
+        {errors.description && (
+          <StyledErrorMessage>{errors.description.message}</StyledErrorMessage>
+        )}
         <div>
-          <label>
+          <StyledLabel>
             Duration
-            <select
+            <StyledSelect
               name="duration"
               {...register("duration", {
                 required: "Please select an option!",
@@ -78,13 +158,15 @@ export default function ProjectForm() {
               <option value="short">short</option>
               <option value="medium">medium</option>
               <option value="long">long</option>
-            </select>
+            </StyledSelect>
+          </StyledLabel>
+          {errors.duration && (
             <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
-          </label>
+          )}
           &nbsp;
-          <label>
+          <StyledLabel>
             Difficulty
-            <select
+            <StyledSelect
               name="difficulty"
               {...register("difficulty", {
                 required: "Please select an option!",
@@ -95,15 +177,19 @@ export default function ProjectForm() {
               <option value="easy">easy</option>
               <option value="medium">medium</option>
               <option value="hard">hard</option>
-            </select>
-            <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
-          </label>
+            </StyledSelect>
+          </StyledLabel>
+          {errors.difficulty && (
+            <StyledErrorMessage>
+              {errors.difficulty?.message}
+            </StyledErrorMessage>
+          )}
         </div>
-        <fieldset>
+        <StyledFieldset>
           <legend>Materials</legend>
-          <label>
+          <StyledLabel>
             Amount
-            <input
+            <StyledInput
               {...register("material.0.amount", {
                 required: "Amount is required",
               })}
@@ -111,39 +197,45 @@ export default function ProjectForm() {
               placeholder="Number"
               min="1"
             />
-          </label>
-          <StyledErrorMessage>
-            {errors.material?.[0]?.amount?.message}
-          </StyledErrorMessage>
-          <label>
+          </StyledLabel>
+          {errors.material?.[0]?.amount && (
+            <StyledErrorMessage>
+              {errors.material?.[0]?.amount?.message}
+            </StyledErrorMessage>
+          )}
+          <StyledLabel>
             Material
-            <input
+            <StyledInput
               {...register("material.0.material", {
                 required: "Material is required",
               })}
               placeholder="Material"
             />
-          </label>
-          <StyledErrorMessage>
-            {errors.material?.[0]?.material?.message}
-          </StyledErrorMessage>
-        </fieldset>
+          </StyledLabel>
+          {errors.material?.[0]?.material && (
+            <StyledErrorMessage>
+              {errors.material?.[0]?.material?.message}
+            </StyledErrorMessage>
+          )}
+        </StyledFieldset>
 
-        <label>
+        <StyledLabel>
           Instructions
-          <textarea
+          <StyledTextarea
             {...register("instructions", {
               required: "Instructions are required",
             })}
             placeholder="Instructions"
           />
+        </StyledLabel>
+        {errors.instructions && (
           <StyledErrorMessage>
             {errors.instructions?.message}
           </StyledErrorMessage>
-        </label>
+        )}
         <div>
           <StyledLink href="/">Cancel</StyledLink>
-          <button type="submit">Create</button>
+          <StyledSubmitButton type="submit">Create</StyledSubmitButton>
         </div>
       </StyledForm>
     </>
