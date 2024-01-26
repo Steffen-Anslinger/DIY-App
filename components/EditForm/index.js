@@ -42,6 +42,7 @@ export default function EditForm({ project, setEditMode }) {
   return (
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <h2>Edit your project</h2>
         <StyledLabel>
           Title:
           <StyledInput
