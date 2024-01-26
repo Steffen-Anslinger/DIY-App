@@ -1,5 +1,5 @@
 import React from "react";
-import StyledForm from "../Layout/StyledForm";
+import StyledForm from "../Layout/FormStyles/StyledForm";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { mutate } from "swr";

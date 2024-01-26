@@ -1,10 +1,15 @@
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import StyledForm from "../Layout/StyledForm";
-import color from "../Layout/Colors";
-import Link from "next/link";
+import StyledForm from "../Layout/FormStyles/StyledForm";
+import StyledLabel from "../Layout/FormStyles/StyledLabel";
+import StyledInput from "../Layout/FormStyles/StyledInput";
+import StyledFieldset from "../Layout/FormStyles/StyledFieldset";
+import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
+import StyledSelect from "../Layout/FormStyles/StyledSelect";
+import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
+import StyledLink from "../Layout/FormStyles/StyledLink";
+import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
@@ -32,85 +37,6 @@ export default function ProjectForm() {
       router.push("/");
     }
   };
-
-  const StyledLabel = styled.label`
-    display: block;
-    margin-bottom: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    color: ${color.grey[950]};
-  `;
-  const StyledInput = styled.input`
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    border: 1px solid ${color.grey[300]};
-    border-radius: 4px;
-    box-sizing: border-box;
-  `;
-  const StyledFieldset = styled.fieldset`
-    margin-top: 20px;
-    border: 1px solid ${color.grey[300]};
-    border-radius: 10px;
-    padding: 15px;
-  `;
-  const StyledTextarea = styled.textarea`
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    border: 1px solid ${color.grey[300]};
-    border-radius: 4px;
-    box-sizing: border-box;
-  `;
-
-  const StyledSelect = styled.select`
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  `;
-
-  const StyledSubmitButton = styled.button`
-    font-size: 14px;
-    background-color: ${color.orange[600]};
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: ${color.orange[700]};
-    }
-  `;
-
-  const StyledLink = styled(Link)`
-    font-size: 14px;
-    font-weight: 500;
-    color: ${color.grey[950]};
-    text-decoration: none;
-    margin-right: 10px;
-    background-color: ${color.grey[200]};
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: inline-block;
-
-    &:hover {
-      text-decoration: underline;
-      background-color: ${color.grey[300]};
-    }
-  `;
-
-  const StyledErrorMessage = styled.p`
-    color: ${color.red[600]};
-    background-color: ${color.red[100]};
-    margin-top: 4px;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 12px;
-  `;
 
   return (
     <>
