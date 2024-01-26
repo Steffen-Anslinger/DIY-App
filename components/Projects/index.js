@@ -20,6 +20,7 @@ const StyledList = styled.ul`
 const StyledImage = styled(Image)`
   width: 100%;
   height: auto;
+  min-height: 150px;
   object-fit: cover;
   border-radius: 5px;
   filter: brightness(70%);
