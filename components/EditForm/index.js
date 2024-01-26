@@ -44,7 +44,7 @@ export default function EditForm({ project, setEditMode }) {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <h2>Edit your project</h2>
         <StyledLabel>
-          Title:
+          Project title
           <StyledInput
             {...register("title", { required: "Title is required" })}
             placeholder="Title"
@@ -55,11 +55,11 @@ export default function EditForm({ project, setEditMode }) {
           <StyledErrorMessage>{errors.title.message}</StyledErrorMessage>
         )}
         <StyledLabel>
-          Image:
+          Image
           <StyledInput {...register("image")} defaultValue={project.image} />
         </StyledLabel>
         <StyledLabel>
-          Description:
+          Description
           <StyledTextarea
             {...register("description", {
               required: "Description is required",
@@ -74,7 +74,7 @@ export default function EditForm({ project, setEditMode }) {
           )}
         </StyledLabel>
         <StyledLabel>
-          Duration:
+          Duration
           <StyledSelect
             name="duration"
             {...register("duration", {
@@ -92,7 +92,7 @@ export default function EditForm({ project, setEditMode }) {
           <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
         )}
         <StyledLabel>
-          Difficulty:
+          Difficulty
           <StyledSelect
             name="difficulty"
             {...register("difficulty", {
@@ -111,7 +111,7 @@ export default function EditForm({ project, setEditMode }) {
         )}
         {project.material && (
           <StyledFieldset>
-            <h3>Material</h3>
+            <legend>Materials</legend>
             {project.material.map((material, _id) => (
               <div key={_id}>
                 <StyledLabel>
