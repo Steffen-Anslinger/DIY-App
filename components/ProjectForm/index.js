@@ -39,7 +39,6 @@ export default function ProjectForm() {
   };
 
   return (
-    <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <h2>Create new project</h2>
         <StyledLabel>
@@ -142,7 +141,6 @@ export default function ProjectForm() {
             </StyledErrorMessage>
           )}
         </StyledFieldset>
-
         <StyledLabel>
           Instructions
           <StyledTextarea
@@ -162,6 +160,5 @@ export default function ProjectForm() {
           <StyledSubmitButton type="submit">Create</StyledSubmitButton>
         </div>
       </StyledForm>
-    </>
   );
 }
