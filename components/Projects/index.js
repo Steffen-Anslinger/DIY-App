@@ -6,7 +6,6 @@ import ProjectCard from "../ProjectCard";
 import { React } from "react";
 import Masonry from "@mui/lab/Masonry";
 import color from "../Layout/Colors";
-import { useTheme } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const StyledList = styled.ul`
