@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const materialsSchema = new Schema({
   amount: { type: Number, required: true },
-  materials: { type: String, required: true },
+  material: { type: String, required: true },
 });
 
 const projectSchema = new Schema(

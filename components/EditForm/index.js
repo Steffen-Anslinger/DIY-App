@@ -137,11 +137,11 @@ export default function EditForm({ project, setEditMode }) {
                       required: "Material is required",
                     })}
                     placeholder="Material"
-                    defaultValue={item.materials}
+                    defaultValue={item.material}
                   />
                 </label>
                 <StyledErrorMessage>
-                  {errors.materials?.[index]?.materials?.message}
+                  {errors.materials?.[index]?.material?.message}
                 </StyledErrorMessage>
 
                 <button type="button" onClick={() => remove(index)}>
