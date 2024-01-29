@@ -140,14 +140,13 @@ export default function EditForm({ project, setEditMode }) {
                     defaultValue={item.material}
                   />
                 </label>
+                <StyledErrorMessage>
+                  {errors.material?.[index]?.material?.message}
+                </StyledErrorMessage>
 
                 <button type="button" onClick={() => remove(index)}>
                   Delete
                 </button>
-
-                <StyledErrorMessage>
-                  {errors.material?.[index]?.material?.message}
-                </StyledErrorMessage>
               </div>
             ))}
 

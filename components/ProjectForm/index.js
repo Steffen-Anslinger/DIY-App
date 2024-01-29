@@ -39,8 +39,6 @@ export default function ProjectForm() {
       })),
     };
 
-    console.log(requestData);
-
     const request = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -148,12 +146,12 @@ export default function ProjectForm() {
                     placeholder="Material"
                   />
                 </label>
-                <button type="button" onClick={() => remove(index)}>
-                  Delete
-                </button>
                 <StyledErrorMessage>
                   {errors.material?.[index]?.material?.message}
                 </StyledErrorMessage>
+                <button type="button" onClick={() => remove(index)}>
+                  Delete
+                </button>
               </div>
             );
           })}
