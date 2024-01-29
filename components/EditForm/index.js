@@ -1,6 +1,6 @@
 import React from "react";
 import StyledForm from "../Layout/StyledForm";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
 import styled from "styled-components";
@@ -13,8 +13,22 @@ export default function EditForm({ project, setEditMode }) {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      materials: project.materials.map((materials) => ({
+        amount: materials.amount,
+        material: materials.material,
+      })),
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "materials",
+  });
+
   const router = useRouter();
   const { id } = router.query;
 
@@ -95,43 +109,58 @@ export default function EditForm({ project, setEditMode }) {
           </select>
           <StyledErrorMessage>{errors.difficulty?.message}</StyledErrorMessage>
         </label>
-        {project.material && (
+
+        {fields.length > 0 && (
           <div>
-            <h3>Material</h3>
-            {project.material.map((material, _id) => (
-              <div key={_id}>
+            {fields.map((item, index) => (
+              <div key={item.id}>
                 <label>
-                  Amount:
+                  <span>Amount</span>
                   <input
-                    {...register("material.0.amount", {
+                    {...register(`materials.${index}.amount`, {
                       required: "Amount is required",
                     })}
                     type="number"
                     placeholder="Number"
                     min="1"
-                    defaultValue={material.amount}
+                    defaultValue={item.amount}
                   />
-                  <StyledErrorMessage>
-                    {errors.material?.[0]?.amount?.message}
-                  </StyledErrorMessage>
                 </label>
+                <StyledErrorMessage>
+                  {errors.materials?.[index]?.amount?.message}
+                </StyledErrorMessage>
+
                 <label>
-                  Material:
+                  <span>Materials</span>
                   <input
-                    {...register("material.0.material", {
+                    {...register(`materials.${index}.material`, {
                       required: "Material is required",
                     })}
                     placeholder="Material"
-                    defaultValue={material.material}
+                    defaultValue={item.material}
                   />
-                  <StyledErrorMessage>
-                    {errors.material?.[0]?.material?.message}
-                  </StyledErrorMessage>
                 </label>
+                <StyledErrorMessage>
+                  {errors.materials?.[index]?.material?.message}
+                </StyledErrorMessage>
+
+                <button type="button" onClick={() => remove(index)}>
+                  Delete
+                </button>
               </div>
             ))}
+
+            <button
+              type="button"
+              onClick={() => {
+                append({ amount: 1, material: "" });
+              }}
+            >
+              Add
+            </button>
           </div>
         )}
+
         <label>
           Instructions:
           <textarea
