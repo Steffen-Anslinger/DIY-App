@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const materialSchema = new Schema({
+const materialsSchema = new Schema({
   amount: { type: Number, required: true },
-  material: { type: String, required: true },
+  materials: { type: String, required: true },
 });
 
 const projectSchema = new Schema(
@@ -20,7 +20,7 @@ const projectSchema = new Schema(
       type: String,
       enum: ["select...", "easy", "medium", "hard"],
     },
-    material: { type: [materialSchema], required: true },
+    materials: { type: [materialsSchema], required: true },
     instructions: { type: String, required: true },
   },
   { timestamps: true }

@@ -27,12 +27,12 @@ export default function ProjectDetails({
         <strong> Difficulty:</strong>
         {project.difficulty}
       </>
-      {project.material && (
+      {project.materials && (
         <ul>
           <h3>Material</h3>
-          {project.material.map((material, index) => (
+          {project.materials.map((materials, index) => (
             <li key={index}>
-              {material.amount} {material.material}
+              {materials.amount} {materials.material}
             </li>
           ))}
         </ul>

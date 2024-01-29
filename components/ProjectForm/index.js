@@ -21,19 +21,19 @@ export default function ProjectForm() {
     reset,
   } = useForm({
     defaultValues: {
-      material: [{ amount: 1, material: "" }],
+      materials: [{ amount: 1, material: "" }],
     },
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "material",
+    name: "materials",
   });
 
   const onSubmit = async (data) => {
     const requestData = {
       ...data,
-      material: data.material.map((item) => ({
+      materials: data.materials.map((item) => ({
         ...item,
         amount: parseInt(item.amount, 10),
       })),
@@ -125,7 +125,7 @@ export default function ProjectForm() {
                 <label>
                   <span>Amount</span>
                   <input
-                    {...register(`material.${index}.amount`, {
+                    {...register(`materials.${index}.amount`, {
                       required: "Amount is required",
                     })}
                     type="number"
@@ -134,20 +134,20 @@ export default function ProjectForm() {
                   />
                 </label>
                 <StyledErrorMessage>
-                  {errors.material?.[index]?.amount?.message}
+                  {errors.materials?.[index]?.amount?.message}
                 </StyledErrorMessage>
 
                 <label>
                   <span>Material</span>
                   <input
-                    {...register(`material.${index}.material`, {
+                    {...register(`materials.${index}.material`, {
                       required: "Material is required",
                     })}
                     placeholder="Material"
                   />
                 </label>
                 <StyledErrorMessage>
-                  {errors.material?.[index]?.material?.message}
+                  {errors.materials?.[index]?.material?.message}
                 </StyledErrorMessage>
                 <button type="button" onClick={() => remove(index)}>
                   Delete

@@ -17,16 +17,16 @@ export default function EditForm({ project, setEditMode }) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      material: project.material.map((material) => ({
-        amount: material.amount,
-        material: material.material,
+      materials: project.materials.map((materials) => ({
+        amount: materials.amount,
+        materials: materials.material,
       })),
     },
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "material",
+    name: "materials",
   });
 
   const router = useRouter();
@@ -117,7 +117,7 @@ export default function EditForm({ project, setEditMode }) {
                 <label>
                   <span>Amount</span>
                   <input
-                    {...register(`material.${index}.amount`, {
+                    {...register(`materials.${index}.amount`, {
                       required: "Amount is required",
                     })}
                     type="number"
@@ -127,21 +127,21 @@ export default function EditForm({ project, setEditMode }) {
                   />
                 </label>
                 <StyledErrorMessage>
-                  {errors.material?.[index]?.amount?.message}
+                  {errors.materials?.[index]?.amount?.message}
                 </StyledErrorMessage>
 
                 <label>
-                  <span>Material</span>
+                  <span>Materials</span>
                   <input
-                    {...register(`material.${index}.material`, {
+                    {...register(`materials.${index}.material`, {
                       required: "Material is required",
                     })}
                     placeholder="Material"
-                    defaultValue={item.material}
+                    defaultValue={item.materials}
                   />
                 </label>
                 <StyledErrorMessage>
-                  {errors.material?.[index]?.material?.message}
+                  {errors.materials?.[index]?.materials?.message}
                 </StyledErrorMessage>
 
                 <button type="button" onClick={() => remove(index)}>
