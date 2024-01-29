@@ -19,7 +19,7 @@ export default function EditForm({ project, setEditMode }) {
     defaultValues: {
       materials: project.materials.map((materials) => ({
         amount: materials.amount,
-        materials: materials.material,
+        material: materials.material,
       })),
     },
   });
