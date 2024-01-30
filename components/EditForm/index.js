@@ -11,6 +11,10 @@ import StyledSelect from "../Layout/FormStyles/StyledSelect";
 import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
 import StyledCancelButton from "../Layout/FormStyles/StyledCancelButton";
 import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
+import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
+import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
+import StyledDeleteButton from "../Layout/FormStyles/DeleteButton";
+import Image from "next/image";
 
 export default function EditForm({ project, setEditMode }) {
   const {
@@ -145,97 +149,102 @@ export default function EditForm({ project, setEditMode }) {
         {materialsFields.length > 0 && (
           <StyledFieldset>
             <legend>Materials</legend>
-            <div>
-              {materialsFields.map((item, index) => (
-                <StyledFieldset key={item.id}>
-                  <label>
-                    <span>Amount</span>
-                    <input
-                      {...register(`materials.${index}.amount`, {
-                        required: "Amount is required",
-                      })}
-                      type="number"
-                      placeholder="Number"
-                      min="1"
-                      defaultValue={item.amount}
-                    />
-                  </label>
-                  {errors.materials && (
-                    <StyledErrorMessage>
-                      {errors.materials?.[index]?.amount?.message}
-                    </StyledErrorMessage>
-                  )}
-                  <label>
-                    <span>Materials</span>
-                    <input
-                      {...register(`materials.${index}.material`, {
-                        required: "Material is required",
-                      })}
-                      placeholder="Material"
-                      defaultValue={item.material}
-                    />
-                  </label>
-                  {errors.materials && (
-                    <StyledErrorMessage>
-                      {errors.materials?.[index]?.material?.message}
-                    </StyledErrorMessage>
-                  )}
-                  <button type="button" onClick={() => removeMaterials(index)}>
-                    Delete
-                  </button>
-                </StyledFieldset>
-              ))}
+            {materialsFields.map((item, index) => (
+              <StyledMaterials key={item.id}>
+                <StyledLabel>
+                  <StyledInput
+                    {...register(`materials.${index}.amount`, {
+                      required: "Amount is required",
+                    })}
+                    type="number"
+                    placeholder="Number"
+                    min="1"
+                    defaultValue={item.amount}
+                  />
+                </StyledLabel>
+                {errors.materials && (
+                  <StyledErrorMessage>
+                    {errors.materials?.[index]?.amount?.message}
+                  </StyledErrorMessage>
+                )}
+                <StyledLabel>
+                  <StyledInput
+                    {...register(`materials.${index}.material`, {
+                      required: "Material is required",
+                    })}
+                    placeholder="Material"
+                    defaultValue={item.material}
+                  />
+                </StyledLabel>
+                {errors.materials && (
+                  <StyledErrorMessage>
+                    {errors.materials?.[index]?.material?.message}
+                  </StyledErrorMessage>
+                )}
+                <StyledDeleteButton
+                  type="button"
+                  onClick={() => removeMaterials(index)}
+                >
+                  <Image
+                    src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
+                    alt="Delete Button"
+                    width={25}
+                    height={25}
+                  />
+                </StyledDeleteButton>
+              </StyledMaterials>
+            ))}
 
-              <button
-                type="button"
-                onClick={() => {
-                  appendMaterials({ amount: 1, material: "" });
-                }}
-              >
-                Add
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => {
+                appendMaterials({ amount: 1, material: "" });
+              }}
+            >
+              Add
+            </button>
           </StyledFieldset>
         )}
 
         {instructionsFields.length > 0 && (
           <StyledFieldset>
             <legend>Instructions</legend>
-            <div>
-              {instructionsFields.map((item, index) => (
-                <div key={item.id}>
-                  <label>
-                    Step:
-                    <textarea
-                      {...register(`instructions.${index}.steps`, {
-                        required: "Steps are required",
-                      })}
-                      placeholder="Steps"
-                      defaultValue={project.instructions}
-                    />
-                  </label>
-                  {errors.instructions && (
-                    <StyledErrorMessage>
-                      {errors.instructions?.[index]?.steps?.message}
-                    </StyledErrorMessage>
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => removeInstructions(index)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={() => {
-                  appendInstructions({ steps: "" });
-                }}
-              >
-                Add
-              </button>
-            </div>
+
+            {instructionsFields.map((item, index) => (
+              <StyledInstructions key={item.id}>
+                <StyledTextarea
+                  {...register(`instructions.${index}.steps`, {
+                    required: "Steps are required",
+                  })}
+                  placeholder="Steps"
+                  defaultValue={project.instructions}
+                />
+                {errors.instructions && (
+                  <StyledErrorMessage>
+                    {errors.instructions?.[index]?.steps?.message}
+                  </StyledErrorMessage>
+                )}
+                <StyledDeleteButton
+                  type="button"
+                  onClick={() => removeInstructions(index)}
+                >
+                  <Image
+                    src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
+                    alt="Delete Button"
+                    width={25}
+                    height={25}
+                  />
+                </StyledDeleteButton>
+              </StyledInstructions>
+            ))}
+            <button
+              type="button"
+              onClick={() => {
+                appendInstructions({ steps: "" });
+              }}
+            >
+              Add
+            </button>
           </StyledFieldset>
         )}
         <StyledCancelButton onClick={() => setEditMode(false)}>

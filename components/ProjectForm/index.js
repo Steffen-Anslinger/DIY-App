@@ -7,15 +7,13 @@ import StyledInput from "../Layout/FormStyles/StyledInput";
 import StyledFieldset from "../Layout/FormStyles/StyledFieldset";
 import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
 import StyledSelect from "../Layout/FormStyles/StyledSelect";
-import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
 import StyledLink from "../Layout/FormStyles/StyledLink";
 import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
-import styled from "styled-components";
-
-const StyledMaterials = styled.div`
-  display: flex;
-  height: fit-content;
-`;
+import StyledButton from "../Layout/FormStyles/StyledButton";
+import StyledDeleteButton from "../Layout/FormStyles/DeleteButton";
+import Image from "next/image";
+import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
+import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
@@ -162,7 +160,6 @@ export default function ProjectForm() {
             return (
               <StyledMaterials key={item.id}>
                 <StyledLabel>
-                  <span>Amount</span>
                   <StyledInput
                     {...register(`materials.${index}.amount`, {
                       required: "Amount is required",
@@ -177,9 +174,7 @@ export default function ProjectForm() {
                     {errors.materials?.[index]?.amount?.message}
                   </StyledErrorMessage>
                 )}
-
                 <StyledLabel>
-                  <span>Material</span>
                   <StyledInput
                     {...register(`materials.${index}.material`, {
                       required: "Material is required",
@@ -192,60 +187,75 @@ export default function ProjectForm() {
                     {errors.materials?.[index]?.material?.message}
                   </StyledErrorMessage>
                 )}
-                <button type="button" onClick={() => removeMaterials(index)}>
-                  Delete
-                </button>
+                <StyledDeleteButton
+                  type="button"
+                  onClick={() => removeMaterials(index)}
+                >
+                  <Image
+                    src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
+                    alt="Delete Button"
+                    width={25}
+                    height={25}
+                  />
+                </StyledDeleteButton>
               </StyledMaterials>
             );
           })}
-          <button
+          <StyledButton
             type="button"
             onClick={() => {
               appendMaterials({ amount: 1, material: "" });
             }}
           >
             Add
-          </button>
+          </StyledButton>
         </StyledFieldset>
         <StyledFieldset>
           <legend>Instructions</legend>
-          <div>
-            {instructionsFields.map((item, index) => (
-              <div key={item.id}>
-                <StyledLabel>
-                  Step:
-                  <StyledTextarea
-                    {...register(`instructions.${index}.steps`, {
-                      required: "Steps are required",
-                    })}
-                    placeholder="Steps"
-                  />
-                </StyledLabel>
 
-                {errors.instructions && (
-                  <StyledErrorMessage>
-                    {errors.instructions?.[index]?.steps?.message}
-                  </StyledErrorMessage>
-                )}
+          {instructionsFields.map((item, index) => (
+            <StyledInstructions key={item.id}>
+              <StyledTextarea
+                {...register(`instructions.${index}.steps`, {
+                  required: "Steps are required",
+                })}
+                placeholder="Steps"
+              />
 
-                <button type="button" onClick={() => removeInstructions(index)}>
-                  Delete
-                </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={() => {
-                appendInstructions({ steps: "" });
-              }}
-            >
-              Add
-            </button>
-          </div>
+              {errors.instructions && (
+                <StyledErrorMessage>
+                  {errors.instructions?.[index]?.steps?.message}
+                </StyledErrorMessage>
+              )}
+
+              <StyledDeleteButton
+                type="button"
+                onClick={() => removeInstructions(index)}
+              >
+                <Image
+                  src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
+                  alt="Delete Button"
+                  width={25}
+                  height={25}
+                />
+              </StyledDeleteButton>
+            </StyledInstructions>
+          ))}
+
+          <StyledButton
+            type="button"
+            onClick={() => {
+              appendInstructions({ steps: "" });
+            }}
+          >
+            Add
+          </StyledButton>
         </StyledFieldset>
         <div>
           <StyledLink href="/">Cancel</StyledLink>
-          <StyledSubmitButton type="submit">Create</StyledSubmitButton>
+          <StyledButton $submit type="submit">
+            Create
+          </StyledButton>
         </div>
       </StyledForm>
     </>

@@ -32,3 +32,6 @@ const color = {
 };
 
 export default color;
+
+
+// Schreibweise: ${color.orange[700]}
