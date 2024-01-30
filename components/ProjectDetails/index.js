@@ -38,8 +38,14 @@ export default function ProjectDetails({
         </ul>
       )}
       <>
-        <h3>Instructions</h3>
-        <p>{project.instructions}</p>
+        {project.instructions && (
+          <ol>
+            <h3>Instructions</h3>
+            {project.instructions.map((instructions, index) => (
+              <li key={index}>{instructions.steps}</li>
+            ))}
+          </ol>
+        )}
       </>
     </>
   );

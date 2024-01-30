@@ -7,10 +7,14 @@ const materialsSchema = new Schema({
   material: { type: String, required: true },
 });
 
+const instructionsSchema = new Schema({
+  steps: { type: String, required: true },
+});
+
 const projectSchema = new Schema(
   {
     title: { type: String, required: true },
-    image: { type: String, required: true },
+    image: { type: String },
     description: { type: String, required: true },
     duration: {
       type: String,
@@ -21,7 +25,7 @@ const projectSchema = new Schema(
       enum: ["select...", "easy", "medium", "hard"],
     },
     materials: { type: [materialsSchema], required: true },
-    instructions: { type: String, required: true },
+    instructions: { type: [instructionsSchema], required: true },
   },
   { timestamps: true }
 );
