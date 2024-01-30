@@ -22,12 +22,26 @@ export default function ProjectForm() {
   } = useForm({
     defaultValues: {
       materials: [{ amount: 1, material: "" }],
+      instructions: [{ steps: "" }],
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const {
+    fields: materialsFields,
+    append: appendMaterials,
+    remove: removeMaterials,
+  } = useFieldArray({
     control,
     name: "materials",
+  });
+
+  const {
+    fields: instructionsFields,
+    append: appendInstructions,
+    remove: removeInstructions,
+  } = useFieldArray({
+    control,
+    name: "instructions",
   });
 
   const onSubmit = async (data) => {
@@ -37,6 +51,9 @@ export default function ProjectForm() {
         ...item,
         amount: parseInt(item.amount, 10),
       })),
+      instructions: data.instructions.map((item) => ({
+        steps: item.steps,
+      })),
     };
 
     const request = {
@@ -44,7 +61,7 @@ export default function ProjectForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestData),
     };
-
+    console.log(requestData);
     const response = await fetch("/api/projects", request);
 
     if (response.ok) {
@@ -119,7 +136,7 @@ export default function ProjectForm() {
         </div>
         <fieldset>
           <legend>Materials</legend>
-          {fields.map((item, index) => {
+          {materialsFields.map((item, index) => {
             return (
               <div key={item.id}>
                 <label>
@@ -149,7 +166,7 @@ export default function ProjectForm() {
                 <StyledErrorMessage>
                   {errors.materials?.[index]?.material?.message}
                 </StyledErrorMessage>
-                <button type="button" onClick={() => remove(index)}>
+                <button type="button" onClick={() => removeMaterials(index)}>
                   Delete
                 </button>
               </div>
@@ -158,25 +175,44 @@ export default function ProjectForm() {
           <button
             type="button"
             onClick={() => {
-              append({ amount: 1, material: "" });
+              appendMaterials({ amount: 1, material: "" });
             }}
           >
             Add
           </button>
         </fieldset>
-
-        <label>
-          Instructions
-          <textarea
-            {...register("instructions", {
-              required: "Instructions are required",
-            })}
-            placeholder="Instructions"
-          />
-          <StyledErrorMessage>
-            {errors.instructions?.message}
-          </StyledErrorMessage>
-        </label>
+        <fieldset>
+          <legend>Instructions</legend>
+          <div>
+            {instructionsFields.map((item, index) => (
+              <div key={item.id}>
+                <label>
+                  Step:
+                  <textarea
+                    {...register(`instructions.${index}.steps`, {
+                      required: "Steps are required",
+                    })}
+                    placeholder="Steps"
+                  />
+                </label>
+                <StyledErrorMessage>
+                  {errors.instructions?.[index]?.steps?.message}
+                </StyledErrorMessage>
+                <button type="button" onClick={() => removeInstructions(index)}>
+                  Delete
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => {
+                appendInstructions({ steps: "" });
+              }}
+            >
+              Add
+            </button>
+          </div>
+        </fieldset>
         <div>
           <StyledLink href="/">Cancel</StyledLink>
           <button type="submit">Create</button>
