@@ -5,6 +5,7 @@ const StyledMaterials = styled.div`
   height: fit-content;
   justify-content: space-between;
   width: 100%;
+  gap: 10px;
 `;
 
 export default StyledMaterials;

@@ -10,10 +10,11 @@ import StyledSelect from "../Layout/FormStyles/StyledSelect";
 import StyledLink from "../Layout/FormStyles/StyledLink";
 import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
 import StyledButton from "../Layout/FormStyles/StyledButton";
-import StyledDeleteButton from "../Layout/FormStyles/DeleteButton";
+import StyledDeleteButton from "../Layout/FormStyles/StyledDeleteButton";
 import Image from "next/image";
 import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
 import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
+import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
@@ -201,14 +202,19 @@ export default function ProjectForm() {
               </StyledMaterials>
             );
           })}
-          <StyledButton
+          <StyledAddButton
             type="button"
             onClick={() => {
               appendMaterials({ amount: 1, material: "" });
             }}
           >
-            Add
-          </StyledButton>
+            <Image
+              src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
+              alt="Add Button"
+              width={20}
+              height={20}
+            />
+          </StyledAddButton>
         </StyledFieldset>
         <StyledFieldset>
           <legend>Instructions</legend>
@@ -242,14 +248,19 @@ export default function ProjectForm() {
             </StyledInstructions>
           ))}
 
-          <StyledButton
+          <StyledAddButton
             type="button"
             onClick={() => {
               appendInstructions({ steps: "" });
             }}
           >
-            Add
-          </StyledButton>
+            <Image
+              src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
+              alt="Add Button"
+              width={20}
+              height={20}
+            />
+          </StyledAddButton>
         </StyledFieldset>
         <div>
           <StyledLink href="/">Cancel</StyledLink>

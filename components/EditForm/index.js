@@ -13,8 +13,9 @@ import StyledCancelButton from "../Layout/FormStyles/StyledCancelButton";
 import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
 import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
 import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
-import StyledDeleteButton from "../Layout/FormStyles/DeleteButton";
+import StyledDeleteButton from "../Layout/FormStyles/StyledDeleteButton";
 import Image from "next/image";
+import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
 
 export default function EditForm({ project, setEditMode }) {
   const {
@@ -195,14 +196,19 @@ export default function EditForm({ project, setEditMode }) {
               </StyledMaterials>
             ))}
 
-            <button
+            <StyledAddButton
               type="button"
               onClick={() => {
                 appendMaterials({ amount: 1, material: "" });
               }}
             >
-              Add
-            </button>
+              <Image
+                src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
+                alt="Add Button"
+                width={20}
+                height={20}
+              />
+            </StyledAddButton>
           </StyledFieldset>
         )}
 
@@ -237,14 +243,19 @@ export default function EditForm({ project, setEditMode }) {
                 </StyledDeleteButton>
               </StyledInstructions>
             ))}
-            <button
+            <StyledAddButton
               type="button"
               onClick={() => {
                 appendInstructions({ steps: "" });
               }}
             >
-              Add
-            </button>
+              <Image
+                src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
+                alt="Add Button"
+                width={20}
+                height={20}
+              />
+            </StyledAddButton>
           </StyledFieldset>
         )}
         <StyledCancelButton onClick={() => setEditMode(false)}>
