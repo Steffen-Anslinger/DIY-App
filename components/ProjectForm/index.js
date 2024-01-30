@@ -1,13 +1,20 @@
 import { useForm, useFieldArray, Controller } from "react-hook-form";
-import styled from "styled-components";
 import { useRouter } from "next/router";
-import StyledLink from "../Layout/StyledLinkButton";
 import useSWR from "swr";
-import StyledForm from "../Layout/StyledForm";
-
-const StyledErrorMessage = styled.p`
-  color: red;
-`;
+import StyledForm from "../Layout/FormStyles/StyledForm";
+import StyledLabel from "../Layout/FormStyles/StyledLabel";
+import StyledInput from "../Layout/FormStyles/StyledInput";
+import StyledFieldset from "../Layout/FormStyles/StyledFieldset";
+import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
+import StyledSelect from "../Layout/FormStyles/StyledSelect";
+import StyledLink from "../Layout/FormStyles/StyledLink";
+import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
+import StyledDeleteButton from "../Layout/FormStyles/StyledDeleteButton";
+import Image from "next/image";
+import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
+import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
+import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
+import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
@@ -75,34 +82,40 @@ export default function ProjectForm() {
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <h2>Create new project</h2>
-        <label>
+        <StyledLabel>
           Project title
-          <input
+          <StyledInput
             {...register("title", { required: "Title is required" })}
             placeholder="Title"
           />
-          <StyledErrorMessage>{errors.title?.message}</StyledErrorMessage>
-        </label>
+          {errors.title && (
+            <StyledErrorMessage>{errors.title.message}</StyledErrorMessage>
+          )}
+        </StyledLabel>
 
-        <label>
+        <StyledLabel>
           Image
-          <input {...register("image")} placeholder="Select Image" />
-        </label>
+          <StyledInput {...register("image")} placeholder="Select Image" />
+        </StyledLabel>
 
-        <label>
+        <StyledLabel>
           Description
-          <textarea
+          <StyledTextarea
             {...register("description", {
               required: "Description is required",
             })}
             placeholder="Description"
           />
-          <StyledErrorMessage>{errors.description?.message}</StyledErrorMessage>
-        </label>
+          {errors.description && (
+            <StyledErrorMessage>
+              {errors.description.message}
+            </StyledErrorMessage>
+          )}
+        </StyledLabel>
         <div>
-          <label>
+          <StyledLabel>
             Duration
-            <select
+            <StyledSelect
               name="duration"
               {...register("duration", {
                 required: "Please select an option!",
@@ -113,13 +126,17 @@ export default function ProjectForm() {
               <option value="short">short</option>
               <option value="medium">medium</option>
               <option value="long">long</option>
-            </select>
-            <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
-          </label>
+            </StyledSelect>
+            {errors.duration && (
+              <StyledErrorMessage>
+                {errors.duration?.message}
+              </StyledErrorMessage>
+            )}
+          </StyledLabel>
           &nbsp;
-          <label>
+          <StyledLabel>
             Difficulty
-            <select
+            <StyledSelect
               name="difficulty"
               {...register("difficulty", {
                 required: "Please select an option!",
@@ -130,18 +147,21 @@ export default function ProjectForm() {
               <option value="easy">easy</option>
               <option value="medium">medium</option>
               <option value="hard">hard</option>
-            </select>
-            <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
-          </label>
+            </StyledSelect>
+            {errors.difficulty && (
+              <StyledErrorMessage>
+                {errors.difficulty?.message}
+              </StyledErrorMessage>
+            )}
+          </StyledLabel>
         </div>
-        <fieldset>
+        <StyledFieldset>
           <legend>Materials</legend>
           {materialsFields.map((item, index) => {
             return (
-              <div key={item.id}>
-                <label>
-                  <span>Amount</span>
-                  <input
+              <StyledMaterials key={item.id}>
+                <StyledLabel>
+                  <StyledInput
                     {...register(`materials.${index}.amount`, {
                       required: "Amount is required",
                     })}
@@ -149,73 +169,102 @@ export default function ProjectForm() {
                     placeholder="Number"
                     min="1"
                   />
-                </label>
-                <StyledErrorMessage>
-                  {errors.materials?.[index]?.amount?.message}
-                </StyledErrorMessage>
-
-                <label>
-                  <span>Material</span>
-                  <input
+                </StyledLabel>
+                {errors.materials && (
+                  <StyledErrorMessage>
+                    {errors.materials?.[index]?.amount?.message}
+                  </StyledErrorMessage>
+                )}
+                <StyledLabel>
+                  <StyledInput
                     {...register(`materials.${index}.material`, {
                       required: "Material is required",
                     })}
                     placeholder="Material"
                   />
-                </label>
-                <StyledErrorMessage>
-                  {errors.materials?.[index]?.material?.message}
-                </StyledErrorMessage>
-                <button type="button" onClick={() => removeMaterials(index)}>
-                  Delete
-                </button>
-              </div>
+                </StyledLabel>
+                {errors.materials && (
+                  <StyledErrorMessage>
+                    {errors.materials?.[index]?.material?.message}
+                  </StyledErrorMessage>
+                )}
+                <StyledDeleteButton
+                  type="button"
+                  onClick={() => removeMaterials(index)}
+                >
+                  <Image
+                    src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
+                    alt="Delete Button"
+                    width={25}
+                    height={25}
+                  />
+                </StyledDeleteButton>
+              </StyledMaterials>
             );
           })}
-          <button
+          <StyledAddButton
             type="button"
             onClick={() => {
               appendMaterials({ amount: 1, material: "" });
             }}
           >
-            Add
-          </button>
-        </fieldset>
-        <fieldset>
+            <Image
+              src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
+              alt="Add Button"
+              width={20}
+              height={20}
+            />
+          </StyledAddButton>
+        </StyledFieldset>
+        <StyledFieldset>
           <legend>Instructions</legend>
-          <div>
-            {instructionsFields.map((item, index) => (
-              <div key={item.id}>
-                <label>
-                  Step:
-                  <textarea
-                    {...register(`instructions.${index}.steps`, {
-                      required: "Steps are required",
-                    })}
-                    placeholder="Steps"
-                  />
-                </label>
+
+          {instructionsFields.map((item, index) => (
+            <StyledInstructions key={item.id}>
+              <StyledTextarea
+                {...register(`instructions.${index}.steps`, {
+                  required: "Steps are required",
+                })}
+                placeholder="Steps"
+              />
+
+              {errors.instructions && (
                 <StyledErrorMessage>
                   {errors.instructions?.[index]?.steps?.message}
                 </StyledErrorMessage>
-                <button type="button" onClick={() => removeInstructions(index)}>
-                  Delete
-                </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={() => {
-                appendInstructions({ steps: "" });
-              }}
-            >
-              Add
-            </button>
-          </div>
-        </fieldset>
+              )}
+
+              <StyledDeleteButton
+                type="button"
+                onClick={() => removeInstructions(index)}
+              >
+                <Image
+                  src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
+                  alt="Delete Button"
+                  width={25}
+                  height={25}
+                />
+              </StyledDeleteButton>
+            </StyledInstructions>
+          ))}
+
+          <StyledAddButton
+            type="button"
+            onClick={() => {
+              appendInstructions({ steps: "" });
+            }}
+          >
+            <Image
+              src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
+              alt="Add Button"
+              width={20}
+              height={20}
+            />
+          </StyledAddButton>
+        </StyledFieldset>
         <div>
           <StyledLink href="/">Cancel</StyledLink>
-          <button type="submit">Create</button>
+          <StyledSubmitButton type="submit">Create</StyledSubmitButton>
         </div>
       </StyledForm>
     </>

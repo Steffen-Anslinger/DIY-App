@@ -1,13 +1,21 @@
 import React from "react";
-import StyledForm from "../Layout/StyledForm";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
-import styled from "styled-components";
-
-const StyledErrorMessage = styled.p`
-  color: red;
-`;
+import StyledForm from "../Layout/FormStyles/StyledForm";
+import StyledLabel from "../Layout/FormStyles/StyledLabel";
+import StyledInput from "../Layout/FormStyles/StyledInput";
+import StyledFieldset from "../Layout/FormStyles/StyledFieldset";
+import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
+import StyledSelect from "../Layout/FormStyles/StyledSelect";
+import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
+import StyledCancelButton from "../Layout/FormStyles/StyledCancelButton";
+import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
+import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
+import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
+import StyledDeleteButton from "../Layout/FormStyles/StyledDeleteButton";
+import Image from "next/image";
+import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
 
 export default function EditForm({ project, setEditMode }) {
   const {
@@ -69,33 +77,40 @@ export default function EditForm({ project, setEditMode }) {
   return (
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          Title:
-          <input
+        <h2>Edit your project</h2>
+        <StyledLabel>
+          Project title
+          <StyledInput
             {...register("title", { required: "Title is required" })}
             placeholder="Title"
             defaultValue={project.title}
           />
-        </label>
-        <StyledErrorMessage>{errors.title?.message}</StyledErrorMessage>
-        <label>
+        </StyledLabel>
+        {errors.title && (
+          <StyledErrorMessage>{errors.title.message}</StyledErrorMessage>
+        )}
+        <StyledLabel>
           Image:
-          <input {...register("image")} defaultValue={project.image} />
-        </label>
-        <label>
+          <StyledInput {...register("image")} defaultValue={project.image} />
+        </StyledLabel>
+        <StyledLabel>
           Description:
-          <textarea
+          <StyledTextarea
             {...register("description", {
               required: "Description is required",
             })}
             placeholder="Description"
             defaultValue={project.description}
           />
-          <StyledErrorMessage>{errors.description?.message}</StyledErrorMessage>
-        </label>
-        <label>
+          {errors.description && (
+            <StyledErrorMessage>
+              {errors.description.message}
+            </StyledErrorMessage>
+          )}
+        </StyledLabel>
+        <StyledLabel>
           Duration:
-          <select
+          <StyledSelect
             name="duration"
             {...register("duration", {
               required: "Please select an option!",
@@ -106,12 +121,14 @@ export default function EditForm({ project, setEditMode }) {
             <option value="short">short</option>
             <option value="medium">medium</option>
             <option value="long">long</option>
-          </select>
-          <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
-        </label>
-        <label>
+          </StyledSelect>
+          {errors.duration && (
+            <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
+          )}
+        </StyledLabel>
+        <StyledLabel>
           Difficulty:
-          <select
+          <StyledSelect
             name="difficulty"
             {...register("difficulty", {
               required: "Please select an option!",
@@ -122,104 +139,129 @@ export default function EditForm({ project, setEditMode }) {
             <option value="easy">easy</option>
             <option value="medium">medium</option>
             <option value="hard">hard</option>
-          </select>
-          <StyledErrorMessage>{errors.difficulty?.message}</StyledErrorMessage>
-        </label>
+          </StyledSelect>
+          {errors.difficulty && (
+            <StyledErrorMessage>
+              {errors.difficulty?.message}
+            </StyledErrorMessage>
+          )}
+        </StyledLabel>
 
         {materialsFields.length > 0 && (
-          <fieldset>
+          <StyledFieldset>
             <legend>Materials</legend>
-            <div>
-              {materialsFields.map((item, index) => (
-                <div key={item.id}>
-                  <label>
-                    <span>Amount</span>
-                    <input
-                      {...register(`materials.${index}.amount`, {
-                        required: "Amount is required",
-                      })}
-                      type="number"
-                      placeholder="Number"
-                      min="1"
-                      defaultValue={item.amount}
-                    />
-                  </label>
+            {materialsFields.map((item, index) => (
+              <StyledMaterials key={item.id}>
+                <StyledLabel>
+                  <StyledInput
+                    {...register(`materials.${index}.amount`, {
+                      required: "Amount is required",
+                    })}
+                    type="number"
+                    placeholder="Number"
+                    min="1"
+                    defaultValue={item.amount}
+                  />
+                </StyledLabel>
+                {errors.materials && (
                   <StyledErrorMessage>
                     {errors.materials?.[index]?.amount?.message}
                   </StyledErrorMessage>
-
-                  <label>
-                    <span>Materials</span>
-                    <input
-                      {...register(`materials.${index}.material`, {
-                        required: "Material is required",
-                      })}
-                      placeholder="Material"
-                      defaultValue={item.material}
-                    />
-                  </label>
+                )}
+                <StyledLabel>
+                  <StyledInput
+                    {...register(`materials.${index}.material`, {
+                      required: "Material is required",
+                    })}
+                    placeholder="Material"
+                    defaultValue={item.material}
+                  />
+                </StyledLabel>
+                {errors.materials && (
                   <StyledErrorMessage>
                     {errors.materials?.[index]?.material?.message}
                   </StyledErrorMessage>
+                )}
+                <StyledDeleteButton
+                  type="button"
+                  onClick={() => removeMaterials(index)}
+                >
+                  <Image
+                    src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
+                    alt="Delete Button"
+                    width={25}
+                    height={25}
+                  />
+                </StyledDeleteButton>
+              </StyledMaterials>
+            ))}
 
-                  <button type="button" onClick={() => removeMaterials(index)}>
-                    Delete
-                  </button>
-                </div>
-              ))}
-
-              <button
-                type="button"
-                onClick={() => {
-                  appendMaterials({ amount: 1, material: "" });
-                }}
-              >
-                Add
-              </button>
-            </div>
-          </fieldset>
+            <StyledAddButton
+              type="button"
+              onClick={() => {
+                appendMaterials({ amount: 1, material: "" });
+              }}
+            >
+              <Image
+                src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
+                alt="Add Button"
+                width={20}
+                height={20}
+              />
+            </StyledAddButton>
+          </StyledFieldset>
         )}
 
         {instructionsFields.length > 0 && (
-          <fieldset>
+          <StyledFieldset>
             <legend>Instructions</legend>
-            <div>
-              {instructionsFields.map((item, index) => (
-                <div key={item.id}>
-                  <label>
-                    Step:
-                    <textarea
-                      {...register(`instructions.${index}.steps`, {
-                        required: "Steps are required",
-                      })}
-                      placeholder="Steps"
-                      defaultValue={project.instructions}
-                    />
-                  </label>
+
+            {instructionsFields.map((item, index) => (
+              <StyledInstructions key={item.id}>
+                <StyledTextarea
+                  {...register(`instructions.${index}.steps`, {
+                    required: "Steps are required",
+                  })}
+                  placeholder="Steps"
+                  defaultValue={project.instructions}
+                />
+                {errors.instructions && (
                   <StyledErrorMessage>
                     {errors.instructions?.[index]?.steps?.message}
                   </StyledErrorMessage>
-                  <button
-                    type="button"
-                    onClick={() => removeInstructions(index)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={() => {
-                  appendInstructions({ steps: "" });
-                }}
-              >
-                Add
-              </button>
-            </div>
-          </fieldset>
+                )}
+                <StyledDeleteButton
+                  type="button"
+                  onClick={() => removeInstructions(index)}
+                >
+                  <Image
+                    src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
+                    alt="Delete Button"
+                    width={25}
+                    height={25}
+                  />
+                </StyledDeleteButton>
+              </StyledInstructions>
+            ))}
+            <StyledAddButton
+              type="button"
+              onClick={() => {
+                appendInstructions({ steps: "" });
+              }}
+            >
+              <Image
+                src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
+                alt="Add Button"
+                width={20}
+                height={20}
+              />
+            </StyledAddButton>
+          </StyledFieldset>
         )}
-        <button onClick={() => setEditMode(false)}>Cancel</button>
-        <button type="submit">Save</button>
+        <StyledCancelButton onClick={() => setEditMode(false)}>
+          Cancel
+        </StyledCancelButton>
+        <StyledSubmitButton type="submit">Save</StyledSubmitButton>
       </StyledForm>
     </>
   );
