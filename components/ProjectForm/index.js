@@ -10,6 +10,12 @@ import StyledSelect from "../Layout/FormStyles/StyledSelect";
 import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
 import StyledLink from "../Layout/FormStyles/StyledLink";
 import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
+import styled from "styled-components";
+
+const StyledMaterials = styled.div`
+  display: flex;
+  height: fit-content;
+`;
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
@@ -154,7 +160,7 @@ export default function ProjectForm() {
           <legend>Materials</legend>
           {materialsFields.map((item, index) => {
             return (
-              <StyledFieldset key={item.id}>
+              <StyledMaterials key={item.id}>
                 <StyledLabel>
                   <span>Amount</span>
                   <StyledInput
@@ -189,7 +195,7 @@ export default function ProjectForm() {
                 <button type="button" onClick={() => removeMaterials(index)}>
                   Delete
                 </button>
-              </StyledFieldset>
+              </StyledMaterials>
             );
           })}
           <button
