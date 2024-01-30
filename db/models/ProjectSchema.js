@@ -14,7 +14,7 @@ const instructionsSchema = new Schema({
 const projectSchema = new Schema(
   {
     title: { type: String, required: true },
-    image: { type: String, required: true },
+    image: { type: String },
     description: { type: String, required: true },
     duration: {
       type: String,
