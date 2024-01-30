@@ -9,12 +9,12 @@ import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
 import StyledSelect from "../Layout/FormStyles/StyledSelect";
 import StyledLink from "../Layout/FormStyles/StyledLink";
 import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
-import StyledButton from "../Layout/FormStyles/StyledButton";
 import StyledDeleteButton from "../Layout/FormStyles/StyledDeleteButton";
 import Image from "next/image";
 import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
 import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
 import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
+import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
@@ -264,9 +264,7 @@ export default function ProjectForm() {
         </StyledFieldset>
         <div>
           <StyledLink href="/">Cancel</StyledLink>
-          <StyledButton $submit type="submit">
-            Create
-          </StyledButton>
+          <StyledSubmitButton type="submit">Create</StyledSubmitButton>
         </div>
       </StyledForm>
     </>
