@@ -129,7 +129,7 @@ export default function Projects({ projects, favourites, onToggleFavourite }) {
           <ProjectCard key={project._id}>
             <Link href={`/projects/${project._id}`}>
               <StyledImage
-                src={project.image}
+                src={project.cover.url}
                 width={150}
                 height={150}
                 alt={project.title}

@@ -32,6 +32,7 @@ export default function EditForm({ project, setEditMode }) {
       instructions: project.instructions.map((instructions) => ({
         steps: instructions.steps,
       })),
+      // cover: project.cover.url,
     },
   });
 
@@ -88,6 +89,7 @@ export default function EditForm({ project, setEditMode }) {
   const { id } = router.query;
 
   const onSubmit = async (formData) => {
+    console.log(formData);
     const response = await fetch(`/api/projects/${id}`, {
       method: "PUT",
       headers: {
@@ -101,7 +103,7 @@ export default function EditForm({ project, setEditMode }) {
       mutate(`/api/projects/${id}`);
       mutate(`/api/projects`);
     } else {
-      response.status(404).json({ status: `Project could not be updated!` });
+      alert(`Project could not be updated!`);
     }
   };
 
@@ -120,15 +122,28 @@ export default function EditForm({ project, setEditMode }) {
         {errors.title && (
           <StyledErrorMessage>{errors.title.message}</StyledErrorMessage>
         )}
-        <StyledLabel>
-          Image:
-          <StyledInput {...register("image")} defaultValue={project.image} />
-        </StyledLabel>
 
-        <StyledLabel>
+        {/* <StyledLabel>
           Cover
-          <StyledInput name="image" type="file" {...register("image")} />
-        </StyledLabel>
+          <StyledInput
+            name="cover"
+            type="file"
+            {...register("cover", { required: !project.cover })}
+          />
+          {project.cover ? (
+            <Image
+              src={project.cover.url}
+              width={project.cover.width}
+              height={project.cover.height}
+              alt={project.title}
+            />
+          ) : (
+            "No picture selected"
+          )}
+          {errors.cover && (
+            <StyledErrorMessage>{errors.cover.message}</StyledErrorMessage>
+          )}
+        </StyledLabel> */}
 
         <StyledLabel>
           Description:
@@ -200,7 +215,7 @@ export default function EditForm({ project, setEditMode }) {
                     defaultValue={item.amount}
                   />
                 </StyledLabel>
-                {errors.materials && (
+                {errors.materials?.[index].amount && (
                   <StyledErrorMessage>
                     {errors.materials?.[index]?.amount?.message}
                   </StyledErrorMessage>
@@ -214,7 +229,7 @@ export default function EditForm({ project, setEditMode }) {
                     defaultValue={item.material}
                   />
                 </StyledLabel>
-                {errors.materials && (
+                {errors.materials?.[index].material && (
                   <StyledErrorMessage>
                     {errors.materials?.[index]?.material?.message}
                   </StyledErrorMessage>

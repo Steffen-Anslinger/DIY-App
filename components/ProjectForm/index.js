@@ -129,13 +129,15 @@ export default function ProjectForm() {
         </StyledLabel>
 
         <StyledLabel>
-          Image
-          <StyledInput {...register("image")} placeholder="Select Image" />
-        </StyledLabel>
-
-        <StyledLabel>
           Cover
-          <StyledInput name="cover" type="file" {...register("cover")} />
+          <StyledInput
+            name="cover"
+            type="file"
+            {...register("cover", { required: "Image is required" })}
+          />
+          {errors.cover && (
+            <StyledErrorMessage>{errors.cover.message}</StyledErrorMessage>
+          )}
         </StyledLabel>
 
         <StyledLabel>
@@ -210,7 +212,7 @@ export default function ProjectForm() {
                     min="1"
                   />
                 </StyledLabel>
-                {errors.materials && (
+                {errors.materials?.[index].amount && (
                   <StyledErrorMessage>
                     {errors.materials?.[index]?.amount?.message}
                   </StyledErrorMessage>
@@ -223,7 +225,7 @@ export default function ProjectForm() {
                     placeholder="Material"
                   />
                 </StyledLabel>
-                {errors.materials && (
+                {errors.materials?.[index].material && (
                   <StyledErrorMessage>
                     {errors.materials?.[index]?.material?.message}
                   </StyledErrorMessage>
