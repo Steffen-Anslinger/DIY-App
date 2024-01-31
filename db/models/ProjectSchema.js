@@ -21,7 +21,6 @@ const projectSchema = new Schema(
         height: Number,
         url: String,
       }),
-      required: true,
     },
     description: { type: String, required: true },
     duration: {
