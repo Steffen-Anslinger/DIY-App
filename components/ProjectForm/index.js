@@ -20,6 +20,37 @@ export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
   const router = useRouter();
 
+  async function upload(file) {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "ml_default");
+
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/dihl2eult/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Upload failed with status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+
+      return {
+        url: responseData.secure_url,
+        width: responseData.width,
+        height: responseData.height,
+      };
+    } catch (error) {
+      console.error("Upload failed:", error.message);
+      throw error;
+    }
+  }
+
   const {
     register,
     handleSubmit,
@@ -52,6 +83,9 @@ export default function ProjectForm() {
   });
 
   const onSubmit = async (data) => {
+    const uploadedImage = await upload(data.cover[0]);
+    console.log("Uploaded image data:", uploadedImage);
+
     const requestData = {
       ...data,
       materials: data.materials.map((item) => ({
@@ -61,14 +95,18 @@ export default function ProjectForm() {
       instructions: data.instructions.map((item) => ({
         steps: item.steps,
       })),
+      cover: uploadedImage,
     };
+
+    requestData.imageURL = uploadedImage.url;
+    console.log("data to database:", requestData);
 
     const request = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestData),
     };
-    console.log(requestData);
+
     const response = await fetch("/api/projects", request);
 
     if (response.ok) {
@@ -93,9 +131,14 @@ export default function ProjectForm() {
           )}
         </StyledLabel>
 
-        <StyledLabel>
+        {/* <StyledLabel>
           Image
           <StyledInput {...register("image")} placeholder="Select Image" />
+        </StyledLabel> */}
+
+        <StyledLabel>
+          Cover
+          <StyledInput name="cover" type="file" {...register("cover")} />
         </StyledLabel>
 
         <StyledLabel>

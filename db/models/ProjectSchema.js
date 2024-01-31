@@ -15,6 +15,14 @@ const projectSchema = new Schema(
   {
     title: { type: String, required: true },
     image: { type: String },
+    cover: {
+      type: new Schema({
+        width: Number,
+        height: Number,
+        url: String,
+      }),
+      required: true,
+    },
     description: { type: String, required: true },
     duration: {
       type: String,
