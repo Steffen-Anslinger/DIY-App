@@ -10,13 +10,13 @@ export default function ProjectDetails({
 }) {
   return (
     <>
-      {/* <Image src={project.image} height={200} width={400} alt={project.title} /> */}
-      <Image
+      <Image src={project.image} height={200} width={400} alt={project.title} />
+      {/* <Image
         src={project.cover.url}
         height={200}
         width={400}
         alt={project.title}
-      />
+      /> */}
 
       <FavouriteButton
         onToggleFavourite={onToggleFavourite}

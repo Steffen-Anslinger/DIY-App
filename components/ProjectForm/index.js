@@ -98,9 +98,6 @@ export default function ProjectForm() {
       cover: uploadedImage,
     };
 
-    requestData.imageURL = uploadedImage.url;
-    console.log("data to database:", requestData);
-
     const request = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -131,10 +128,10 @@ export default function ProjectForm() {
           )}
         </StyledLabel>
 
-        {/* <StyledLabel>
+        <StyledLabel>
           Image
           <StyledInput {...register("image")} placeholder="Select Image" />
-        </StyledLabel> */}
+        </StyledLabel>
 
         <StyledLabel>
           Cover
