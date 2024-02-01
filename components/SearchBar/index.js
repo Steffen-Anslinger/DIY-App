@@ -28,14 +28,14 @@ const StyledSearchInput = styled.input`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-export default function SearchBar({ searchPattern, onChange }) {
+export default function SearchBar({ searchPattern, onSearchChange }) {
   return (
     <StyledSearchBar>
       <StyledSearchInput
         type="search"
         placeholder="Search"
         value={searchPattern}
-        onChange={onChange}
+        onChange={onSearchChange}
       />
     </StyledSearchBar>
   );
