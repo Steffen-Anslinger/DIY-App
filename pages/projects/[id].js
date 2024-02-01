@@ -1,6 +1,7 @@
 import EditDetails from "@/components/EditDetails";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import LoadingAnimation from "@/components/Layout/LoadingAnimation";
 
 export default function ProjectDetailsPage({ favourites, onToggleFavourite }) {
   const router = useRouter();
@@ -8,7 +9,7 @@ export default function ProjectDetailsPage({ favourites, onToggleFavourite }) {
   const { data: project, isLoading } = useSWR(`/api/projects/${id}`);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <LoadingAnimation />;
   }
 
   if (!project) {

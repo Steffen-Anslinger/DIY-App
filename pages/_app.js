@@ -5,6 +5,7 @@ import useSWR from "swr";
 import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
 import StyledSection from "@/components/Layout/StyledSection";
+import LoadingAnimation from "@/components/Layout/LoadingAnimation";
 
 const fetcher = async (url) => {
   const response = await fetch(url);
@@ -41,7 +42,7 @@ export default function App({ Component, pageProps }) {
 
   const { data: projects, isLoading } = useSWR("/api/projects", fetcher);
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <LoadingAnimation />;
   }
 
   if (!projects) {
