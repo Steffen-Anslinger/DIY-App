@@ -57,7 +57,7 @@ export default function Navigation() {
           <StyledLink className={pathname == "/" ? "active" : ""} href="/">
             <Image
               src={"/assets/home_app_logo_FILL0_wght400_GRAD0_opsz24.svg"}
-              alt="Reset difficulty button"
+              alt="Home button"
               width={35}
               height={35}
             />
@@ -70,7 +70,7 @@ export default function Navigation() {
           >
             <Image
               src={"/assets/add_circle_FILL0_wght400_GRAD0_opsz24.svg"}
-              alt="Reset difficulty button"
+              alt="Create button"
               width={35}
               height={35}
             />
@@ -83,7 +83,7 @@ export default function Navigation() {
           >
             <Image
               src={"/assets/favorite_FILL1_wght400_GRAD0_opsz24 black.svg"}
-              alt="Reset difficulty button"
+              alt="Favourite button"
               width={35}
               height={35}
             />
