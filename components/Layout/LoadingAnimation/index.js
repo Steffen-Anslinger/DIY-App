@@ -11,6 +11,13 @@ const ldsRingAnimation = keyframes`
   }
 `;
 
+const CenteredContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full height of the viewport */
+`;
+
 const LdsRing = styled.div`
   display: inline-block;
   position: relative;
@@ -19,7 +26,6 @@ const LdsRing = styled.div`
 `;
 
 const LdsRingDiv = styled.div`
-  box-sizing: border-box;
   display: block;
   position: absolute;
   width: 64px;
@@ -46,9 +52,11 @@ const LdsRingDiv = styled.div`
 
 const LoadingAnimation = ({ color }) => {
   return (
-    <LdsRing>
-      <LdsRingDiv color={color} />
-    </LdsRing>
+    <CenteredContainer>
+      <LdsRing>
+        <LdsRingDiv color={color} />
+      </LdsRing>
+    </CenteredContainer>
   );
 };
 
