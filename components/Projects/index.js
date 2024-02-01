@@ -13,7 +13,6 @@ const StyledList = styled.ul`
   justify-content: center;
   list-style: none;
   padding: 0;
-  margin-top: 90px;
 `;
 
 const StyledImage = styled(Image)`

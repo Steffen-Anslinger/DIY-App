@@ -3,11 +3,27 @@ import Fuse from "fuse.js";
 import SearchBar from "@/components/SearchBar";
 import Projects from "@/components/Projects";
 import FilterBar from "@/components/Filterbar";
+import styled from "styled-components";
+import color from "@/components/Layout/Colors";
+
+const StyledSearchWrapper = styled.div`
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: ${color.grey[50]};
+  padding: 8px;
+`;
 
 export default function HomePage({ projects, favourites, onToggleFavourite }) {
   const [searchPattern, setSearchPattern] = useState("");
   const [difficultyFilter, setDifficultyFilter] = useState("");
   const [durationFilter, setDurationFilter] = useState("");
+  const [filterMode, setFilterMode] = useState(false);
 
   const fuseOptions = {
     keys: ["title", "difficulty", "duration"],
@@ -44,22 +60,28 @@ export default function HomePage({ projects, favourites, onToggleFavourite }) {
 
   return (
     <>
-      <SearchBar
-        searchPattern={searchPattern}
-        onSearchChange={handleSearchChange}
-        projects={projects}
-        favourites={favourites}
-        onToggleFavourite={onToggleFavourite}
-      />
-      <FilterBar
-        difficultyFilter={difficultyFilter}
-        durationFilter={durationFilter}
-        onDifficultyChange={handleDifficultyChange}
-        onDurationChange={handleDurationChange}
-        setDifficultyFilter={setDifficultyFilter}
-        setDurationFilter={setDurationFilter}
-        onApplyFilters={() => {}}
-      />
+      <StyledSearchWrapper>
+        <SearchBar
+          searchPattern={searchPattern}
+          onSearchChange={handleSearchChange}
+          projects={projects}
+          favourites={favourites}
+          onToggleFavourite={onToggleFavourite}
+          filterMode={filterMode}
+          setFilterMode={setFilterMode}
+        />
+        <FilterBar
+          difficultyFilter={difficultyFilter}
+          durationFilter={durationFilter}
+          onDifficultyChange={handleDifficultyChange}
+          onDurationChange={handleDurationChange}
+          setDifficultyFilter={setDifficultyFilter}
+          setDurationFilter={setDurationFilter}
+          onApplyFilters={() => {}}
+          filterMode={filterMode}
+          setFilterMode={setFilterMode}
+        />
+      </StyledSearchWrapper>
       <Projects
         projects={combinedFilters}
         favourites={favourites}
