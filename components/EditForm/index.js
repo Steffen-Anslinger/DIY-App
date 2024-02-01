@@ -32,7 +32,6 @@ export default function EditForm({ project, setEditMode }) {
       instructions: project.instructions.map((instructions) => ({
         steps: instructions.steps,
       })),
-      // cover: project.cover.url,
     },
   });
 
@@ -54,42 +53,10 @@ export default function EditForm({ project, setEditMode }) {
     name: "instructions",
   });
 
-  async function upload(file) {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "ml_default");
-
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/dihl2eult/image/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Upload failed with status: ${response.status}`);
-      }
-
-      const responseData = await response.json();
-
-      return {
-        url: responseData.secure_url,
-        width: responseData.width,
-        height: responseData.height,
-      };
-    } catch (error) {
-      console.error("Upload failed:", error.message);
-      throw error;
-    }
-  }
-
   const router = useRouter();
   const { id } = router.query;
 
   const onSubmit = async (formData) => {
-    console.log(formData);
     const response = await fetch(`/api/projects/${id}`, {
       method: "PUT",
       headers: {
@@ -122,28 +89,6 @@ export default function EditForm({ project, setEditMode }) {
         {errors.title && (
           <StyledErrorMessage>{errors.title.message}</StyledErrorMessage>
         )}
-
-        {/* <StyledLabel>
-          Cover
-          <StyledInput
-            name="cover"
-            type="file"
-            {...register("cover", { required: !project.cover })}
-          />
-          {project.cover ? (
-            <Image
-              src={project.cover.url}
-              width={project.cover.width}
-              height={project.cover.height}
-              alt={project.title}
-            />
-          ) : (
-            "No picture selected"
-          )}
-          {errors.cover && (
-            <StyledErrorMessage>{errors.cover.message}</StyledErrorMessage>
-          )}
-        </StyledLabel> */}
 
         <StyledLabel>
           Description:

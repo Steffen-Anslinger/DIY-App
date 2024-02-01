@@ -15,41 +15,11 @@ import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
 import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
 import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
 import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
+import upload from "@/lib/cloudinary";
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
   const router = useRouter();
-
-  async function upload(file) {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "ml_default");
-
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/dihl2eult/image/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Upload failed with status: ${response.status}`);
-      }
-
-      const responseData = await response.json();
-
-      return {
-        url: responseData.secure_url,
-        width: responseData.width,
-        height: responseData.height,
-      };
-    } catch (error) {
-      console.error("Upload failed:", error.message);
-      throw error;
-    }
-  }
 
   const {
     register,
@@ -84,7 +54,6 @@ export default function ProjectForm() {
 
   const onSubmit = async (data) => {
     const uploadedImage = await upload(data.cover[0]);
-    console.log("Uploaded image data:", uploadedImage);
 
     const requestData = {
       ...data,

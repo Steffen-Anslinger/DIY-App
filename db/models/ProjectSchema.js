@@ -16,11 +16,11 @@ const projectSchema = new Schema(
     title: { type: String, required: true },
     image: { type: String },
     cover: {
-      type: new Schema({
+      type: {
         width: Number,
         height: Number,
         url: String,
-      }),
+      },
     },
     description: { type: String, required: true },
     duration: {
