@@ -2,6 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import color from "../Layout/Colors";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -54,7 +55,12 @@ export default function Navigation() {
       <StyledList>
         <StyledLinkNav>
           <StyledLink className={pathname == "/" ? "active" : ""} href="/">
-            Home
+            <Image
+              src={"/assets/home_app_logo_FILL0_wght400_GRAD0_opsz24.svg"}
+              alt="Home button"
+              width={35}
+              height={35}
+            />
           </StyledLink>
         </StyledLinkNav>
         <StyledLinkNav>
@@ -62,7 +68,12 @@ export default function Navigation() {
             className={pathname == "/create" ? "active" : ""}
             href="/create"
           >
-            Create
+            <Image
+              src={"/assets/add_circle_FILL0_wght400_GRAD0_opsz24.svg"}
+              alt="Create button"
+              width={35}
+              height={35}
+            />
           </StyledLink>
         </StyledLinkNav>
         <StyledLinkNav>
@@ -70,7 +81,12 @@ export default function Navigation() {
             className={pathname == "/favourite" ? "active" : ""}
             href="/favourite"
           >
-            Favourite
+            <Image
+              src={"/assets/favorite_FILL1_wght400_GRAD0_opsz24 black.svg"}
+              alt="Favourite button"
+              width={35}
+              height={35}
+            />
           </StyledLink>
         </StyledLinkNav>
       </StyledList>
