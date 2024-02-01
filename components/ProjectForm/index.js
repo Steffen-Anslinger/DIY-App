@@ -15,6 +15,7 @@ import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
 import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
 import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
 import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
+import upload from "@/lib/cloudinary";
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
@@ -52,6 +53,8 @@ export default function ProjectForm() {
   });
 
   const onSubmit = async (data) => {
+    const uploadedImage = await upload(data.cover[0]);
+
     const requestData = {
       ...data,
       materials: data.materials.map((item) => ({
@@ -61,6 +64,7 @@ export default function ProjectForm() {
       instructions: data.instructions.map((item) => ({
         steps: item.steps,
       })),
+      cover: uploadedImage,
     };
 
     const request = {
@@ -68,7 +72,7 @@ export default function ProjectForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestData),
     };
-    console.log(requestData);
+
     const response = await fetch("/api/projects", request);
 
     if (response.ok) {
@@ -94,8 +98,15 @@ export default function ProjectForm() {
         </StyledLabel>
 
         <StyledLabel>
-          Image
-          <StyledInput {...register("image")} placeholder="Select Image" />
+          Cover
+          <StyledInput
+            name="cover"
+            type="file"
+            {...register("cover", { required: "Image is required" })}
+          />
+          {errors.cover && (
+            <StyledErrorMessage>{errors.cover.message}</StyledErrorMessage>
+          )}
         </StyledLabel>
 
         <StyledLabel>
@@ -170,7 +181,7 @@ export default function ProjectForm() {
                     min="1"
                   />
                 </StyledLabel>
-                {errors.materials && (
+                {errors.materials?.[index].amount && (
                   <StyledErrorMessage>
                     {errors.materials?.[index]?.amount?.message}
                   </StyledErrorMessage>
@@ -183,7 +194,7 @@ export default function ProjectForm() {
                     placeholder="Material"
                   />
                 </StyledLabel>
-                {errors.materials && (
+                {errors.materials?.[index].material && (
                   <StyledErrorMessage>
                     {errors.materials?.[index]?.material?.message}
                   </StyledErrorMessage>

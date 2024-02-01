@@ -70,7 +70,7 @@ export default function EditForm({ project, setEditMode }) {
       mutate(`/api/projects/${id}`);
       mutate(`/api/projects`);
     } else {
-      response.status(404).json({ status: `Project could not be updated!` });
+      alert(`Project could not be updated!`);
     }
   };
 
@@ -89,10 +89,7 @@ export default function EditForm({ project, setEditMode }) {
         {errors.title && (
           <StyledErrorMessage>{errors.title.message}</StyledErrorMessage>
         )}
-        <StyledLabel>
-          Image:
-          <StyledInput {...register("image")} defaultValue={project.image} />
-        </StyledLabel>
+
         <StyledLabel>
           Description:
           <StyledTextarea
@@ -163,7 +160,7 @@ export default function EditForm({ project, setEditMode }) {
                     defaultValue={item.amount}
                   />
                 </StyledLabel>
-                {errors.materials && (
+                {errors.materials?.[index].amount && (
                   <StyledErrorMessage>
                     {errors.materials?.[index]?.amount?.message}
                   </StyledErrorMessage>
@@ -177,7 +174,7 @@ export default function EditForm({ project, setEditMode }) {
                     defaultValue={item.material}
                   />
                 </StyledLabel>
-                {errors.materials && (
+                {errors.materials?.[index].material && (
                   <StyledErrorMessage>
                     {errors.materials?.[index]?.material?.message}
                   </StyledErrorMessage>
