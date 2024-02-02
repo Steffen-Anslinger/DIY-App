@@ -6,7 +6,7 @@ import ProjectCard from "../ProjectCard";
 import { React } from "react";
 import Masonry from "@mui/lab/Masonry";
 import color from "../Layout/Colors";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 
 const StyledList = styled.ul`
   display: flex;

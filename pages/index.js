@@ -83,14 +83,13 @@ export default function HomePage({ projects, favourites, onToggleFavourite }) {
           setFilterMode={setFilterMode}
         />
       </StyledSearchWrapper>
-
-      <LoginButton />
+      
 
       <Projects
         projects={combinedFilters}
         favourites={favourites}
         onToggleFavourite={onToggleFavourite}
-      />
+      /><LoginButton />
     </>
   );
 }

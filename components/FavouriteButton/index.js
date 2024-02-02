@@ -1,17 +1,30 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Image from "next/image";
-import color from "../Layout/Colors";
+
+const pulsateAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
 
 const Button = styled.button`
   border: none;
   max-width: 100px;
-  background: ${color.orange[600]};
+  background: none;
   border-radius: 5px;
-  padding: 2.5px 10px;
   margin: 0;
   display: flex;
   justify-content: center;
   cursor: pointer;
+  &:hover {
+    animation: ${pulsateAnimation} 1s infinite;
+  }
 `;
 
 export default function FavouriteButton({
@@ -30,8 +43,8 @@ export default function FavouriteButton({
             : "/assets/favorite_FILL0_wght400_GRAD0_opsz24.svg"
         }
         alt="Favorite Button"
-        width={25}
-        height={25}
+        width={30}
+        height={30}
       />
     </Button>
   );
