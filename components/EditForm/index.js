@@ -86,13 +86,13 @@ export default function EditForm({ project, setEditMode }) {
             placeholder="Title"
             defaultValue={project.title}
           />
+          {errors.title && (
+            <StyledErrorMessage>
+              <WarningSVG />
+              <p>{errors.title.message}</p>
+            </StyledErrorMessage>
+          )}
         </StyledLabel>
-        {errors.title && (
-          <StyledErrorMessage>
-            <WarningSVG />
-            <p>{errors.title.message}</p>
-          </StyledErrorMessage>
-        )}
 
         <StyledLabel>
           Description:

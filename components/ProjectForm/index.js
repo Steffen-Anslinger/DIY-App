@@ -16,6 +16,7 @@ import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
 import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
 import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
 import upload from "@/lib/cloudinary";
+import WarningSVG from "@/public/assets/warning_FILL1_wght400_GRAD0_opsz24";
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
@@ -89,11 +90,14 @@ export default function ProjectForm() {
         <StyledLabel>
           Project title
           <StyledInput
-            {...register("title", { required: "Title is required" })}
+            {...register("title", { required: "Please enter a title!" })}
             placeholder="Title"
           />
           {errors.title && (
-            <StyledErrorMessage>{errors.title.message}</StyledErrorMessage>
+            <StyledErrorMessage>
+              <WarningSVG />
+              <p>{errors.title.message}</p>
+            </StyledErrorMessage>
           )}
         </StyledLabel>
 
@@ -102,10 +106,13 @@ export default function ProjectForm() {
           <StyledInput
             name="cover"
             type="file"
-            {...register("cover", { required: "Image is required" })}
+            {...register("cover", { required: "Please upload an image!" })}
           />
           {errors.cover && (
-            <StyledErrorMessage>{errors.cover.message}</StyledErrorMessage>
+            <StyledErrorMessage>
+              <WarningSVG />
+              <p>{errors.cover.message}</p>
+            </StyledErrorMessage>
           )}
         </StyledLabel>
 
@@ -119,7 +126,8 @@ export default function ProjectForm() {
           />
           {errors.description && (
             <StyledErrorMessage>
-              {errors.description.message}
+              <WarningSVG />
+              <p>{errors.description.message}</p>
             </StyledErrorMessage>
           )}
         </StyledLabel>
@@ -140,7 +148,8 @@ export default function ProjectForm() {
             </StyledSelect>
             {errors.duration && (
               <StyledErrorMessage>
-                {errors.duration?.message}
+                <WarningSVG />
+                <p>{errors.duration?.message}</p>
               </StyledErrorMessage>
             )}
           </StyledLabel>
@@ -161,7 +170,8 @@ export default function ProjectForm() {
             </StyledSelect>
             {errors.difficulty && (
               <StyledErrorMessage>
-                {errors.difficulty?.message}
+                <WarningSVG />
+                <p> {errors.difficulty?.message}</p>
               </StyledErrorMessage>
             )}
           </StyledLabel>
@@ -180,12 +190,14 @@ export default function ProjectForm() {
                     placeholder="Number"
                     min="1"
                   />
+                  {errors.materials?.[index]?.amount && (
+                    <StyledErrorMessage>
+                      <WarningSVG />
+                      <p>{errors.materials?.[index]?.amount?.message}</p>
+                    </StyledErrorMessage>
+                  )}
                 </StyledLabel>
-                {errors.materials?.[index].amount && (
-                  <StyledErrorMessage>
-                    {errors.materials?.[index]?.amount?.message}
-                  </StyledErrorMessage>
-                )}
+
                 <StyledLabel>
                   <StyledInput
                     {...register(`materials.${index}.material`, {
@@ -193,12 +205,14 @@ export default function ProjectForm() {
                     })}
                     placeholder="Material"
                   />
+                  {errors.materials?.[index]?.material && (
+                    <StyledErrorMessage>
+                      <WarningSVG />
+                      <p>{errors.materials?.[index]?.material?.message}</p>
+                    </StyledErrorMessage>
+                  )}
                 </StyledLabel>
-                {errors.materials?.[index].material && (
-                  <StyledErrorMessage>
-                    {errors.materials?.[index]?.material?.message}
-                  </StyledErrorMessage>
-                )}
+
                 <StyledDeleteButton
                   type="button"
                   onClick={() => removeMaterials(index)}
@@ -232,19 +246,21 @@ export default function ProjectForm() {
 
           {instructionsFields.map((item, index) => (
             <StyledInstructions key={item.id}>
-              <StyledTextarea
-                {...register(`instructions.${index}.steps`, {
-                  required: "Steps are required",
-                })}
-                placeholder="Steps"
-              />
+              <StyledLabel>
+                <StyledTextarea
+                  {...register(`instructions.${index}.steps`, {
+                    required: "Steps are required",
+                  })}
+                  placeholder="Steps"
+                />
 
-              {errors.instructions && (
-                <StyledErrorMessage>
-                  {errors.instructions?.[index]?.steps?.message}
-                </StyledErrorMessage>
-              )}
-
+                {errors.instructions?.[index]?.steps && (
+                  <StyledErrorMessage>
+                    <WarningSVG />
+                    <p>{errors.instructions?.[index]?.steps?.message}</p>
+                  </StyledErrorMessage>
+                )}
+              </StyledLabel>
               <StyledDeleteButton
                 type="button"
                 onClick={() => removeInstructions(index)}
