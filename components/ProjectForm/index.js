@@ -1,4 +1,4 @@
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import StyledForm from "../Layout/FormStyles/StyledForm";
@@ -9,14 +9,12 @@ import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
 import StyledSelect from "../Layout/FormStyles/StyledSelect";
 import StyledLink from "../Layout/FormStyles/StyledLink";
 import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
-import StyledDeleteButton from "../Layout/FormStyles/StyledDeleteButton";
 import Image from "next/image";
 import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
 import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
-import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
-import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
 import upload from "@/lib/cloudinary";
-import WarningSVG from "@/public/assets/warning_FILL1_wght400_GRAD0_opsz24";
+import WarningSVG from "@/public/assets/WarningIcon";
+import StyledButton from "../Layout/Styled Buttons";
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
@@ -213,22 +211,22 @@ export default function ProjectForm() {
                   )}
                 </StyledLabel>
 
-                <StyledDeleteButton
-                  type="button"
+                <StyledButton
+                  type="icon-red"
                   onClick={() => removeMaterials(index)}
                 >
                   <Image
                     src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
                     alt="Delete Button"
-                    width={25}
-                    height={25}
+                    width={15}
+                    height={15}
                   />
-                </StyledDeleteButton>
+                </StyledButton>
               </StyledMaterials>
             );
           })}
-          <StyledAddButton
-            type="button"
+          <StyledButton
+            type="icon-blue"
             onClick={() => {
               appendMaterials({ amount: 1, material: "" });
             }}
@@ -236,10 +234,10 @@ export default function ProjectForm() {
             <Image
               src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
               alt="Add Button"
-              width={20}
-              height={20}
+              width={15}
+              height={15}
             />
-          </StyledAddButton>
+          </StyledButton>
         </StyledFieldset>
         <StyledFieldset>
           <legend>Instructions</legend>
@@ -261,22 +259,22 @@ export default function ProjectForm() {
                   </StyledErrorMessage>
                 )}
               </StyledLabel>
-              <StyledDeleteButton
-                type="button"
+              <StyledButton
+                type="icon-red"
                 onClick={() => removeInstructions(index)}
               >
                 <Image
                   src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
                   alt="Delete Button"
-                  width={25}
-                  height={25}
+                  width={15}
+                  height={15}
                 />
-              </StyledDeleteButton>
+              </StyledButton>
             </StyledInstructions>
           ))}
 
-          <StyledAddButton
-            type="button"
+          <StyledButton
+            type="icon-blue"
             onClick={() => {
               appendInstructions({ steps: "" });
             }}
@@ -284,14 +282,14 @@ export default function ProjectForm() {
             <Image
               src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
               alt="Add Button"
-              width={20}
-              height={20}
+              width={15}
+              height={15}
             />
-          </StyledAddButton>
+          </StyledButton>
         </StyledFieldset>
         <div>
           <StyledLink href="/">Cancel</StyledLink>
-          <StyledSubmitButton type="submit">Create</StyledSubmitButton>
+          <StyledButton type="orange">Create</StyledButton>
         </div>
       </StyledForm>
     </>

@@ -8,15 +8,12 @@ import StyledInput from "../Layout/FormStyles/StyledInput";
 import StyledFieldset from "../Layout/FormStyles/StyledFieldset";
 import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
 import StyledSelect from "../Layout/FormStyles/StyledSelect";
-import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
-import StyledCancelButton from "../Layout/FormStyles/StyledCancelButton";
 import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
 import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
 import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
-import StyledDeleteButton from "../Layout/FormStyles/StyledDeleteButton";
 import Image from "next/image";
-import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
-import WarningSVG from "@/public/assets/warning_FILL1_wght400_GRAD0_opsz24";
+import WarningSVG from "@/public/assets/WarningIcon";
+import StyledButton from "../Layout/Styled Buttons";
 
 export default function EditForm({ project, setEditMode }) {
   const {
@@ -192,22 +189,22 @@ export default function EditForm({ project, setEditMode }) {
                   )}
                 </StyledLabel>
 
-                <StyledDeleteButton
-                  type="button"
+                <StyledButton
+                  type="icon-red"
                   onClick={() => removeMaterials(index)}
                 >
                   <Image
                     src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
-                    alt="Delete Button"
-                    width={25}
-                    height={25}
+                    alt="Reset duration button"
+                    width={15}
+                    height={15}
                   />
-                </StyledDeleteButton>
+                </StyledButton>
               </StyledMaterials>
             ))}
 
-            <StyledAddButton
-              type="button"
+            <StyledButton
+              type="icon-blue"
               onClick={() => {
                 appendMaterials({ amount: 1, material: "" });
               }}
@@ -218,7 +215,7 @@ export default function EditForm({ project, setEditMode }) {
                 width={20}
                 height={20}
               />
-            </StyledAddButton>
+            </StyledButton>
           </StyledFieldset>
         )}
 
@@ -244,21 +241,22 @@ export default function EditForm({ project, setEditMode }) {
                     </StyledErrorMessage>
                   )}
                 </StyledLabel>
-                <StyledDeleteButton
-                  type="button"
+
+                <StyledButton
+                  type="icon-red"
                   onClick={() => removeInstructions(index)}
                 >
                   <Image
                     src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
-                    alt="Delete Button"
-                    width={25}
-                    height={25}
+                    alt="Reset duration button"
+                    width={15}
+                    height={15}
                   />
-                </StyledDeleteButton>
+                </StyledButton>
               </StyledInstructions>
             ))}
-            <StyledAddButton
-              type="button"
+            <StyledButton
+              type="icon-blue"
               onClick={() => {
                 appendInstructions({ steps: "" });
               }}
@@ -269,13 +267,13 @@ export default function EditForm({ project, setEditMode }) {
                 width={20}
                 height={20}
               />
-            </StyledAddButton>
+            </StyledButton>
           </StyledFieldset>
         )}
-        <StyledCancelButton onClick={() => setEditMode(false)}>
+        <StyledButton type="grey" onClick={() => setEditMode(false)}>
           Cancel
-        </StyledCancelButton>
-        <StyledSubmitButton type="submit">Save</StyledSubmitButton>
+        </StyledButton>
+        <StyledButton type="orange">Save</StyledButton>
       </StyledForm>
     </>
   );

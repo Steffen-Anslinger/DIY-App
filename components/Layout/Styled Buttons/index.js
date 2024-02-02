@@ -51,7 +51,7 @@ const whiteButtonStyles = css`
   }
 `;
 
-const iconButtonStyles = css`
+const iconredButtonStyles = css`
   background-color: ${color.red[200]};
   color: ${color.grey[950]};
   width: 30px;
@@ -65,6 +65,23 @@ const iconButtonStyles = css`
   transition: background-color 0.3s ease;
   &:hover {
     background-color: ${color.red[300]};
+  }
+`;
+
+const iconblueButtonStyles = css`
+  background-color: ${color.blue[200]};
+  color: ${color.grey[950]};
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: ${color.blue[300]};
   }
 `;
 
@@ -102,9 +119,15 @@ const StyledButton = styled.button`
     `}
 
   ${(props) =>
-    props.type === "icon" &&
+    props.type === "icon-red" &&
     css`
-      ${iconButtonStyles}
+      ${iconredButtonStyles}
+    `}
+  
+    ${(props) =>
+    props.type === "icon-blue" &&
+    css`
+      ${iconblueButtonStyles}
     `}
 `;
 
