@@ -14,7 +14,7 @@ export default async function handler(request, response) {
   if (session && request.method === "POST") {
     try {
       const newProject = request.body;
-      await Project.create(newProject);
+      await Project.create({ ...newProject, author: session.user.name });
       return response.status(201).json({ status: "Project created" });
     } catch (error) {
       console.error(error);

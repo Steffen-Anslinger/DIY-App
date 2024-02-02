@@ -5,6 +5,7 @@ import StyledLink from "../Layout/StyledLinkButton";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
+import { useSession } from "next-auth/react";
 
 export default function EditDetails({
   isFavourite,
@@ -13,6 +14,7 @@ export default function EditDetails({
   project,
 }) {
   const [editMode, setEditMode] = useState(false);
+  const { data: session } = useSession();
   const router = useRouter();
   const { id } = router.query;
 
@@ -49,10 +51,14 @@ export default function EditDetails({
             favourites={favourites}
           />
           <StyledLink href="/">Back</StyledLink>
-          <button onClick={() => setEditMode(true)}>Edit</button>
-          <button type="button" onClick={handleDeleteProject}>
-            ❌ Delete
-          </button>
+          {session && (
+            <>
+              <button onClick={() => setEditMode(true)}>Edit</button>
+              <button type="button" onClick={handleDeleteProject}>
+                ❌ Delete
+              </button>
+            </>
+          )}
         </>
       )}
     </>
