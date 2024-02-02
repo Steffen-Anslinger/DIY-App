@@ -9,15 +9,17 @@ import LoadingAnimation from "@/components/Layout/LoadingAnimation";
 import { SessionProvider } from "next-auth/react";
 
 const fetcher = async (url) => {
-  const response = await fetch(url);
+  let response, data;
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  response = await fetch(url);
   if (!response.ok) {
     const error = new Error("An error occurred while fetching the data.");
     error.info = await response.json();
     error.status = response.status;
     throw error;
   }
-
-  return response.json();
+  data = await response.json();
+  return data;
 };
 
 export default function App({ Component, pageProps }) {
