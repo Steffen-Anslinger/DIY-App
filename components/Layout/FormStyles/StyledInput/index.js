@@ -7,7 +7,6 @@ const StyledInput = styled.input`
   margin: 0;
   border: 1px solid ${color.grey[300]};
   border-radius: 4px;
-  align-items: center;
 `;
 
 export default StyledInput;

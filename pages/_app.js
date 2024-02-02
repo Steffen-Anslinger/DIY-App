@@ -5,17 +5,20 @@ import useSWR from "swr";
 import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
 import StyledSection from "@/components/Layout/StyledSection";
+import LoadingAnimation from "@/components/Layout/LoadingAnimation";
 
 const fetcher = async (url) => {
-  const response = await fetch(url);
+  let response, data;
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  response = await fetch(url);
   if (!response.ok) {
     const error = new Error("An error occurred while fetching the data.");
     error.info = await response.json();
     error.status = response.status;
     throw error;
   }
-
-  return response.json();
+  data = await response.json();
+  return data;
 };
 
 export default function App({ Component, pageProps }) {
@@ -41,7 +44,7 @@ export default function App({ Component, pageProps }) {
 
   const { data: projects, isLoading } = useSWR("/api/projects", fetcher);
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <LoadingAnimation />;
   }
 
   if (!projects) {

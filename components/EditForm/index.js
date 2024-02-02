@@ -16,6 +16,7 @@ import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
 import StyledDeleteButton from "../Layout/FormStyles/StyledDeleteButton";
 import Image from "next/image";
 import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
+import WarningSVG from "@/public/assets/warning_FILL1_wght400_GRAD0_opsz24";
 
 export default function EditForm({ project, setEditMode }) {
   const {
@@ -81,27 +82,31 @@ export default function EditForm({ project, setEditMode }) {
         <StyledLabel>
           Project title
           <StyledInput
-            {...register("title", { required: "Title is required" })}
+            {...register("title", { required: "Please enter a title!" })}
             placeholder="Title"
             defaultValue={project.title}
           />
+          {errors.title && (
+            <StyledErrorMessage>
+              <WarningSVG />
+              <p>{errors.title.message}</p>
+            </StyledErrorMessage>
+          )}
         </StyledLabel>
-        {errors.title && (
-          <StyledErrorMessage>{errors.title.message}</StyledErrorMessage>
-        )}
 
         <StyledLabel>
           Description:
           <StyledTextarea
             {...register("description", {
-              required: "Description is required",
+              required: "Please describe your project!",
             })}
             placeholder="Description"
             defaultValue={project.description}
           />
           {errors.description && (
             <StyledErrorMessage>
-              {errors.description.message}
+              <WarningSVG />
+              <p>{errors.description.message}</p>
             </StyledErrorMessage>
           )}
         </StyledLabel>
@@ -110,7 +115,7 @@ export default function EditForm({ project, setEditMode }) {
           <StyledSelect
             name="duration"
             {...register("duration", {
-              required: "Please select an option!",
+              required: "Please select the duration of your project!",
             })}
             defaultValue={project.duration}
           >
@@ -120,7 +125,10 @@ export default function EditForm({ project, setEditMode }) {
             <option value="long">long</option>
           </StyledSelect>
           {errors.duration && (
-            <StyledErrorMessage>{errors.duration?.message}</StyledErrorMessage>
+            <StyledErrorMessage>
+              <WarningSVG />
+              <p>{errors.duration?.message}</p>
+            </StyledErrorMessage>
           )}
         </StyledLabel>
         <StyledLabel>
@@ -128,7 +136,7 @@ export default function EditForm({ project, setEditMode }) {
           <StyledSelect
             name="difficulty"
             {...register("difficulty", {
-              required: "Please select an option!",
+              required: "Please select the difficulty of your project!",
             })}
             defaultValue={project.difficulty}
           >
@@ -139,7 +147,8 @@ export default function EditForm({ project, setEditMode }) {
           </StyledSelect>
           {errors.difficulty && (
             <StyledErrorMessage>
-              {errors.difficulty?.message}
+              <WarningSVG />
+              <p> {errors.difficulty?.message}</p>
             </StyledErrorMessage>
           )}
         </StyledLabel>
@@ -152,33 +161,37 @@ export default function EditForm({ project, setEditMode }) {
                 <StyledLabel>
                   <StyledInput
                     {...register(`materials.${index}.amount`, {
-                      required: "Amount is required",
+                      required: "Please enter the amount!",
                     })}
                     type="number"
                     placeholder="Number"
                     min="1"
                     defaultValue={item.amount}
                   />
+                  {errors.materials?.[index]?.amount && (
+                    <StyledErrorMessage>
+                      <WarningSVG />
+                      <p>{errors.materials?.[index]?.amount?.message}</p>
+                    </StyledErrorMessage>
+                  )}
                 </StyledLabel>
-                {errors.materials?.[index].amount && (
-                  <StyledErrorMessage>
-                    {errors.materials?.[index]?.amount?.message}
-                  </StyledErrorMessage>
-                )}
+
                 <StyledLabel>
                   <StyledInput
                     {...register(`materials.${index}.material`, {
-                      required: "Material is required",
+                      required: "Please enter your material!",
                     })}
                     placeholder="Material"
                     defaultValue={item.material}
-                  />
+                  />{" "}
+                  {errors.materials?.[index]?.material && (
+                    <StyledErrorMessage>
+                      <WarningSVG />
+                      <p>{errors.materials?.[index]?.material?.message}</p>
+                    </StyledErrorMessage>
+                  )}
                 </StyledLabel>
-                {errors.materials?.[index].material && (
-                  <StyledErrorMessage>
-                    {errors.materials?.[index]?.material?.message}
-                  </StyledErrorMessage>
-                )}
+
                 <StyledDeleteButton
                   type="button"
                   onClick={() => removeMaterials(index)}
@@ -215,18 +228,22 @@ export default function EditForm({ project, setEditMode }) {
 
             {instructionsFields.map((item, index) => (
               <StyledInstructions key={item.id}>
-                <StyledTextarea
-                  {...register(`instructions.${index}.steps`, {
-                    required: "Steps are required",
-                  })}
-                  placeholder="Steps"
-                  defaultValue={project.instructions}
-                />
-                {errors.instructions && (
-                  <StyledErrorMessage>
-                    {errors.instructions?.[index]?.steps?.message}
-                  </StyledErrorMessage>
-                )}
+                <StyledLabel>
+                  <StyledTextarea
+                    {...register(`instructions.${index}.steps`, {
+                      required:
+                        "Please provide some steps for the instructions!",
+                    })}
+                    placeholder="Steps"
+                    defaultValue={project.instructions}
+                  />
+                  {errors.instructions?.[index]?.steps && (
+                    <StyledErrorMessage>
+                      <WarningSVG />
+                      <p>{errors.instructions?.[index]?.steps?.message}</p>
+                    </StyledErrorMessage>
+                  )}
+                </StyledLabel>
                 <StyledDeleteButton
                   type="button"
                   onClick={() => removeInstructions(index)}
