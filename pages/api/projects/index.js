@@ -15,9 +15,9 @@ export default async function handler(request, response) {
       return response.status(201).json({ status: "Project created" });
     } catch (error) {
       console.error(error);
-      response.status(400).json({ error: error.message });
+      alert({ error: error.message });
     }
   } else {
-    return response.status(405).json({ message: "Method not allowed" });
+    alert(`Method not allowed!`);
   }
 }
