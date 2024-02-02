@@ -33,6 +33,7 @@ const projectSchema = new Schema(
     },
     materials: { type: [materialsSchema], required: true },
     instructions: { type: [instructionsSchema], required: true },
+    author: { type: String },
   },
   { timestamps: true }
 );

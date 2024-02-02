@@ -3,6 +3,7 @@ import styled from "styled-components";
 import color from "../Layout/Colors";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -50,6 +51,7 @@ const StyledLinkNav = styled.li`
 
 export default function Navigation() {
   const pathname = usePathname();
+  const { data: session } = useSession();
   return (
     <StyledNav>
       <StyledList>
@@ -63,6 +65,7 @@ export default function Navigation() {
             />
           </StyledLink>
         </StyledLinkNav>
+
         <StyledLinkNav>
           <StyledLink
             className={pathname == "/create" ? "active" : ""}
@@ -76,6 +79,7 @@ export default function Navigation() {
             />
           </StyledLink>
         </StyledLinkNav>
+
         <StyledLinkNav>
           <StyledLink
             className={pathname == "/favourite" ? "active" : ""}

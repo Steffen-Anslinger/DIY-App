@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
 import StyledSection from "@/components/Layout/StyledSection";
 import LoadingAnimation from "@/components/Layout/LoadingAnimation";
+import { SessionProvider } from "next-auth/react";
 
 const fetcher = async (url) => {
   let response, data;
@@ -53,19 +54,21 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <SWRConfig value={{ fetcher }}>
-        <GlobalStyle />
-        <Header />
-        <StyledSection>
-          <Component
-            {...pageProps}
-            projects={projects}
-            onToggleFavourite={handleToggleFavourite}
-            favourites={favourites}
-          />
-        </StyledSection>
-        <Navigation />
-      </SWRConfig>
+      <SessionProvider session={pageProps.session}>
+        <SWRConfig value={{ fetcher }}>
+          <GlobalStyle />
+          <Header />
+          <StyledSection>
+            <Component
+              {...pageProps}
+              projects={projects}
+              onToggleFavourite={handleToggleFavourite}
+              favourites={favourites}
+            />
+          </StyledSection>
+          <Navigation />
+        </SWRConfig>
+      </SessionProvider>
     </>
   );
 }
