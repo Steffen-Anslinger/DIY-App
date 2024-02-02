@@ -15,7 +15,7 @@ const CenteredContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Full height of the viewport */
+  height: 100vh;
 `;
 
 const LdsRing = styled.div`
