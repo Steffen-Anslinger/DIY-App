@@ -16,11 +16,14 @@ const StyledSearchInput = styled.input`
   border: none;
   outline: none;
   width: 100%;
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 8px;
   font-size: 16px;
-
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: ${color.grey[100]};
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
+  &:focus {
+    border: solid 1px ${color.orange[600]};
+  }
 `;
 
 export default function SearchBar({

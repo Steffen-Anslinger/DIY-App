@@ -21,10 +21,12 @@ const orangeButtonStyles = css`
 `;
 
 const blueButtonStyles = css`
-  background-color: ${color.blue[500]};
-  color: ${color.grey[50]};
+  background-color: ${color.grey[200]};
+  color: ${color.orange[600]};
+  font-weight: bold;
   &:hover {
-    background-color: ${color.blue[600]};
+    background-color: ${color.orange[600]};
+    color: ${color.grey[50]};
   }
 `;
 
