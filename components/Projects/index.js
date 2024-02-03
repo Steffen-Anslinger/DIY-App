@@ -31,10 +31,10 @@ const StyledCardTitle = styled.h2`
   height: fit-content;
 
   @media (max-width: 100px) {
-    font-size: medium;
+    font-size: small;
   }
-  @media (max-width: 200px) {
-    font-size: large;
+  @media (max-width: 400px) {
+    font-size: medium;
   }
 `;
 
@@ -56,7 +56,7 @@ const TagButtonLine = styled.div`
   justify-content: space-between;
   width: 100%;
   gap: 5px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   height: fit-content;
 `;
 
@@ -108,7 +108,7 @@ const TagDifficulty = styled.p`
 const customBreakpoints = {
   values: {
     xs: 0,
-    sm: 400,
+    sm: 300,
     md: 600,
     lg: 960,
     xl: 1280,
