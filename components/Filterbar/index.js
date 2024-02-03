@@ -14,6 +14,10 @@ const StyledFilter = styled.div`
   gap: 10px;
   background-color: ${color.grey[100]};
   border-radius: 5px;
+  @media (max-width: 450px) {
+    flex-direction: column;
+    align-items: start;
+  }
 `;
 
 export default function FilterBar({

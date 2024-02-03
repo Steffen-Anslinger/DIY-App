@@ -9,7 +9,7 @@ import LoginButton from "@/components/LoginButton";
 
 const StyledSearchWrapper = styled.div`
   position: sticky;
-  top: 0;
+  top: 30px;
   left: 0;
   right: 0;
   z-index: 2;
@@ -83,13 +83,13 @@ export default function HomePage({ projects, favourites, onToggleFavourite }) {
           setFilterMode={setFilterMode}
         />
       </StyledSearchWrapper>
-      
 
       <Projects
         projects={combinedFilters}
         favourites={favourites}
         onToggleFavourite={onToggleFavourite}
-      /><LoginButton />
+      />
+      <LoginButton />
     </>
   );
 }
