@@ -77,7 +77,7 @@ export default function EditForm({ project, setEditMode }) {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <h2>Edit your project</h2>
         <StyledLabel>
-          Project title
+          <p>Project title</p>
           <StyledInput
             {...register("title", { required: "Please enter a title!" })}
             placeholder="Title"
@@ -92,7 +92,7 @@ export default function EditForm({ project, setEditMode }) {
         </StyledLabel>
 
         <StyledLabel>
-          Description:
+          <p>Description</p>
           <StyledTextarea
             {...register("description", {
               required: "Please describe your project!",
@@ -108,7 +108,7 @@ export default function EditForm({ project, setEditMode }) {
           )}
         </StyledLabel>
         <StyledLabel>
-          Duration:
+          <p>Duration</p>
           <StyledSelect
             name="duration"
             {...register("duration", {
@@ -129,7 +129,7 @@ export default function EditForm({ project, setEditMode }) {
           )}
         </StyledLabel>
         <StyledLabel>
-          Difficulty:
+          <p>Difficulty</p>
           <StyledSelect
             name="difficulty"
             {...register("difficulty", {
@@ -151,8 +151,8 @@ export default function EditForm({ project, setEditMode }) {
         </StyledLabel>
 
         {materialsFields.length > 0 && (
-          <StyledFieldset>
-            <legend>Materials</legend>
+          <StyledLabel>
+            <p>Materials</p>
             {materialsFields.map((item, index) => (
               <StyledMaterials key={item.id}>
                 <StyledLabel>
@@ -216,12 +216,12 @@ export default function EditForm({ project, setEditMode }) {
                 height={20}
               />
             </StyledButton>
-          </StyledFieldset>
+          </StyledLabel>
         )}
 
         {instructionsFields.length > 0 && (
-          <StyledFieldset>
-            <legend>Instructions</legend>
+          <StyledLabel>
+            <p>Instructions</p>
 
             {instructionsFields.map((item, index) => (
               <StyledInstructions key={item.id}>
@@ -268,7 +268,7 @@ export default function EditForm({ project, setEditMode }) {
                 height={20}
               />
             </StyledButton>
-          </StyledFieldset>
+          </StyledLabel>
         )}
         <StyledButton type="grey" onClick={() => setEditMode(false)}>
           Cancel
