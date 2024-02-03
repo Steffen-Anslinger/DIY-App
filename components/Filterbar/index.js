@@ -49,7 +49,7 @@ export default function FilterBar({
             <option value="medium">medium</option>
             <option value="hard">hard</option>
           </StyledSelect>
-          <StyledButton type="icon" onClick={handleDifficultyReset}>
+          <StyledButton type="icon-red" onClick={handleDifficultyReset}>
             <Image
               src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
               alt="Reset difficulty button"
@@ -64,7 +64,7 @@ export default function FilterBar({
             <option value="medium">medium</option>
             <option value="long">long</option>
           </StyledSelect>
-          <StyledButton type="icon" onClick={handleDurationReset}>
+          <StyledButton type="icon-red" onClick={handleDurationReset}>
             <Image
               src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
               alt="Reset duration button"
