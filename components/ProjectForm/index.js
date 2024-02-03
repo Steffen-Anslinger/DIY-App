@@ -86,7 +86,7 @@ export default function ProjectForm() {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <h2>Create new project</h2>
         <StyledLabel>
-          Project title
+          <p>Project title</p>
           <StyledInput
             {...register("title", { required: "Please enter a title!" })}
             placeholder="Title"
@@ -100,7 +100,7 @@ export default function ProjectForm() {
         </StyledLabel>
 
         <StyledLabel>
-          Cover
+          <p>Cover</p>
           <StyledInput
             name="cover"
             type="file"
@@ -115,7 +115,7 @@ export default function ProjectForm() {
         </StyledLabel>
 
         <StyledLabel>
-          Description
+          <p>Description</p>
           <StyledTextarea
             {...register("description", {
               required: "Description is required",
@@ -131,7 +131,7 @@ export default function ProjectForm() {
         </StyledLabel>
         <div>
           <StyledLabel>
-            Duration
+            <p>Duration</p>
             <StyledSelect
               name="duration"
               {...register("duration", {
@@ -153,7 +153,7 @@ export default function ProjectForm() {
           </StyledLabel>
           &nbsp;
           <StyledLabel>
-            Difficulty
+            <p>Difficulty</p>
             <StyledSelect
               name="difficulty"
               {...register("difficulty", {
@@ -174,8 +174,8 @@ export default function ProjectForm() {
             )}
           </StyledLabel>
         </div>
-        <StyledFieldset>
-          <legend>Materials</legend>
+        <StyledLabel>
+          <p>Materials</p>
           {materialsFields.map((item, index) => {
             return (
               <StyledMaterials key={item.id}>
@@ -238,9 +238,9 @@ export default function ProjectForm() {
               height={15}
             />
           </StyledButton>
-        </StyledFieldset>
-        <StyledFieldset>
-          <legend>Instructions</legend>
+        </StyledLabel>
+        <StyledLabel>
+          <p>Instructions</p>
 
           {instructionsFields.map((item, index) => (
             <StyledInstructions key={item.id}>
@@ -286,10 +286,10 @@ export default function ProjectForm() {
               height={15}
             />
           </StyledButton>
-        </StyledFieldset>
+        </StyledLabel>
         <div>
           <StyledLink href="/">Cancel</StyledLink>
-          <StyledButton type="orange">Create</StyledButton>
+          <StyledButton type="blue">Create</StyledButton>
         </div>
       </StyledForm>
     </>
