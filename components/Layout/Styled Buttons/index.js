@@ -22,7 +22,7 @@ const orangeButtonStyles = css`
 `;
 
 const blueButtonStyles = css`
-  background-color: ${color.grey[200]};
+  border: solid 2px ${color.orange[600]};
   color: ${color.orange[600]};
   font-weight: bold;
   &:hover {

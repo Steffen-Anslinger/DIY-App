@@ -16,13 +16,14 @@ const StyledSearchInput = styled.input`
   border: none;
   outline: none;
   width: 100%;
-  border-radius: 10px;
+  height: 35.5px;
+  border-radius: 5px;
   padding: 8px;
   font-size: 16px;
   background-color: ${color.grey[100]};
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
   &:focus {
-    border: solid 1px ${color.orange[600]};
+    border: solid 2px ${color.orange[600]};
   }
 `;
 
