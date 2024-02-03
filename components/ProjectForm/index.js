@@ -4,7 +4,6 @@ import useSWR from "swr";
 import StyledForm from "../Layout/FormStyles/StyledForm";
 import StyledLabel from "../Layout/FormStyles/StyledLabel";
 import StyledInput from "../Layout/FormStyles/StyledInput";
-import StyledFieldset from "../Layout/FormStyles/StyledFieldset";
 import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
 import StyledSelect from "../Layout/FormStyles/StyledSelect";
 import StyledLink from "../Layout/FormStyles/StyledLink";
@@ -101,7 +100,7 @@ export default function ProjectForm() {
 
         <StyledLabel>
           <p>Cover</p>
-          <StyledInput
+          <input
             name="cover"
             type="file"
             {...register("cover", { required: "Please upload an image!" })}
