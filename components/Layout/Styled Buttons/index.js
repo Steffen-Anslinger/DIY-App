@@ -3,6 +3,7 @@ import color from "../Colors";
 
 const baseButtonStyles = css`
   padding: 8px 16px;
+  margin: 5px 0px;
   border-radius: 0.375rem;
   font-weight: normal;
   color: #fff;
@@ -71,7 +72,7 @@ const iconredButtonStyles = css`
 `;
 
 const iconblueButtonStyles = css`
-  background-color: ${color.blue[200]};
+  background-color: ${color.grey[200]};
   color: ${color.grey[950]};
   width: 30px;
   height: 30px;
