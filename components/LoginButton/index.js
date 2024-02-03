@@ -15,7 +15,7 @@ export default function LoginButton() {
   }
   return (
     <>
-      Not signed in <br />
+      You are not signed in <br />
       <StyledButton type="orange" onClick={() => signIn()}>
         Sign in
       </StyledButton>
