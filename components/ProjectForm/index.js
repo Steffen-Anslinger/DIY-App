@@ -6,7 +6,7 @@ import StyledLabel from "../Layout/FormStyles/StyledLabel";
 import StyledInput from "../Layout/FormStyles/StyledInput";
 import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
 import StyledSelect from "../Layout/FormStyles/StyledSelect";
-import StyledLink from "../Layout/FormStyles/StyledLink";
+import StyledLink from "../Layout/StyledLink";
 import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
 import Image from "next/image";
 import StyledMaterials from "../Layout/FormStyles/StyledMaterials";

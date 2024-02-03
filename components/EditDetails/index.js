@@ -1,7 +1,7 @@
 import React from "react";
 import ProjectDetails from "../ProjectDetails";
 import EditForm from "../EditForm";
-import StyledLink from "../Layout/StyledLinkButton";
+import StyledLink from "../Layout/StyledLink";
 import StyledButton from "../Layout/Styled Buttons";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -54,7 +54,9 @@ export default function EditDetails({
           <StyledLink href="/">Back</StyledLink>
           {session && (
             <>
-              <StyledButton type="orange" onClick={() => setEditMode(true)}>Edit</StyledButton>
+              <StyledButton type="orange" onClick={() => setEditMode(true)}>
+                Edit
+              </StyledButton>
               <StyledButton type="red" onClick={handleDeleteProject}>
                 Delete
               </StyledButton>
