@@ -9,6 +9,7 @@ const baseButtonStyles = css`
   cursor: pointer;
   border: none;
   font-size: small;
+  transition: background-color 0.3s ease;
 `;
 
 const orangeButtonStyles = css`
@@ -62,7 +63,6 @@ const iconredButtonStyles = css`
   justify-content: center;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   &:hover {
     background-color: ${color.red[300]};
   }
