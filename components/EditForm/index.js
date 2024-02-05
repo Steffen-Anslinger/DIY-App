@@ -281,7 +281,7 @@ export default function EditForm({ project, setEditMode }) {
         >
           Cancel
         </StyledButton>
-        <StyledButton type="button" name="orange">
+        <StyledButton type="submit" name="orange">
           Save
         </StyledButton>
       </StyledForm>

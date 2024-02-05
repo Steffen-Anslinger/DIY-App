@@ -5,7 +5,6 @@ import Projects from "@/components/Projects";
 import FilterBar from "@/components/Filterbar";
 import styled from "styled-components";
 import color from "@/components/Layout/Colors";
-import LoginButton from "@/components/LoginButton";
 
 const StyledSearchWrapper = styled.div`
   position: sticky;
