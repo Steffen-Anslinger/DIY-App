@@ -1,22 +1,19 @@
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import StyledForm from "../Layout/FormStyles/StyledForm";
-import StyledLabel from "../Layout/FormStyles/StyledLabel";
-import StyledInput from "../Layout/FormStyles/StyledInput";
-import StyledFieldset from "../Layout/FormStyles/StyledFieldset";
-import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
-import StyledSelect from "../Layout/FormStyles/StyledSelect";
-import StyledLink from "../Layout/FormStyles/StyledLink";
-import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
-import StyledDeleteButton from "../Layout/FormStyles/StyledDeleteButton";
+import StyledForm from "../Design/FormStyles/StyledForm";
+import StyledLabel from "../Design/FormStyles/StyledLabel";
+import StyledInput from "../Design/FormStyles/StyledInput";
+import StyledTextarea from "../Design/FormStyles/StyledTextarea";
+import StyledSelect from "../Design/FormStyles/StyledSelect";
+import StyledLink from "../Design/StyledLink";
+import StyledErrorMessage from "../Design/FormStyles/StyledErrorMessage";
 import Image from "next/image";
-import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
-import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
-import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
-import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
+import StyledMaterials from "../Design/FormStyles/StyledMaterials";
+import StyledInstructions from "../Design/FormStyles/StyledInstructions";
 import upload from "@/lib/cloudinary";
-import WarningSVG from "@/public/assets/warning_FILL1_wght400_GRAD0_opsz24";
+import WarningSVG from "@/components/Design/SVGs/WarningIcon";
+import StyledButton from "../Design/StyledButtons";
 
 export default function ProjectForm() {
   const { mutate } = useSWR("/api/projects");
@@ -103,7 +100,7 @@ export default function ProjectForm() {
 
         <StyledLabel>
           Cover
-          <StyledInput
+          <input
             name="cover"
             type="file"
             {...register("cover", { required: "Please upload an image!" })}
@@ -141,7 +138,9 @@ export default function ProjectForm() {
               })}
               defaultValue={""}
             >
-              <option value="">select...</option>
+              <option value="" hidden>
+                select...
+              </option>
               <option value="short">short</option>
               <option value="medium">medium</option>
               <option value="long">long</option>
@@ -163,7 +162,9 @@ export default function ProjectForm() {
               })}
               defaultValue={""}
             >
-              <option value="">select...</option>
+              <option value="" hidden>
+                select...
+              </option>
               <option value="easy">easy</option>
               <option value="medium">medium</option>
               <option value="hard">hard</option>
@@ -176,8 +177,8 @@ export default function ProjectForm() {
             )}
           </StyledLabel>
         </div>
-        <StyledFieldset>
-          <legend>Materials</legend>
+        <StyledLabel>
+          Materials
           {materialsFields.map((item, index) => {
             return (
               <StyledMaterials key={item.id}>
@@ -213,22 +214,24 @@ export default function ProjectForm() {
                   )}
                 </StyledLabel>
 
-                <StyledDeleteButton
+                <StyledButton
                   type="button"
+                  name="icon-red"
                   onClick={() => removeMaterials(index)}
                 >
                   <Image
                     src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
                     alt="Delete Button"
-                    width={25}
-                    height={25}
+                    width={15}
+                    height={15}
                   />
-                </StyledDeleteButton>
+                </StyledButton>
               </StyledMaterials>
             );
           })}
-          <StyledAddButton
+          <StyledButton
             type="button"
+            name="icon-blue"
             onClick={() => {
               appendMaterials({ amount: 1, material: "" });
             }}
@@ -236,14 +239,13 @@ export default function ProjectForm() {
             <Image
               src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
               alt="Add Button"
-              width={20}
-              height={20}
+              width={15}
+              height={15}
             />
-          </StyledAddButton>
-        </StyledFieldset>
-        <StyledFieldset>
-          <legend>Instructions</legend>
-
+          </StyledButton>
+        </StyledLabel>
+        <StyledLabel>
+          Instructions
           {instructionsFields.map((item, index) => (
             <StyledInstructions key={item.id}>
               <StyledLabel>
@@ -261,22 +263,23 @@ export default function ProjectForm() {
                   </StyledErrorMessage>
                 )}
               </StyledLabel>
-              <StyledDeleteButton
+              <StyledButton
                 type="button"
+                name="icon-red"
                 onClick={() => removeInstructions(index)}
               >
                 <Image
                   src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
                   alt="Delete Button"
-                  width={25}
-                  height={25}
+                  width={15}
+                  height={15}
                 />
-              </StyledDeleteButton>
+              </StyledButton>
             </StyledInstructions>
           ))}
-
-          <StyledAddButton
+          <StyledButton
             type="button"
+            name="icon-blue"
             onClick={() => {
               appendInstructions({ steps: "" });
             }}
@@ -284,14 +287,16 @@ export default function ProjectForm() {
             <Image
               src={"/assets/add_FILL0_wght400_GRAD0_opsz24.svg"}
               alt="Add Button"
-              width={20}
-              height={20}
+              width={15}
+              height={15}
             />
-          </StyledAddButton>
-        </StyledFieldset>
+          </StyledButton>
+        </StyledLabel>
         <div>
           <StyledLink href="/">Cancel</StyledLink>
-          <StyledSubmitButton type="submit">Create</StyledSubmitButton>
+          <StyledButton type="submit" name="blue">
+            Create
+          </StyledButton>
         </div>
       </StyledForm>
     </>

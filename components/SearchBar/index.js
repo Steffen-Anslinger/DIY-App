@@ -1,35 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-import color from "../Layout/Colors";
+import color from "../../utils/Colors";
+import StyledButton from "../Design/StyledButtons";
 
 const StyledSearchBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${color.grey[50]};
-  padding: 8px 0px;
+  padding-top: 45px;
+  gap: 10px;
 `;
 
 const StyledSearchInput = styled.input`
   border: none;
   outline: none;
   width: 100%;
-  border-radius: 4px;
+  height: 35.5px;
+  border-radius: 5px;
   padding: 8px;
   font-size: 16px;
-  margin-left: calc(8px);
-  margin-right: calc(8px);
-  margin-top: calc(50px);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-const ToggleFilterButton = styled.button`
-  border: none;
-  height: fit-content;
-  width: fit-content;
-  border-radius: 5px;
-  margin-top: 50px;
-  padding: 5px;
+  background-color: ${color.grey[100]};
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
+  &:focus {
+    border: solid 2px ${color.orange[600]};
+  }
 `;
 
 export default function SearchBar({
@@ -50,9 +45,9 @@ export default function SearchBar({
           value={searchPattern}
           onChange={onSearchChange}
         />
-        <ToggleFilterButton onClick={toggleFilterMode}>
+        <StyledButton type="button" name="blue" onClick={toggleFilterMode}>
           Filter
-        </ToggleFilterButton>
+        </StyledButton>
       </StyledSearchBar>
     </>
   );

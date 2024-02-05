@@ -4,12 +4,11 @@ import SearchBar from "@/components/SearchBar";
 import Projects from "@/components/Projects";
 import FilterBar from "@/components/Filterbar";
 import styled from "styled-components";
-import color from "@/components/Layout/Colors";
-import LoginButton from "@/components/LoginButton";
+import color from "@/utils/Colors";
 
 const StyledSearchWrapper = styled.div`
   position: sticky;
-  top: 0;
+  top: 30px;
   left: 0;
   right: 0;
   z-index: 2;
@@ -83,8 +82,6 @@ export default function HomePage({ projects, favourites, onToggleFavourite }) {
           setFilterMode={setFilterMode}
         />
       </StyledSearchWrapper>
-
-      <LoginButton />
 
       <Projects
         projects={combinedFilters}

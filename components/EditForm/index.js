@@ -2,21 +2,18 @@ import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
-import StyledForm from "../Layout/FormStyles/StyledForm";
-import StyledLabel from "../Layout/FormStyles/StyledLabel";
-import StyledInput from "../Layout/FormStyles/StyledInput";
-import StyledFieldset from "../Layout/FormStyles/StyledFieldset";
-import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
-import StyledSelect from "../Layout/FormStyles/StyledSelect";
-import StyledSubmitButton from "../Layout/FormStyles/StyledSubmitButton/inex";
-import StyledCancelButton from "../Layout/FormStyles/StyledCancelButton";
-import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
-import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
-import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
-import StyledDeleteButton from "../Layout/FormStyles/StyledDeleteButton";
+import StyledForm from "../Design/FormStyles/StyledForm";
+import StyledLabel from "../Design/FormStyles/StyledLabel";
+import StyledInput from "../Design/FormStyles/StyledInput";
+import StyledFieldset from "../Design/FormStyles/StyledFieldset";
+import StyledTextarea from "../Design/FormStyles/StyledTextarea";
+import StyledSelect from "../Design/FormStyles/StyledSelect";
+import StyledErrorMessage from "../Design/FormStyles/StyledErrorMessage";
+import StyledMaterials from "../Design/FormStyles/StyledMaterials";
+import StyledInstructions from "../Design/FormStyles/StyledInstructions";
 import Image from "next/image";
-import StyledAddButton from "../Layout/FormStyles/StyledAddButton";
-import WarningSVG from "@/public/assets/warning_FILL1_wght400_GRAD0_opsz24";
+import WarningSVG from "@/components/Design/SVGs/WarningIcon";
+import StyledButton from "../Design/StyledButtons";
 
 export default function EditForm({ project, setEditMode }) {
   const {
@@ -95,7 +92,7 @@ export default function EditForm({ project, setEditMode }) {
         </StyledLabel>
 
         <StyledLabel>
-          Description:
+          Description
           <StyledTextarea
             {...register("description", {
               required: "Please describe your project!",
@@ -111,7 +108,7 @@ export default function EditForm({ project, setEditMode }) {
           )}
         </StyledLabel>
         <StyledLabel>
-          Duration:
+          Duration
           <StyledSelect
             name="duration"
             {...register("duration", {
@@ -119,7 +116,9 @@ export default function EditForm({ project, setEditMode }) {
             })}
             defaultValue={project.duration}
           >
-            <option value="">select...</option>
+            <option value="" hidden>
+              select...
+            </option>
             <option value="short">short</option>
             <option value="medium">medium</option>
             <option value="long">long</option>
@@ -132,7 +131,7 @@ export default function EditForm({ project, setEditMode }) {
           )}
         </StyledLabel>
         <StyledLabel>
-          Difficulty:
+          Difficulty
           <StyledSelect
             name="difficulty"
             {...register("difficulty", {
@@ -140,7 +139,9 @@ export default function EditForm({ project, setEditMode }) {
             })}
             defaultValue={project.difficulty}
           >
-            <option value="">select...</option>
+            <option value="" hidden>
+              select...
+            </option>
             <option value="easy">easy</option>
             <option value="medium">medium</option>
             <option value="hard">hard</option>
@@ -154,8 +155,8 @@ export default function EditForm({ project, setEditMode }) {
         </StyledLabel>
 
         {materialsFields.length > 0 && (
-          <StyledFieldset>
-            <legend>Materials</legend>
+          <StyledLabel>
+            Materials
             {materialsFields.map((item, index) => (
               <StyledMaterials key={item.id}>
                 <StyledLabel>
@@ -192,22 +193,23 @@ export default function EditForm({ project, setEditMode }) {
                   )}
                 </StyledLabel>
 
-                <StyledDeleteButton
+                <StyledButton
                   type="button"
+                  name="icon-red"
                   onClick={() => removeMaterials(index)}
                 >
                   <Image
                     src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
-                    alt="Delete Button"
-                    width={25}
-                    height={25}
+                    alt="Reset duration button"
+                    width={15}
+                    height={15}
                   />
-                </StyledDeleteButton>
+                </StyledButton>
               </StyledMaterials>
             ))}
-
-            <StyledAddButton
+            <StyledButton
               type="button"
+              name="icon-blue"
               onClick={() => {
                 appendMaterials({ amount: 1, material: "" });
               }}
@@ -218,14 +220,13 @@ export default function EditForm({ project, setEditMode }) {
                 width={20}
                 height={20}
               />
-            </StyledAddButton>
-          </StyledFieldset>
+            </StyledButton>
+          </StyledLabel>
         )}
 
         {instructionsFields.length > 0 && (
-          <StyledFieldset>
-            <legend>Instructions</legend>
-
+          <StyledLabel>
+            Instructions
             {instructionsFields.map((item, index) => (
               <StyledInstructions key={item.id}>
                 <StyledLabel>
@@ -244,21 +245,24 @@ export default function EditForm({ project, setEditMode }) {
                     </StyledErrorMessage>
                   )}
                 </StyledLabel>
-                <StyledDeleteButton
+
+                <StyledButton
                   type="button"
+                  name="icon-red"
                   onClick={() => removeInstructions(index)}
                 >
                   <Image
                     src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
-                    alt="Delete Button"
-                    width={25}
-                    height={25}
+                    alt="Reset duration button"
+                    width={15}
+                    height={15}
                   />
-                </StyledDeleteButton>
+                </StyledButton>
               </StyledInstructions>
             ))}
-            <StyledAddButton
+            <StyledButton
               type="button"
+              name="icon-blue"
               onClick={() => {
                 appendInstructions({ steps: "" });
               }}
@@ -269,13 +273,19 @@ export default function EditForm({ project, setEditMode }) {
                 width={20}
                 height={20}
               />
-            </StyledAddButton>
-          </StyledFieldset>
+            </StyledButton>
+          </StyledLabel>
         )}
-        <StyledCancelButton onClick={() => setEditMode(false)}>
+        <StyledButton
+          type="button"
+          name="grey"
+          onClick={() => setEditMode(false)}
+        >
           Cancel
-        </StyledCancelButton>
-        <StyledSubmitButton type="submit">Save</StyledSubmitButton>
+        </StyledButton>
+        <StyledButton type="submit" name="orange">
+          Save
+        </StyledButton>
       </StyledForm>
     </>
   );

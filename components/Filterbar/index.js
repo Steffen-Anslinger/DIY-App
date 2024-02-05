@@ -1,31 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import StyledSelect from "../Layout/FormStyles/StyledSelect";
+import StyledSelect from "../Design/FormStyles/StyledSelect";
+import StyledButton from "../Design/StyledButtons";
+import color from "../../utils/Colors";
+import StyledLabel from "../Design/FormStyles/StyledLabel";
 
 const StyledFilter = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 8px;
+  align-items: end;
+  padding: 8px 20px;
+  margin-top: 10px;
   gap: 10px;
-`;
-
-const ResetButton = styled.button`
-  display: flex;
-  flex-wrap: nowrap;
-  border: none;
-  height: fit-content;
-  width: fit-content;
+  background-color: ${color.grey[100]};
   border-radius: 5px;
-  margin: 5px;
-  padding: 5px;
+  @media (max-width: 450px) {
+    flex-direction: column;
+    align-items: start;
+  }
 `;
 
-const FilterLabel = styled.label`
+const Wrapper = styled.div`
   display: flex;
-  width: 100%;
-  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 `;
 
 export default function FilterBar({
@@ -54,44 +53,50 @@ export default function FilterBar({
     <>
       {filterMode ? (
         <StyledFilter>
-          <FilterLabel>
+          <StyledLabel>
             Difficulty:
-            <StyledSelect
-              value={difficultyFilter}
-              onChange={onDifficultyChange}
-            >
-              <option value="">select...</option>
-              <option value="easy">easy</option>
-              <option value="medium">medium</option>
-              <option value="hard">hard</option>
-            </StyledSelect>
-            <ResetButton onClick={handleDifficultyReset}>
-              <Image
-                src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
-                alt="Reset difficulty button"
-                width={15}
-                height={15}
-              />
-            </ResetButton>
-          </FilterLabel>
-          <FilterLabel>
+            <Wrapper>
+              <StyledSelect
+                value={difficultyFilter}
+                onChange={onDifficultyChange}
+              >
+                <option value="">select...</option>
+                <option value="easy">easy</option>
+                <option value="medium">medium</option>
+                <option value="hard">hard</option>
+              </StyledSelect>
+              <StyledButton
+                type="button"
+                name="icon-blue"
+                onClick={handleDifficultyReset}
+              >
+                X
+              </StyledButton>
+            </Wrapper>
+          </StyledLabel>
+
+          <StyledLabel>
             Duration:
-            <StyledSelect value={durationFilter} onChange={onDurationChange}>
-              <option value="">select...</option>
-              <option value="short">short</option>
-              <option value="medium">medium</option>
-              <option value="long">long</option>
-            </StyledSelect>
-            <ResetButton onClick={handleDurationReset}>
-              <Image
-                src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
-                alt="Reset duration button"
-                width={15}
-                height={15}
-              />
-            </ResetButton>
-          </FilterLabel>
-          <ResetButton onClick={handleFilterReset}>Reset All</ResetButton>
+            <Wrapper>
+              <StyledSelect value={durationFilter} onChange={onDurationChange}>
+                <option value="">select...</option>
+                <option value="short">short</option>
+                <option value="medium">medium</option>
+                <option value="long">long</option>
+              </StyledSelect>
+
+              <StyledButton
+                type="button"
+                name="icon-blue"
+                onClick={handleDurationReset}
+              >
+                X
+              </StyledButton>
+            </Wrapper>
+          </StyledLabel>
+          <StyledButton type="button" name="grey" onClick={handleFilterReset}>
+            Reset
+          </StyledButton>
         </StyledFilter>
       ) : null}
     </>

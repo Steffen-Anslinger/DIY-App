@@ -1,7 +1,7 @@
 import EditDetails from "@/components/EditDetails";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import LoadingAnimation from "@/components/Layout/LoadingAnimation";
+import LoadingAnimation from "@/components/Design/LoadingAnimation";
 
 export default function ProjectDetailsPage({ favourites, onToggleFavourite }) {
   const router = useRouter();

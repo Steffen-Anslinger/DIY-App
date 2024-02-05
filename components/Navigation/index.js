@@ -1,9 +1,10 @@
 import Link from "next/link";
 import styled from "styled-components";
-import color from "../Layout/Colors";
+import color from "../../utils/Colors";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import HomeSVG from "@/components/Design/SVGs/HomeIcon";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -57,12 +58,7 @@ export default function Navigation() {
       <StyledList>
         <StyledLinkNav>
           <StyledLink className={pathname == "/" ? "active" : ""} href="/">
-            <Image
-              src={"/assets/home_app_logo_FILL0_wght400_GRAD0_opsz24.svg"}
-              alt="Home button"
-              width={35}
-              height={35}
-            />
+            <HomeSVG />
           </StyledLink>
         </StyledLinkNav>
 
