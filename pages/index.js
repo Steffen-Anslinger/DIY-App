@@ -5,6 +5,20 @@ import Projects from "@/components/Projects";
 import FilterBar from "@/components/Filterbar";
 import styled from "styled-components";
 import color from "@/utils/Colors";
+import InfoSVG from "@/components/Design/SVGs/InfoIcon";
+
+const StyledInfo = styled.div`
+  margin: 10px 0px;
+  padding: 5px;
+  padding-left: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: ${color.blue[950]};
+  background-color: ${color.blue[50]};
+  align-items: center;
+  display: flex;
+  gap: 10px;
+`;
 
 const StyledSearchWrapper = styled.div`
   position: sticky;
@@ -46,6 +60,15 @@ export default function HomePage({ projects, favourites, onToggleFavourite }) {
     (project) => filterProjects.includes(project)
   );
 
+  const isSearchingOrFiltering =
+    searchPattern.length > 0 ||
+    difficultyFilter.length > 0 ||
+    durationFilter.length > 0;
+
+  const numberOfProjectsFound = isSearchingOrFiltering
+    ? combinedFilters.length
+    : 0;
+
   const handleSearchChange = (event) => {
     setSearchPattern(event.target.value);
   };
@@ -81,6 +104,18 @@ export default function HomePage({ projects, favourites, onToggleFavourite }) {
           filterMode={filterMode}
           setFilterMode={setFilterMode}
         />
+        <div>
+          {isSearchingOrFiltering && numberOfProjectsFound === 0 && (
+            <StyledInfo>
+              <InfoSVG /> <p>No Projects found with the filter criteria.</p>
+            </StyledInfo>
+          )}
+          {isSearchingOrFiltering && numberOfProjectsFound > 0 && (
+            <StyledInfo>
+              {`${numberOfProjectsFound} Projects found.`}
+            </StyledInfo>
+          )}
+        </div>
       </StyledSearchWrapper>
 
       <Projects
