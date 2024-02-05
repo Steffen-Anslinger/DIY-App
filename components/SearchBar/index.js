@@ -8,7 +8,7 @@ const StyledSearchBar = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${color.grey[50]};
-  padding-top: 40px;
+  padding-top: 30px;
   gap: 10px;
 `;
 
@@ -45,7 +45,7 @@ export default function SearchBar({
           value={searchPattern}
           onChange={onSearchChange}
         />
-        <StyledButton type="blue" onClick={toggleFilterMode}>
+        <StyledButton type="button" name="blue" onClick={toggleFilterMode}>
           Filter
         </StyledButton>
       </StyledSearchBar>

@@ -65,13 +65,12 @@ export default function FilterBar({
                 <option value="medium">medium</option>
                 <option value="hard">hard</option>
               </StyledSelect>
-              <StyledButton type="icon-red" onClick={handleDifficultyReset}>
-                <Image
-                  src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
-                  alt="Reset difficulty button"
-                  width={15}
-                  height={15}
-                />
+              <StyledButton
+                type="button"
+                name="icon-blue"
+                onClick={handleDifficultyReset}
+              >
+                X
               </StyledButton>
             </Wrapper>
           </StyledLabel>
@@ -86,17 +85,16 @@ export default function FilterBar({
                 <option value="long">long</option>
               </StyledSelect>
 
-              <StyledButton type="icon-red" onClick={handleDurationReset}>
-                <Image
-                  src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
-                  alt="Reset duration button"
-                  width={15}
-                  height={15}
-                />
+              <StyledButton
+                type="button"
+                name="icon-blue"
+                onClick={handleDurationReset}
+              >
+                X
               </StyledButton>
             </Wrapper>
           </StyledLabel>
-          <StyledButton type="grey" onClick={handleFilterReset}>
+          <StyledButton type="button" name="grey" onClick={handleFilterReset}>
             Reset
           </StyledButton>
         </StyledFilter>

@@ -93,43 +93,43 @@ const StyledButton = styled.button`
   ${baseButtonStyles}
 
   ${(props) =>
-    props.type === "orange" &&
+    props.name === "orange" &&
     css`
       ${orangeButtonStyles}
     `}
 
   ${(props) =>
-    props.type === "blue" &&
+    props.name === "blue" &&
     css`
       ${blueButtonStyles}
     `}
 
   ${(props) =>
-    props.type === "red" &&
+    props.name === "red" &&
     css`
       ${redButtonStyles}
     `}
 
   ${(props) =>
-    props.type === "grey" &&
+    props.name === "grey" &&
     css`
       ${greyButtonStyles}
     `}
 
   ${(props) =>
-    props.type === "white" &&
+    props.name === "white" &&
     css`
       ${whiteButtonStyles}
     `}
 
   ${(props) =>
-    props.type === "icon-red" &&
+    props.name === "icon-red" &&
     css`
       ${iconredButtonStyles}
     `}
   
     ${(props) =>
-    props.type === "icon-blue" &&
+    props.name === "icon-blue" &&
     css`
       ${iconblueButtonStyles}
     `}

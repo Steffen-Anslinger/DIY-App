@@ -190,7 +190,8 @@ export default function EditForm({ project, setEditMode }) {
                 </StyledLabel>
 
                 <StyledButton
-                  type="icon-red"
+                  type="button"
+                  name="icon-red"
                   onClick={() => removeMaterials(index)}
                 >
                   <Image
@@ -204,7 +205,8 @@ export default function EditForm({ project, setEditMode }) {
             ))}
 
             <StyledButton
-              type="icon-blue"
+              type="button"
+              name="icon-blue"
               onClick={() => {
                 appendMaterials({ amount: 1, material: "" });
               }}
@@ -243,7 +245,8 @@ export default function EditForm({ project, setEditMode }) {
                 </StyledLabel>
 
                 <StyledButton
-                  type="icon-red"
+                  type="button"
+                  name="icon-red"
                   onClick={() => removeInstructions(index)}
                 >
                   <Image
@@ -256,7 +259,8 @@ export default function EditForm({ project, setEditMode }) {
               </StyledInstructions>
             ))}
             <StyledButton
-              type="icon-blue"
+              type="button"
+              name="icon-blue"
               onClick={() => {
                 appendInstructions({ steps: "" });
               }}
@@ -270,10 +274,16 @@ export default function EditForm({ project, setEditMode }) {
             </StyledButton>
           </StyledLabel>
         )}
-        <StyledButton type="grey" onClick={() => setEditMode(false)}>
+        <StyledButton
+          type="button"
+          name="grey"
+          onClick={() => setEditMode(false)}
+        >
           Cancel
         </StyledButton>
-        <StyledButton type="orange">Save</StyledButton>
+        <StyledButton type="button" name="orange">
+          Save
+        </StyledButton>
       </StyledForm>
     </>
   );

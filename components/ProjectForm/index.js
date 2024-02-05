@@ -211,7 +211,8 @@ export default function ProjectForm() {
                 </StyledLabel>
 
                 <StyledButton
-                  type="icon-red"
+                  type="button"
+                  name="icon-red"
                   onClick={() => removeMaterials(index)}
                 >
                   <Image
@@ -225,7 +226,8 @@ export default function ProjectForm() {
             );
           })}
           <StyledButton
-            type="icon-blue"
+            type="button"
+            name="icon-blue"
             onClick={() => {
               appendMaterials({ amount: 1, material: "" });
             }}
@@ -259,7 +261,8 @@ export default function ProjectForm() {
                 )}
               </StyledLabel>
               <StyledButton
-                type="icon-red"
+                type="button"
+                name="icon-red"
                 onClick={() => removeInstructions(index)}
               >
                 <Image
@@ -273,7 +276,8 @@ export default function ProjectForm() {
           ))}
 
           <StyledButton
-            type="icon-blue"
+            type="button"
+            name="icon-blue"
             onClick={() => {
               appendInstructions({ steps: "" });
             }}
@@ -288,7 +292,9 @@ export default function ProjectForm() {
         </StyledLabel>
         <div>
           <StyledLink href="/">Cancel</StyledLink>
-          <StyledButton type="blue">Create</StyledButton>
+          <StyledButton type="button" name="blue">
+            Create
+          </StyledButton>
         </div>
       </StyledForm>
     </>

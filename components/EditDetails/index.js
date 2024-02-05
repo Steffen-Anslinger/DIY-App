@@ -54,10 +54,18 @@ export default function EditDetails({
           <StyledLink href="/">Back</StyledLink>
           {session && (
             <>
-              <StyledButton type="orange" onClick={() => setEditMode(true)}>
+              <StyledButton
+                type="button"
+                name="orange"
+                onClick={() => setEditMode(true)}
+              >
                 Edit
               </StyledButton>
-              <StyledButton type="red" onClick={handleDeleteProject}>
+              <StyledButton
+                type="button"
+                name="red"
+                onClick={handleDeleteProject}
+              >
                 Delete
               </StyledButton>
             </>

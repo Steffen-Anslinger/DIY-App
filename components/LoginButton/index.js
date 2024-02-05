@@ -6,7 +6,7 @@ export default function LoginButton() {
   if (session) {
     return (
       <>
-        <StyledButton type="blue" onClick={() => signOut()}>
+        <StyledButton type="button" name="blue" onClick={() => signOut()}>
           Sign out
         </StyledButton>
       </>
@@ -14,7 +14,7 @@ export default function LoginButton() {
   }
   return (
     <>
-      <StyledButton type="orange" onClick={() => signIn()}>
+      <StyledButton type="button" name="orange" onClick={() => signIn()}>
         Sign in
       </StyledButton>
     </>
