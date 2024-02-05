@@ -10,7 +10,7 @@ import { SessionProvider } from "next-auth/react";
 
 const fetcher = async (url) => {
   let response, data;
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   response = await fetch(url);
   if (!response.ok) {
     const error = new Error("An error occurred while fetching the data.");

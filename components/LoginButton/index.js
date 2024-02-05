@@ -6,7 +6,6 @@ export default function LoginButton() {
   if (session) {
     return (
       <>
-        Signed in as {session.user.name} <br />
         <StyledButton type="blue" onClick={() => signOut()}>
           Sign out
         </StyledButton>
@@ -15,7 +14,6 @@ export default function LoginButton() {
   }
   return (
     <>
-      You are not signed in <br />
       <StyledButton type="orange" onClick={() => signIn()}>
         Sign in
       </StyledButton>

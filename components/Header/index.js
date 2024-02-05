@@ -1,26 +1,36 @@
 import styled from "styled-components";
 import color from "../Layout/Colors";
 import Image from "next/image";
+import LoginButton from "../LoginButton";
 
-const StyledHeader = styled(Image)`
-  margin: 0;
+const StyledHeaderContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 3;
-  padding-top: 10px;
   background-color: ${color.grey[50]};
+`;
+
+const StyledHeader = styled(Image)`
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export default function Header() {
   return (
-    <StyledHeader
-      src={"/assets/CRAFTIFY.svg"}
-      width={100}
-      height={50}
-      alt="Craftify Logo"
-    ></StyledHeader>
+    <StyledHeaderContainer>
+      <StyledHeader
+        src={"/assets/CRAFTIFY.svg"}
+        width={150}
+        height={75}
+        alt="Craftify Logo"
+      />
+      <LoginButton />
+    </StyledHeaderContainer>
   );
 }
