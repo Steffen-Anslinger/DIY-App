@@ -8,7 +8,7 @@ const StyledSearchBar = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${color.grey[50]};
-  padding-top: 30px;
+  padding-top: 45px;
   gap: 10px;
 `;
 
