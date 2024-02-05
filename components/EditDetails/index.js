@@ -44,7 +44,6 @@ export default function EditDetails({
         />
       ) : (
         <>
-          <h2>Detail Page</h2>
           <ProjectDetails
             project={project}
             onToggleFavourite={onToggleFavourite}
