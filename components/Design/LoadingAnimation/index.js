@@ -13,7 +13,7 @@ const LoadingAnimation = () => {
   return (
     <CenteredContainer>
       <Image
-        src={"/assets/wired-outline-1754-nails-screw-carpentry (2).gif"}
+        src={"/assets/wired-outline-1754-nails-screw-carpentry (3).gif"}
         alt="Create button"
         width={250}
         height={250}
