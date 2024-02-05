@@ -1,5 +1,5 @@
 import { useSession, signIn, signOut } from "next-auth/react";
-import StyledButton from "@/components/Layout/Styled Buttons";
+import StyledButton from "@/components/Design/StyledButtons";
 
 export default function LoginButton() {
   const { data: session } = useSession();

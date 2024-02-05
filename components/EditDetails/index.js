@@ -1,8 +1,8 @@
 import React from "react";
 import ProjectDetails from "../ProjectDetails";
 import EditForm from "../EditForm";
-import StyledLink from "../Layout/StyledLink";
-import StyledButton from "../Layout/Styled Buttons";
+import StyledLink from "../Design/StyledLink";
+import StyledButton from "../Design/StyledButtons";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { mutate } from "swr";

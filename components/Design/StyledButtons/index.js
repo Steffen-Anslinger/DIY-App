@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import color from "../Colors";
+import color from "../../../utils/Colors";
 
 const baseButtonStyles = css`
   padding: 8px 16px;

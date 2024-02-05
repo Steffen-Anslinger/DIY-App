@@ -2,18 +2,18 @@ import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
-import StyledForm from "../Layout/FormStyles/StyledForm";
-import StyledLabel from "../Layout/FormStyles/StyledLabel";
-import StyledInput from "../Layout/FormStyles/StyledInput";
-import StyledFieldset from "../Layout/FormStyles/StyledFieldset";
-import StyledTextarea from "../Layout/FormStyles/StyledTextarea";
-import StyledSelect from "../Layout/FormStyles/StyledSelect";
-import StyledErrorMessage from "../Layout/FormStyles/StyledErrorMessage";
-import StyledMaterials from "../Layout/FormStyles/StyledMaterials";
-import StyledInstructions from "../Layout/FormStyles/StyledInstructions";
+import StyledForm from "../Design/FormStyles/StyledForm";
+import StyledLabel from "../Design/FormStyles/StyledLabel";
+import StyledInput from "../Design/FormStyles/StyledInput";
+import StyledFieldset from "../Design/FormStyles/StyledFieldset";
+import StyledTextarea from "../Design/FormStyles/StyledTextarea";
+import StyledSelect from "../Design/FormStyles/StyledSelect";
+import StyledErrorMessage from "../Design/FormStyles/StyledErrorMessage";
+import StyledMaterials from "../Design/FormStyles/StyledMaterials";
+import StyledInstructions from "../Design/FormStyles/StyledInstructions";
 import Image from "next/image";
-import WarningSVG from "@/public/assets/WarningIcon";
-import StyledButton from "../Layout/Styled Buttons";
+import WarningSVG from "@/components/Design/SVGs/WarningIcon";
+import StyledButton from "../Design/StyledButtons";
 
 export default function EditForm({ project, setEditMode }) {
   const {
@@ -77,7 +77,7 @@ export default function EditForm({ project, setEditMode }) {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <h2>Edit your project</h2>
         <StyledLabel>
-          <p>Project title</p>
+          Project title
           <StyledInput
             {...register("title", { required: "Please enter a title!" })}
             placeholder="Title"
@@ -92,7 +92,7 @@ export default function EditForm({ project, setEditMode }) {
         </StyledLabel>
 
         <StyledLabel>
-          <p>Description</p>
+          Description
           <StyledTextarea
             {...register("description", {
               required: "Please describe your project!",
@@ -108,7 +108,7 @@ export default function EditForm({ project, setEditMode }) {
           )}
         </StyledLabel>
         <StyledLabel>
-          <p>Duration</p>
+          Duration
           <StyledSelect
             name="duration"
             {...register("duration", {
@@ -116,7 +116,9 @@ export default function EditForm({ project, setEditMode }) {
             })}
             defaultValue={project.duration}
           >
-            <option value="">select...</option>
+            <option value="" hidden>
+              select...
+            </option>
             <option value="short">short</option>
             <option value="medium">medium</option>
             <option value="long">long</option>
@@ -129,7 +131,7 @@ export default function EditForm({ project, setEditMode }) {
           )}
         </StyledLabel>
         <StyledLabel>
-          <p>Difficulty</p>
+          Difficulty
           <StyledSelect
             name="difficulty"
             {...register("difficulty", {
@@ -137,7 +139,9 @@ export default function EditForm({ project, setEditMode }) {
             })}
             defaultValue={project.difficulty}
           >
-            <option value="">select...</option>
+            <option value="" hidden>
+              select...
+            </option>
             <option value="easy">easy</option>
             <option value="medium">medium</option>
             <option value="hard">hard</option>
@@ -152,7 +156,7 @@ export default function EditForm({ project, setEditMode }) {
 
         {materialsFields.length > 0 && (
           <StyledLabel>
-            <p>Materials</p>
+            Materials
             {materialsFields.map((item, index) => (
               <StyledMaterials key={item.id}>
                 <StyledLabel>
@@ -203,7 +207,6 @@ export default function EditForm({ project, setEditMode }) {
                 </StyledButton>
               </StyledMaterials>
             ))}
-
             <StyledButton
               type="button"
               name="icon-blue"
@@ -223,8 +226,7 @@ export default function EditForm({ project, setEditMode }) {
 
         {instructionsFields.length > 0 && (
           <StyledLabel>
-            <p>Instructions</p>
-
+            Instructions
             {instructionsFields.map((item, index) => (
               <StyledInstructions key={item.id}>
                 <StyledLabel>

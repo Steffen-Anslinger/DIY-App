@@ -1,10 +1,10 @@
 import Link from "next/link";
 import styled from "styled-components";
-import color from "../Layout/Colors";
+import color from "../../utils/Colors";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import HomeSVG from "@/public/assets/HomeIcon";
+import HomeSVG from "@/components/Design/SVGs/HomeIcon";
 
 const StyledLink = styled(Link)`
   text-decoration: none;

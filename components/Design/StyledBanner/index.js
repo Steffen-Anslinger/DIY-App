@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import color from "../Colors";
+import color from "../../../utils/Colors";
 
 const baseBannerStyles = css`
   margin: 50% 10%;

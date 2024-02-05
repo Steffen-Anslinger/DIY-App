@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import color from "../Layout/Colors";
-import StyledButton from "../Layout/Styled Buttons";
+import color from "../../utils/Colors";
+import StyledButton from "../Design/StyledButtons";
 
 const StyledSearchBar = styled.div`
   display: flex;

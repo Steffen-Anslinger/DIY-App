@@ -1,4 +1,4 @@
-import color from "@/components/Layout/Colors";
+import color from "@/utils/Colors";
 
 export default function InfoSVG() {
   return (

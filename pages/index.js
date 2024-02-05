@@ -4,7 +4,7 @@ import SearchBar from "@/components/SearchBar";
 import Projects from "@/components/Projects";
 import FilterBar from "@/components/Filterbar";
 import styled from "styled-components";
-import color from "@/components/Layout/Colors";
+import color from "@/utils/Colors";
 
 const StyledSearchWrapper = styled.div`
   position: sticky;

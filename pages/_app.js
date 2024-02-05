@@ -4,8 +4,8 @@ import { SWRConfig } from "swr";
 import useSWR from "swr";
 import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
-import StyledSection from "@/components/Layout/StyledSection";
-import LoadingAnimation from "@/components/Layout/LoadingAnimation";
+import StyledSection from "@/components/Design/StyledSection";
+import LoadingAnimation from "@/components/Design/LoadingAnimation";
 import { SessionProvider } from "next-auth/react";
 
 const fetcher = async (url) => {

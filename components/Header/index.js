@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import color from "../Layout/Colors";
+import color from "../../utils/Colors";
 import Image from "next/image";
 import LoginButton from "../LoginButton";
 

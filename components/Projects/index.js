@@ -5,7 +5,7 @@ import FavouriteButton from "../FavouriteButton";
 import ProjectCard from "../ProjectCard";
 import { React } from "react";
 import Masonry from "@mui/lab/Masonry";
-import color from "../Layout/Colors";
+import color from "../../utils/Colors";
 import { createTheme } from "@mui/material/styles";
 
 const StyledList = styled.ul`
@@ -44,7 +44,7 @@ const Container = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
-  top: 0px;
+  top: 0;
   padding: 12px;
   z-index: 1;
   gap: 5px;

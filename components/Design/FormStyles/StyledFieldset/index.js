@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import color from "../../Colors";
+import color from "../../../../utils/Colors";
 
 const StyledFieldset = styled.fieldset`
   margin-top: 20px;

@@ -1,4 +1,4 @@
-import color from "../../Colors";
+import color from "../../../../utils/Colors";
 import styled from "styled-components";
 
 const StyledInput = styled.input`

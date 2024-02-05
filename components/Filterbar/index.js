@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import StyledSelect from "../Layout/FormStyles/StyledSelect";
-import StyledButton from "../Layout/Styled Buttons";
-import color from "../Layout/Colors";
-import StyledLabel from "../Layout/FormStyles/StyledLabel";
+import StyledSelect from "../Design/FormStyles/StyledSelect";
+import StyledButton from "../Design/StyledButtons";
+import color from "../../utils/Colors";
+import StyledLabel from "../Design/FormStyles/StyledLabel";
 
 const StyledFilter = styled.div`
   display: flex;
