@@ -4,6 +4,7 @@ import color from "../Colors";
 const baseButtonStyles = css`
   padding: 8px 16px;
   margin: 5px 0px;
+  margin-right: 10px;
   border-radius: 0.375rem;
   font-weight: normal;
   color: #fff;
