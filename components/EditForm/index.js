@@ -5,7 +5,6 @@ import { mutate } from "swr";
 import StyledForm from "../Design/FormStyles/StyledForm";
 import StyledLabel from "../Design/FormStyles/StyledLabel";
 import StyledInput from "../Design/FormStyles/StyledInput";
-import StyledFieldset from "../Design/FormStyles/StyledFieldset";
 import StyledTextarea from "../Design/FormStyles/StyledTextarea";
 import StyledSelect from "../Design/FormStyles/StyledSelect";
 import StyledErrorMessage from "../Design/FormStyles/StyledErrorMessage";
@@ -90,7 +89,7 @@ export default function EditForm({ project, setEditMode }) {
             </StyledErrorMessage>
           )}
         </StyledLabel>
-
+        &nbsp;
         <StyledLabel>
           Description
           <StyledTextarea
@@ -107,6 +106,7 @@ export default function EditForm({ project, setEditMode }) {
             </StyledErrorMessage>
           )}
         </StyledLabel>
+        &nbsp;
         <StyledLabel>
           Duration
           <StyledSelect
@@ -130,6 +130,7 @@ export default function EditForm({ project, setEditMode }) {
             </StyledErrorMessage>
           )}
         </StyledLabel>
+        &nbsp;
         <StyledLabel>
           Difficulty
           <StyledSelect
@@ -153,7 +154,7 @@ export default function EditForm({ project, setEditMode }) {
             </StyledErrorMessage>
           )}
         </StyledLabel>
-
+        &nbsp;
         {materialsFields.length > 0 && (
           <StyledLabel>
             Materials
@@ -223,7 +224,7 @@ export default function EditForm({ project, setEditMode }) {
             </StyledButton>
           </StyledLabel>
         )}
-
+        &nbsp;
         {instructionsFields.length > 0 && (
           <StyledLabel>
             Instructions
