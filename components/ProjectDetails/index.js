@@ -63,6 +63,32 @@ const StyledImage = styled(Image)`
   object-fit: cover;
 `;
 
+const StyledMIWrapper = styled.div`
+  background-color: ${color.grey[100]};
+  border-radius: 5px;
+  padding: 5px 0px;
+  margin: 20px 0px;
+`;
+
+const StyledText = styled.div`
+  margin: 5px;
+`;
+
+const StyledMaterials = styled.ul`
+  list-style: none;
+  padding-left: 10px;
+`;
+
+const StyledInstructions = styled.ol`
+  padding-left: 10px;
+`;
+
+const StyledListElement = styled.li`
+  padding-left: 5px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+`;
+
 export default function ProjectDetails({
   project,
   onToggleFavourite,
@@ -90,35 +116,40 @@ export default function ProjectDetails({
           <StyledCardTitle>{project.title}</StyledCardTitle>
         </Container>
       </ImageWrapper>
+      <StyledText>
+        <p>{project.description}</p>
+        <Tagline>
+          <strong>Duration:</strong>
+          <Tag>{project.duration}</Tag>
+          &nbsp;
+          <strong> Difficulty:</strong>
+          <Tag>{project.difficulty}</Tag>
+        </Tagline>
+        <StyledMIWrapper>
+          {project.materials && (
+            <StyledMaterials>
+              <h3>Material</h3>
+              {project.materials.map((materials, index) => (
+                <li key={index}>
+                  <input type="checkbox" />
+                  {materials.amount} {materials.material}
+                </li>
+              ))}
+            </StyledMaterials>
+          )}
 
-      <p>{project.description}</p>
-      <Tagline>
-        <strong>Duration:</strong>
-        <Tag>{project.duration}</Tag>
-        &nbsp;
-        <strong> Difficulty:</strong>
-        <Tag>{project.difficulty}</Tag>
-      </Tagline>
-      {project.materials && (
-        <ul>
-          <h3>Material</h3>
-          {project.materials.map((materials, index) => (
-            <li key={index}>
-              {materials.amount} {materials.material}
-            </li>
-          ))}
-        </ul>
-      )}
-      <>
-        {project.instructions && (
-          <ol>
-            <h3>Instructions</h3>
-            {project.instructions.map((instructions, index) => (
-              <li key={index}>{instructions.steps}</li>
-            ))}
-          </ol>
-        )}
-      </>
+          {project.instructions && (
+            <StyledInstructions>
+              <h3>Instructions</h3>
+              {project.instructions.map((instructions, index) => (
+                <StyledListElement key={index}>
+                  {instructions.steps}
+                </StyledListElement>
+              ))}
+            </StyledInstructions>
+          )}
+        </StyledMIWrapper>
+      </StyledText>
     </DetailWrapper>
   );
 }
