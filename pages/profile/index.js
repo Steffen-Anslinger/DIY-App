@@ -123,6 +123,10 @@ const ProfileWrapper = styled.div`
   gap: 50px;
 `;
 
+const PageWrapper = styled.div`
+  margin: 10px;
+`;
+
 export default function ProfilePage({
   projects,
   favourites,
@@ -150,13 +154,13 @@ export default function ProfilePage({
   );
 
   return (
-    <>
+    <PageWrapper>
       <h1>Profile Page</h1>
       <ProfileWrapper>
         <StyledProfileImage
           src={session.user.image}
-          height={200}
-          width={200}
+          height={175}
+          width={175}
           alt="user-picture"
         />
         <h2>{session.user.name}</h2>
@@ -192,6 +196,6 @@ export default function ProfilePage({
           ))}
         </Masonry>
       </StyledList>
-    </>
+    </PageWrapper>
   );
 }
