@@ -13,6 +13,7 @@ import StyledInstructions from "../Design/FormStyles/StyledInstructions";
 import Image from "next/image";
 import WarningSVG from "@/components/Design/SVGs/WarningIcon";
 import StyledButton from "../Design/StyledButtons";
+import upload from "@/lib/cloudinary";
 
 export default function EditForm({ project, setEditMode }) {
   const {
@@ -54,12 +55,15 @@ export default function EditForm({ project, setEditMode }) {
   const { id } = router.query;
 
   const onSubmit = async (formData) => {
+    console.log(formData);
+    const uploadedImage = await upload(formData.cover[0]);
+    const updatedData = { ...formData, cover: uploadedImage };
     const response = await fetch(`/api/projects/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(updatedData),
     });
 
     if (response.ok) {
@@ -86,6 +90,20 @@ export default function EditForm({ project, setEditMode }) {
             <StyledErrorMessage>
               <WarningSVG />
               <p>{errors.title.message}</p>
+            </StyledErrorMessage>
+          )}
+        </StyledLabel>
+        <StyledLabel>
+          Cover
+          <input
+            name="cover"
+            type="file"
+            {...register("cover", { required: "Please upload an image!" })}
+          />
+          {errors.cover && (
+            <StyledErrorMessage>
+              <WarningSVG />
+              <p>{errors.cover.message}</p>
             </StyledErrorMessage>
           )}
         </StyledLabel>
