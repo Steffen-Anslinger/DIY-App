@@ -4,11 +4,19 @@ import FavouriteButton from "../FavouriteButton";
 import styled from "styled-components";
 import color from "@/utils/Colors";
 
+const StyledCardTitle = styled.h2`
+  margin: 0;
+  color: white;
+  width: 100%;
+  height: fit-content;
+`;
+
 const Tagline = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 15px;
+  flex-wrap: wrap;
 `;
 
 const Tag = styled.p`
@@ -42,12 +50,10 @@ const Container = styled.div`
 
 const ImageWrapper = styled.div`
   position: relative;
-  border-radius: 5px;
   height: fit-content;
 `;
 
 const DetailWrapper = styled.div`
-  padding: 0px 15px;
   padding-top: 25px;
 `;
 
@@ -55,7 +61,6 @@ const StyledImage = styled(Image)`
   width: 100%;
   height: 400px;
   object-fit: cover;
-  border-radius: 5px;
 `;
 
 export default function ProjectDetails({
@@ -66,7 +71,6 @@ export default function ProjectDetails({
 }) {
   return (
     <DetailWrapper>
-      <h2>{project.title}</h2>
       <ImageWrapper>
         <StyledImage
           src={project.cover.url}
@@ -83,6 +87,7 @@ export default function ProjectDetails({
               isFavourite={isFavourite}
             />
           </FavouriteWrapper>
+          <StyledCardTitle>{project.title}</StyledCardTitle>
         </Container>
       </ImageWrapper>
 
