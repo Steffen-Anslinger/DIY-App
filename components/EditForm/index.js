@@ -213,7 +213,7 @@ export default function EditForm({ project, setEditMode }) {
                     })}
                     placeholder="Material"
                     defaultValue={item.material}
-                  />{" "}
+                  />
                   {errors.materials?.[index]?.material && (
                     <StyledErrorMessage>
                       <WarningSVG />
@@ -226,6 +226,7 @@ export default function EditForm({ project, setEditMode }) {
                   type="button"
                   name="icon-red"
                   onClick={() => removeMaterials(index)}
+                  disabled={materialsFields.length < 2}
                 >
                   <Image
                     src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
@@ -279,6 +280,7 @@ export default function EditForm({ project, setEditMode }) {
                   type="button"
                   name="icon-red"
                   onClick={() => removeInstructions(index)}
+                  disabled={instructionsFields.length < 2}
                 >
                   <Image
                     src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
