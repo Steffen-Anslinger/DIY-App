@@ -17,7 +17,7 @@ export const authOptions = {
       async authorize() {
         return {
           id: 1,
-          name: "New Fishes",
+          name: "Craftify Buddy",
           email: "new@fishes.com",
           image: "https://avatars.githubusercontent.com/u/41701911?s=200&v=4",
         };
