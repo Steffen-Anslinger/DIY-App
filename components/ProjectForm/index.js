@@ -220,6 +220,7 @@ export default function ProjectForm() {
                   type="button"
                   name="icon-red"
                   onClick={() => removeMaterials(index)}
+                  disabled={materialsFields.length < 2}
                 >
                   <Image
                     src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
@@ -270,6 +271,7 @@ export default function ProjectForm() {
                 type="button"
                 name="icon-red"
                 onClick={() => removeInstructions(index)}
+                disabled={instructionsFields.length < 2}
               >
                 <Image
                   src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
