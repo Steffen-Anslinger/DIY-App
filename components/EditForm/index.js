@@ -55,15 +55,18 @@ export default function EditForm({ project, setEditMode }) {
   const { id } = router.query;
 
   const onSubmit = async (formData) => {
-    console.log(formData);
-    const uploadedImage = await upload(formData.cover[0]);
-    const updatedData = { ...formData, cover: uploadedImage };
+    if (formData.cover[0]) {
+      const uploadedImage = await upload(formData.cover[0]);
+      formData.cover = uploadedImage;
+    } else {
+      formData.cover = project.cover;
+    }
     const response = await fetch(`/api/projects/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedData),
+      body: JSON.stringify(formData),
     });
 
     if (response.ok) {
@@ -95,11 +98,7 @@ export default function EditForm({ project, setEditMode }) {
         </StyledLabel>
         <StyledLabel>
           Cover
-          <input
-            name="cover"
-            type="file"
-            {...register("cover", { required: "Please upload an image!" })}
-          />
+          <input name="cover" type="file" {...register("cover")} />
           {errors.cover && (
             <StyledErrorMessage>
               <WarningSVG />
@@ -107,6 +106,17 @@ export default function EditForm({ project, setEditMode }) {
             </StyledErrorMessage>
           )}
         </StyledLabel>
+        {project.cover.url && (
+          <p>
+            Current Cover:
+            <Image
+              src={project.cover.url}
+              alt="Current Cover"
+              width={150}
+              height={150}
+            />
+          </p>
+        )}
         &nbsp;
         <StyledLabel>
           Description
