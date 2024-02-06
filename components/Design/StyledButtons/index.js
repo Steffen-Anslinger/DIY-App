@@ -59,8 +59,9 @@ const whiteButtonStyles = css`
 const iconredButtonStyles = css`
   background-color: ${color.red[200]};
   color: ${color.grey[950]};
-  width: 30px;
-  height: 30px;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -75,8 +76,9 @@ const iconredButtonStyles = css`
 const iconblueButtonStyles = css`
   background-color: ${color.grey[200]};
   color: ${color.grey[950]};
-  width: 30px;
-  height: 30px;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
   border-radius: 50%;
   display: flex;
   align-items: center;

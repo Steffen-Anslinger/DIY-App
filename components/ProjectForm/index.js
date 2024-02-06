@@ -97,7 +97,7 @@ export default function ProjectForm() {
             </StyledErrorMessage>
           )}
         </StyledLabel>
-
+        &nbsp;
         <StyledLabel>
           Cover
           <input
@@ -112,7 +112,7 @@ export default function ProjectForm() {
             </StyledErrorMessage>
           )}
         </StyledLabel>
-
+        &nbsp;
         <StyledLabel>
           Description
           <StyledTextarea
@@ -128,6 +128,7 @@ export default function ProjectForm() {
             </StyledErrorMessage>
           )}
         </StyledLabel>
+        &nbsp;
         <div>
           <StyledLabel>
             Duration
@@ -176,6 +177,7 @@ export default function ProjectForm() {
               </StyledErrorMessage>
             )}
           </StyledLabel>
+          &nbsp;
         </div>
         <StyledLabel>
           Materials
@@ -244,6 +246,7 @@ export default function ProjectForm() {
             />
           </StyledButton>
         </StyledLabel>
+        &nbsp;
         <StyledLabel>
           Instructions
           {instructionsFields.map((item, index) => (
@@ -292,6 +295,7 @@ export default function ProjectForm() {
             />
           </StyledButton>
         </StyledLabel>
+        &nbsp;
         <div>
           <StyledLink href="/">Cancel</StyledLink>
           <StyledButton type="submit" name="blue">
