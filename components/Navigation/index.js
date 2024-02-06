@@ -89,6 +89,19 @@ export default function Navigation() {
             />
           </StyledLink>
         </StyledLinkNav>
+        <StyledLinkNav>
+          <StyledLink
+            className={pathname == "/profile" ? "active" : ""}
+            href="/profile"
+          >
+            <Image
+              src={"/assets/person_FILL0_wght400_GRAD0_opsz24.svg"}
+              alt="profile button"
+              width={35}
+              height={35}
+            />
+          </StyledLink>
+        </StyledLinkNav>
       </StyledList>
     </StyledNav>
   );
