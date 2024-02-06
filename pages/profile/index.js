@@ -8,6 +8,9 @@ import color from "@/utils/Colors";
 import { React } from "react";
 import Masonry from "@mui/lab/Masonry";
 import { createTheme } from "@mui/material/styles";
+import LoginButton from "@/components/LoginButton";
+import InfoSVG from "@/components/Design/SVGs/InfoIcon";
+import StyledBanner from "@/components/Design/StyledBanner";
 
 const StyledList = styled.ul`
   display: flex;
@@ -23,6 +26,11 @@ const StyledImage = styled(Image)`
   border-radius: 5px;
   filter: brightness(70%);
 `;
+
+const StyledProfileImage = styled(Image)`
+  border-radius: 50%;
+`;
+
 const StyledCardTitle = styled.h2`
   margin: 0;
   color: white;
@@ -109,17 +117,31 @@ const theme = createTheme({
   breakpoints: customBreakpoints,
 });
 
+const ProfileWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+`;
+
 export default function ProfilePage({
   projects,
   favourites,
   onToggleFavourite,
 }) {
   const { data: session } = useSession();
+  console.log(session);
 
   if (!session) {
     return (
       <>
-        <p>You are not logged in! </p>
+        <StyledBanner type="information">
+          <InfoSVG />
+          <h2>
+            You are not logged in. Please Login to see your projects and
+            profile!
+          </h2>
+          <LoginButton />
+        </StyledBanner>
       </>
     );
   }
@@ -130,14 +152,16 @@ export default function ProfilePage({
   return (
     <>
       <h1>Profile Page</h1>
-      <p>{session.user.name}</p>
-      <Image
-        src={session.user.image}
-        height={100}
-        width={100}
-        alt="user-picture"
-      />
-      <p>My Projects</p>
+      <ProfileWrapper>
+        <StyledProfileImage
+          src={session.user.image}
+          height={200}
+          width={200}
+          alt="user-picture"
+        />
+        <h2>{session.user.name}</h2>
+      </ProfileWrapper>
+      <h3>My Projects</h3>
       <StyledList>
         <Masonry theme={theme} columns={{ xs: 1, sm: 2, md: 3 }} spacing={2}>
           {myProjects.map((project) => (
