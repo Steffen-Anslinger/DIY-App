@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import color from "../../utils/Colors";
 import Image from "next/image";
 import LoginButton from "../LoginButton";
+import themes from "../Design/Theme";
 
 const StyledHeaderContainer = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const StyledHeaderContainer = styled.div`
   top: 0;
   width: 100%;
   z-index: 3;
-  background-color: ${color.grey[50]};
+  background-color: ${(props) => themes[props.theme].headerBackgroundColor};
 `;
 
 const StyledHeader = styled(Image)`
@@ -21,9 +21,9 @@ const StyledHeader = styled(Image)`
   margin-right: auto;
 `;
 
-export default function Header() {
+export default function Header({ theme }) {
   return (
-    <StyledHeaderContainer>
+    <StyledHeaderContainer theme={theme}>
       <StyledHeader
         src={"/assets/CRAFTIFY.svg"}
         width={150}

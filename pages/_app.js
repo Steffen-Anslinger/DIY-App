@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import StyledSection from "@/components/Design/StyledSection";
 import LoadingAnimation from "@/components/Design/LoadingAnimation";
 import { SessionProvider } from "next-auth/react";
+import { useState } from "react";
 
 const fetcher = async (url) => {
   let response, data;
@@ -26,6 +27,8 @@ export default function App({ Component, pageProps }) {
   const [favourites, setFavourites] = useLocalStorageState("favourites", {
     defaultValue: [],
   });
+
+  const [theme, setTheme] = useState("Theme Light");
 
   function handleToggleFavourite(id, event) {
     event.preventDefault();
@@ -57,7 +60,7 @@ export default function App({ Component, pageProps }) {
       <SessionProvider session={pageProps.session}>
         <SWRConfig value={{ fetcher }}>
           <GlobalStyle />
-          <Header />
+          <Header theme={theme} />
           <StyledSection>
             <Component
               {...pageProps}
