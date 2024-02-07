@@ -30,9 +30,7 @@
     "react-masonry-css": "^1.0.16",
     "styled-components": "^6.0.2",
     "swr": "^2.2.4",
-    "use-local-storage-state": "^19.1.0",
-    "uuid": "^9.0.1",
-    "uuidv4": "^6.2.13"
+    "use-local-storage-state": "^19.1.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",
