@@ -8,7 +8,7 @@ export default async function handler(request, response) {
   await dbConnect();
 
   if (request.method === "GET") {
-    const projects = await Project.find();
+    const projects = await Project.find({}).sort({ createdAt: -1 });
     return response.status(200).json(projects);
   }
   if (session && request.method === "POST") {
