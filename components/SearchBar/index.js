@@ -45,7 +45,7 @@ export default function SearchBar({
           value={searchPattern}
           onChange={onSearchChange}
         />
-        <StyledButton type="button" name="blue" onClick={toggleFilterMode}>
+        <StyledButton type="button" name="outline" onClick={toggleFilterMode}>
           Filter
         </StyledButton>
       </StyledSearchBar>
