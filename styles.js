@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
-import color from "./utils/Colors";
 import themes from "./components/Design/Theme";
+import { Roboto_Flex } from "next/font/google";
+
+const roboto = Roboto_Flex({ subsets: ["latin"] });
 
 export default createGlobalStyle`
   *,
@@ -11,8 +13,12 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: system-ui;
+    font-family: ${roboto.style.fontFamily}; 
     background-color: ${(props) => themes[props.theme].backgroundColor};
     color: ${(props) => themes[props.theme].fontColor};
+  }
+
+  textarea, input, select {
+    font-family: ${roboto.style.fontFamily}; 
   }
 `;
