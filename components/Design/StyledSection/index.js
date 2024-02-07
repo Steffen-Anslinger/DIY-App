@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import themes from "../../Design/Theme";
 
 const StyledSection = styled.section`
   margin: 0;

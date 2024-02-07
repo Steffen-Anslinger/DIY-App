@@ -7,6 +7,7 @@ import { React } from "react";
 import Masonry from "@mui/lab/Masonry";
 import color from "../../utils/Colors";
 import { createTheme } from "@mui/material/styles";
+import themes from "../Design/Theme";
 
 const StyledList = styled.ul`
   display: flex;
@@ -116,14 +117,24 @@ const customBreakpoints = {
   },
 };
 
-const theme = createTheme({
+const themeMasonry = createTheme({
   breakpoints: customBreakpoints,
 });
 
-export default function Projects({ projects, favourites, onToggleFavourite }) {
+export default function Projects({
+  projects,
+  favourites,
+  onToggleFavourite,
+  themes,
+}) {
   return (
     <StyledList>
-      <Masonry theme={theme} columns={{ xs: 1, sm: 2, md: 3 }} spacing={2}>
+      <Masonry
+        themes={themes}
+        themeMasonry={themeMasonry}
+        columns={{ xs: 1, sm: 2, md: 3 }}
+        spacing={2}
+      >
         {projects.map((project) => (
           <ProjectCard key={project._id}>
             <Link href={`/projects/${project._id}`}>

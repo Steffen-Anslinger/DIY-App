@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import color from "./utils/Colors";
+import themes from "./components/Design/Theme";
 
 export default createGlobalStyle`
   *,
@@ -11,6 +12,6 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
-    background-color: ${color.grey[50]};
+    background-color: ${(props) => themes[props.theme].headerBackgroundColor};
   }
 `;

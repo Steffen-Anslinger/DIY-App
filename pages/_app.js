@@ -1,4 +1,4 @@
-import GlobalStyle from "../styles";
+import GlobalStyle from "@/styles";
 import useLocalStorageState from "use-local-storage-state";
 import { SWRConfig } from "swr";
 import useSWR from "swr";
@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }) {
     defaultValue: [],
   });
 
-  const [theme, setTheme] = useState("Theme Light");
+  const [theme, setTheme] = useState("Theme Dark");
 
   function handleToggleFavourite(id, event) {
     event.preventDefault();
@@ -59,10 +59,11 @@ export default function App({ Component, pageProps }) {
     <>
       <SessionProvider session={pageProps.session}>
         <SWRConfig value={{ fetcher }}>
-          <GlobalStyle />
+          <GlobalStyle theme={theme} />
           <Header theme={theme} />
           <StyledSection>
             <Component
+              theme={theme}
               {...pageProps}
               projects={projects}
               onToggleFavourite={handleToggleFavourite}
