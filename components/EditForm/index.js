@@ -13,6 +13,7 @@ import StyledInstructions from "../Design/FormStyles/StyledInstructions";
 import Image from "next/image";
 import WarningSVG from "@/components/Design/SVGs/WarningIcon";
 import StyledButton from "../Design/StyledButtons";
+import upload from "@/lib/cloudinary";
 
 export default function EditForm({ project, setEditMode }) {
   const {
@@ -54,6 +55,12 @@ export default function EditForm({ project, setEditMode }) {
   const { id } = router.query;
 
   const onSubmit = async (formData) => {
+    if (formData.cover[0]) {
+      const uploadedImage = await upload(formData.cover[0]);
+      formData.cover = uploadedImage;
+    } else {
+      formData.cover = project.cover;
+    }
     const response = await fetch(`/api/projects/${id}`, {
       method: "PUT",
       headers: {
@@ -89,6 +96,27 @@ export default function EditForm({ project, setEditMode }) {
             </StyledErrorMessage>
           )}
         </StyledLabel>
+        <StyledLabel>
+          Cover
+          <input name="cover" type="file" {...register("cover")} />
+          {errors.cover && (
+            <StyledErrorMessage>
+              <WarningSVG />
+              <p>{errors.cover.message}</p>
+            </StyledErrorMessage>
+          )}
+        </StyledLabel>
+        {project.cover.url && (
+          <p>
+            Current Cover:
+            <Image
+              src={project.cover.url}
+              alt="Current Cover"
+              width={150}
+              height={150}
+            />
+          </p>
+        )}
         &nbsp;
         <StyledLabel>
           Description
@@ -185,7 +213,7 @@ export default function EditForm({ project, setEditMode }) {
                     })}
                     placeholder="Material"
                     defaultValue={item.material}
-                  />{" "}
+                  />
                   {errors.materials?.[index]?.material && (
                     <StyledErrorMessage>
                       <WarningSVG />
@@ -198,6 +226,7 @@ export default function EditForm({ project, setEditMode }) {
                   type="button"
                   name="icon-red"
                   onClick={() => removeMaterials(index)}
+                  disabled={materialsFields.length < 2}
                 >
                   <Image
                     src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}
@@ -251,6 +280,7 @@ export default function EditForm({ project, setEditMode }) {
                   type="button"
                   name="icon-red"
                   onClick={() => removeInstructions(index)}
+                  disabled={instructionsFields.length < 2}
                 >
                   <Image
                     src={"/assets/delete_FILL0_wght400_GRAD0_opsz24.svg"}

@@ -71,6 +71,9 @@ const iconredButtonStyles = css`
   &:hover {
     background-color: ${color.red[300]};
   }
+  &:disabled {
+    display: none;
+  }
 `;
 
 const iconblueButtonStyles = css`
