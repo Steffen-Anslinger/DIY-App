@@ -41,6 +41,7 @@ export default function EditDetails({
   onToggleFavourite,
   favourites,
   project,
+  theme,
 }) {
   const [editMode, setEditMode] = useState(false);
   const { data: session } = useSession();
@@ -66,6 +67,7 @@ export default function EditDetails({
     <>
       {editMode ? (
         <EditForm
+          theme={theme}
           project={project}
           editMode={editMode}
           setEditMode={setEditMode}
@@ -73,6 +75,7 @@ export default function EditDetails({
       ) : (
         <>
           <ProjectDetails
+            theme={theme}
             project={project}
             onToggleFavourite={onToggleFavourite}
             isFavourite={isFavourite}

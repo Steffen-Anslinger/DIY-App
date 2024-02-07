@@ -12,7 +12,7 @@ const StyledHeaderContainer = styled.div`
   top: 0;
   width: 100%;
   z-index: 3;
-  background-color: ${(props) => themes[props.theme].headerBackgroundColor};
+  background-color: ${(props) => themes[props.theme].backgroundColor};
 `;
 
 const StyledHeader = styled(Image)`

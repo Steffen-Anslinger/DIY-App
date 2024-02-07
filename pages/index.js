@@ -31,7 +31,7 @@ const StyledSearchWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 8px;
-  background-color: ${(props) => themes[props.theme].bodyBackgroundColor};
+  background-color: ${(props) => themes[props.theme].backgroundColor};
 `;
 
 export default function HomePage({

@@ -12,7 +12,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
-    background-color: ${(props) => themes[props.theme].headerBackgroundColor};
+    background-color: ${(props) => themes[props.theme].backgroundColor};
     color: ${(props) => themes[props.theme].fontColor};
   }
 `;

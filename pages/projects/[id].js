@@ -3,7 +3,11 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import LoadingAnimation from "@/components/Design/LoadingAnimation";
 
-export default function ProjectDetailsPage({ favourites, onToggleFavourite }) {
+export default function ProjectDetailsPage({
+  theme,
+  favourites,
+  onToggleFavourite,
+}) {
   const router = useRouter();
   const { id } = router.query;
   const { data: project, isLoading } = useSWR(`/api/projects/${id}`);
@@ -18,6 +22,7 @@ export default function ProjectDetailsPage({ favourites, onToggleFavourite }) {
 
   return (
     <EditDetails
+      theme={theme}
       project={project}
       onToggleFavourite={onToggleFavourite}
       favourites={favourites}
