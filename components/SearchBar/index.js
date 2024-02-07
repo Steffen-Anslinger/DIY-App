@@ -7,9 +7,9 @@ const StyledSearchBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${color.grey[50]};
   padding-top: 45px;
   gap: 10px;
+  backdrop-filter: blur(10px);
 `;
 
 const StyledSearchInput = styled.input`
@@ -20,7 +20,6 @@ const StyledSearchInput = styled.input`
   border-radius: 5px;
   padding: 8px;
   font-size: 16px;
-  background-color: ${color.grey[100]};
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
   &:focus {
     border: solid 2px ${color.orange[600]};

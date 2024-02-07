@@ -6,6 +6,7 @@ import FilterBar from "@/components/Filterbar";
 import styled from "styled-components";
 import color from "@/utils/Colors";
 import InfoSVG from "@/components/Design/SVGs/InfoIcon";
+import themes from "@/components/Design/Theme";
 
 const StyledInfo = styled.div`
   margin: 10px 0px;
@@ -29,11 +30,16 @@ const StyledSearchWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: ${color.grey[50]};
   padding: 8px;
+  background-color: ${(props) => themes[props.theme].bodyBackgroundColor};
 `;
 
-export default function HomePage({ projects, favourites, onToggleFavourite }) {
+export default function HomePage({
+  projects,
+  favourites,
+  onToggleFavourite,
+  theme,
+}) {
   const [searchPattern, setSearchPattern] = useState("");
   const [difficultyFilter, setDifficultyFilter] = useState("");
   const [durationFilter, setDurationFilter] = useState("");
@@ -83,7 +89,7 @@ export default function HomePage({ projects, favourites, onToggleFavourite }) {
 
   return (
     <>
-      <StyledSearchWrapper>
+      <StyledSearchWrapper theme={theme}>
         <SearchBar
           searchPattern={searchPattern}
           onSearchChange={handleSearchChange}

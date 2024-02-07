@@ -1,4 +1,3 @@
-import color from "../../../../utils/Colors";
 import styled from "styled-components";
 
 const StyledLabel = styled.label`
