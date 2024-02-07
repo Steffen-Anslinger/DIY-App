@@ -1,37 +1,79 @@
-# New Next Project
+#
 
-This project was created from the neue fische `next` template.
+<div align="center" id="top">
 
-You can [🔗 **use this template on CodeSandbox**](https://codesandbox.io/p/sandbox/github/neuefische/web-exercises/tree/main/templates/next?file=/README.md) or locally by running this command in your Terminal:
+<img src="public/assets/CRAFTIFY.svg" width="auto" height="150px" alt="Craftify App" />
 
-```bash
-npx -y ghcd@latest neuefische/web-exercises/tree/main/templates/next my-app -i
+<br>
+
+</div>
+
+**## Team 👥**
+
+<a href="https://github.com/Steffen-Anslinger/DIY-App/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=Steffen-Anslinger/DIY-App" />
+
+</a>
+<br>
+
+**## Project Overview 🌎** <br>
+
+Craftify is an App to Create DIY projects and Post them. You can upload a Picture, a Material List and also Step-by-step instructions. Other User can easily recreate them with your Guidelines and Material Lists.
+
+**## Technology Stack 💻**
+
+![Primary Tech Stack](https://skillicons.dev/icons?i=nextjs,react,styledcomponents,js,html,css)
+
+![More Tech](https://skillicons.dev/icons?i=mongodb,vercel,git,github,materialui,vscode)
+
+**## Key Features ⚙️**
+
+- Create DIY Projects with Instructions and Material Lists.
+- Get inspired by other Persons
+- Craft new Projects
+- User-friendly interface
+- Secure data storage
+
+**## How to Use ℹ️**
+
+<details>
+  <br/>
+  <summary>Environment variables</summary>
+  
+  ```
+  MONGODB_URI =
+  
+  GITHUB_CLIENT_ID =
+  GITHUB_CLIENT_SECRET =
+  
+  NEXTAUTH_SECRET =
+  
+  NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME =
+  CLOUDINARY_API_KEY =
+  CLOUDINARY_API_SECRET =
+  ```
+</details>
+
+1. Clone the repository from GitHub
+
+```
+git clone https://github.com/Steffen-Anslinger/DIY-App
 ```
 
-## Development
+2. Go into the repository
 
-### Local Development
+```
+cd DIY-App
+```
 
-To work locally, please install the dependencies using `npm i` first.
+3. Install required packages
 
-Run `npm run dev` to start a development server and open the displayed URL in a browser.
+```
+npm i
+```
 
-Use `npm run test` to run the tests.
+4. Run the development server
 
-### CodeSandbox Cloud
-
-Select the "Preview: 3000" tab to view this project.
-
-Select the "Tests: logs" tab to view the tests.
-
-> The `npm run dev` and `npm run test` scripts run automatically.
-
-### Scripts
-
-You can use the following commands:
-
-- `npm run dev` to start a development server
-- `npm run build` to build the project
-- `npm run start` to start a production server
-- `npm run test` to run the tests
-- `npm run lint` to run the linter
+```
+npm run dev
+```
