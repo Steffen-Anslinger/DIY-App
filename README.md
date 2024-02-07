@@ -2,7 +2,7 @@
 
 <div align="center" id="top">
 
-<img src="public/assets/CRAFTIFY.svg" width="auto" height="150px" alt="Craftify App" />
+<img src="public/assets/Craftify-Logo-Readme.svg" width="auto" height="150px" alt="Craftify App" />
 
 <br>
 
