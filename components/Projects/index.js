@@ -117,24 +117,14 @@ const customBreakpoints = {
   },
 };
 
-const themeMasonry = createTheme({
+const theme = createTheme({
   breakpoints: customBreakpoints,
 });
 
-export default function Projects({
-  projects,
-  favourites,
-  onToggleFavourite,
-  themes,
-}) {
+export default function Projects({ projects, favourites, onToggleFavourite }) {
   return (
     <StyledList>
-      <Masonry
-        themes={themes}
-        themeMasonry={themeMasonry}
-        columns={{ xs: 1, sm: 2, md: 3 }}
-        spacing={2}
-      >
+      <Masonry theme={theme} columns={{ xs: 1, sm: 2, md: 3 }} spacing={2}>
         {projects.map((project) => (
           <ProjectCard key={project._id}>
             <Link href={`/projects/${project._id}`}>

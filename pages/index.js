@@ -109,6 +109,7 @@ export default function HomePage({
           onApplyFilters={() => {}}
           filterMode={filterMode}
           setFilterMode={setFilterMode}
+          theme={theme}
         />
         <div>
           {isSearchingOrFiltering && numberOfProjectsFound === 0 && (

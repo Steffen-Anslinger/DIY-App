@@ -28,8 +28,6 @@ export default function App({ Component, pageProps }) {
     defaultValue: [],
   });
 
-  const [theme, setTheme] = useState("Theme Dark");
-
   function handleToggleFavourite(id, event) {
     event.preventDefault();
     const favourite = favourites.find((favourite) => favourite.id === id);
@@ -46,6 +44,13 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  const [theme, setTheme] = useState("Theme Light");
+
+  const toggleDarkMode = () => {
+    setTheme((prevTheme) =>
+      prevTheme === "Theme Light" ? "Theme Dark" : "Theme Light"
+    );
+  };
   const { data: projects, isLoading } = useSWR("/api/projects", fetcher);
   if (isLoading) {
     return <LoadingAnimation />;
@@ -60,7 +65,7 @@ export default function App({ Component, pageProps }) {
       <SessionProvider session={pageProps.session}>
         <SWRConfig value={{ fetcher }}>
           <GlobalStyle theme={theme} />
-          <Header theme={theme} />
+          <Header theme={theme} toggleDarkMode={toggleDarkMode} />
           <StyledSection>
             <Component
               theme={theme}
@@ -70,7 +75,7 @@ export default function App({ Component, pageProps }) {
               favourites={favourites}
             />
           </StyledSection>
-          <Navigation />
+          <Navigation theme={theme} />
         </SWRConfig>
       </SessionProvider>
     </>
