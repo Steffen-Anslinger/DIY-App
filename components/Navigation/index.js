@@ -95,7 +95,7 @@ export default function Navigation() {
             href="/profile"
           >
             <Image
-              src={"/assets/person_FILL0_wght400_GRAD0_opsz24.svg"}
+              src={"/assets/account_circle_FILL0_wght400_GRAD0_opsz24.svg"}
               alt="profile button"
               width={35}
               height={35}

@@ -70,7 +70,12 @@ export default function FilterBar({
                 name="icon-blue"
                 onClick={handleDifficultyReset}
               >
-                X
+                <Image
+                  src={"/assets/close_FILL0_wght400_GRAD0_opsz24.svg"}
+                  alt="Reset Button"
+                  width={15}
+                  height={15}
+                />
               </StyledButton>
             </Wrapper>
           </StyledLabel>
@@ -90,7 +95,12 @@ export default function FilterBar({
                 name="icon-blue"
                 onClick={handleDurationReset}
               >
-                X
+                <Image
+                  src={"/assets/close_FILL0_wght400_GRAD0_opsz24.svg"}
+                  alt="Reset Button"
+                  width={15}
+                  height={15}
+                />
               </StyledButton>
             </Wrapper>
           </StyledLabel>

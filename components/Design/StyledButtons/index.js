@@ -3,8 +3,7 @@ import color from "../../../utils/Colors";
 
 const baseButtonStyles = css`
   padding: 8px 16px;
-  margin: 5px 0px;
-  margin-right: 10px;
+  margin: 5px 10px 3px 0px;
   border-radius: 0.375rem;
   font-weight: normal;
   color: #fff;
@@ -22,7 +21,7 @@ const orangeButtonStyles = css`
   }
 `;
 
-const blueButtonStyles = css`
+const oulineButtonStyles = css`
   border: solid 2px ${color.orange[600]};
   color: ${color.orange[600]};
   font-weight: bold;
@@ -32,27 +31,11 @@ const blueButtonStyles = css`
   }
 `;
 
-const redButtonStyles = css`
-  background-color: ${color.red[500]};
-  color: ${color.red[50]};
-  &:hover {
-    background-color: ${color.red[600]};
-  }
-`;
-
 const greyButtonStyles = css`
   background-color: ${color.grey[900]};
   color: ${color.red[50]};
   &:hover {
     background-color: ${color.grey[950]};
-  }
-`;
-
-const whiteButtonStyles = css`
-  background-color: ${color.grey[100]};
-  color: ${color.grey[950]};
-  &:hover {
-    background-color: ${color.grey[200]};
   }
 `;
 
@@ -104,16 +87,12 @@ const StyledButton = styled.button`
     `}
 
   ${(props) =>
-    props.name === "blue" &&
+    props.name === "outline" &&
     css`
-      ${blueButtonStyles}
+      ${oulineButtonStyles}
     `}
 
-  ${(props) =>
-    props.name === "red" &&
-    css`
-      ${redButtonStyles}
-    `}
+
 
   ${(props) =>
     props.name === "grey" &&
@@ -121,11 +100,6 @@ const StyledButton = styled.button`
       ${greyButtonStyles}
     `}
 
-  ${(props) =>
-    props.name === "white" &&
-    css`
-      ${whiteButtonStyles}
-    `}
 
   ${(props) =>
     props.name === "icon-red" &&

@@ -300,7 +300,7 @@ export default function ProjectForm() {
         &nbsp;
         <div>
           <StyledLink href="/">Cancel</StyledLink>
-          <StyledButton type="submit" name="blue">
+          <StyledButton type="submit" name="outline">
             Create
           </StyledButton>
         </div>
