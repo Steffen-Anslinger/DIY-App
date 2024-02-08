@@ -9,7 +9,6 @@ const StyledSearchBar = styled.div`
   align-items: center;
   padding-top: 45px;
   gap: 10px;
-  backdrop-filter: blur(10px);
 `;
 
 const StyledSearchInput = styled.input`
