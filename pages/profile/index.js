@@ -180,8 +180,12 @@ export default function ProfilePage({
                 <Container>
                   <TagButtonLine>
                     <TagLine>
-                      <TagDuration>{project.duration}</TagDuration>
-                      <TagDifficulty>{project.difficulty}</TagDifficulty>
+                      <TagDuration aria-label="duration">
+                        {project.duration}
+                      </TagDuration>
+                      <TagDifficulty aria-label="difficulty">
+                        {project.difficulty}
+                      </TagDifficulty>
                     </TagLine>
                     <FavouriteButton
                       onToggleFavourite={onToggleFavourite}
@@ -189,7 +193,9 @@ export default function ProfilePage({
                       favourites={favourites}
                     />
                   </TagButtonLine>
-                  <StyledCardTitle>{project.title}</StyledCardTitle>
+                  <StyledCardTitle aria-label="title of the project">
+                    {project.title}
+                  </StyledCardTitle>
                 </Container>
               </Link>
             </ProjectCard>

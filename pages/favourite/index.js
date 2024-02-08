@@ -1,4 +1,5 @@
 import Projects from "@/components/Projects";
+import InfoBanner from "@/components/Design/StyledBanner";
 
 export default function FavouritePage({
   projects,
@@ -19,7 +20,11 @@ export default function FavouritePage({
         favourites={favourites}
         onToggleFavourite={onToggleFavourite}
       />
-      {!justFavourites.length ? <p>No favourites selected.</p> : ""}
+      {!justFavourites.length ? (
+        <InfoBanner>No favourites selected.</InfoBanner>
+      ) : (
+        ""
+      )}
     </>
   );
 }

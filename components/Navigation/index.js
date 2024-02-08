@@ -53,7 +53,7 @@ const StyledLinkNav = styled.li`
 export default function Navigation({ theme }) {
   const pathname = usePathname();
   return (
-    <StyledNav theme={theme}>
+    <StyledNav aria-labelledby="navigation bar" theme={theme}>
       <StyledList>
         <StyledLinkNav theme={theme}>
           <StyledLink className={pathname == "/" ? "active" : ""} href="/">

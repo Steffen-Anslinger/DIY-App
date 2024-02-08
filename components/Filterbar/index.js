@@ -54,10 +54,11 @@ export default function FilterBar({
     <>
       {filterMode ? (
         <StyledFilter theme={theme}>
-          <StyledLabel>
+          <StyledLabel htmlFor="difficulty">
             Difficulty:
             <Wrapper>
               <StyledSelect
+                aria-label="choose difficulty"
                 value={difficultyFilter}
                 onChange={onDifficultyChange}
               >
@@ -67,6 +68,7 @@ export default function FilterBar({
                 <option value="hard">hard</option>
               </StyledSelect>
               <StyledButton
+                aria-label="reset diffuculty filter"
                 type="button"
                 name="icon-blue"
                 onClick={handleDifficultyReset}
@@ -81,10 +83,14 @@ export default function FilterBar({
             </Wrapper>
           </StyledLabel>
 
-          <StyledLabel>
+          <StyledLabel aria-label="choose duration">
             Duration:
             <Wrapper>
-              <StyledSelect value={durationFilter} onChange={onDurationChange}>
+              <StyledSelect
+                aria-label="reset duration filter"
+                value={durationFilter}
+                onChange={onDurationChange}
+              >
                 <option value="">select...</option>
                 <option value="short">short</option>
                 <option value="medium">medium</option>
@@ -92,6 +98,7 @@ export default function FilterBar({
               </StyledSelect>
 
               <StyledButton
+                aria-label="reset duration filter"
                 type="button"
                 name="icon-blue"
                 onClick={handleDurationReset}
@@ -105,7 +112,12 @@ export default function FilterBar({
               </StyledButton>
             </Wrapper>
           </StyledLabel>
-          <StyledButton type="button" name="orange" onClick={handleFilterReset}>
+          <StyledButton
+            aria-label="reset all filter"
+            type="button"
+            name="orange"
+            onClick={handleFilterReset}
+          >
             Reset
           </StyledButton>
         </StyledFilter>

@@ -36,14 +36,20 @@ export default function SearchBar({
 
   return (
     <>
-      <StyledSearchBar>
+      <StyledSearchBar aria-label="search bar">
         <StyledSearchInput
+          id="search bar input"
           type="search"
           placeholder="Search"
           value={searchPattern}
           onChange={onSearchChange}
         />
-        <StyledButton type="button" name="outline" onClick={toggleFilterMode}>
+        <StyledButton
+          aria-label="filter button"
+          type="button"
+          name="outline"
+          onClick={toggleFilterMode}
+        >
           Filter
         </StyledButton>
       </StyledSearchBar>
