@@ -52,7 +52,7 @@ export default function App({ Component, pageProps }) {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const toggleDarkMode = () => {
-    setIsButtonClicked(true); // Mark that the button has been clicked
+    setIsButtonClicked(true);
     setTheme((prevTheme) =>
       prevTheme === "Theme Light" ? "Theme Dark" : "Theme Light"
     );
