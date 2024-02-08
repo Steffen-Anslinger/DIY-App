@@ -84,9 +84,10 @@ export default function ProjectForm() {
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <h2>Create new project</h2>
-        <StyledLabel>
+        <StyledLabel htmlFor="project title">
           Project title
           <StyledInput
+            id="project title"
             {...register("title", { required: "Please enter a title!" })}
             placeholder="Title"
           />
@@ -98,9 +99,10 @@ export default function ProjectForm() {
           )}
         </StyledLabel>
         &nbsp;
-        <StyledLabel>
+        <StyledLabel htmlFor="cover image">
           Cover
           <input
+            id="cover image"
             name="cover"
             type="file"
             {...register("cover", { required: "Please upload an image!" })}
@@ -113,9 +115,10 @@ export default function ProjectForm() {
           )}
         </StyledLabel>
         &nbsp;
-        <StyledLabel>
+        <StyledLabel htmlFor="description">
           Description
           <StyledTextarea
+            id="description"
             {...register("description", {
               required: "Description is required",
             })}
@@ -130,9 +133,10 @@ export default function ProjectForm() {
         </StyledLabel>
         &nbsp;
         <div>
-          <StyledLabel>
+          <StyledLabel htmlFor="duration">
             Duration
             <StyledSelect
+              id="duration"
               name="duration"
               {...register("duration", {
                 required: "Please select an option!",
@@ -154,9 +158,10 @@ export default function ProjectForm() {
             )}
           </StyledLabel>
           &nbsp;
-          <StyledLabel>
+          <StyledLabel htmlFor="difficulty">
             Difficulty
             <StyledSelect
+              id="difficulty"
               name="difficulty"
               {...register("difficulty", {
                 required: "Please select an option!",
@@ -179,13 +184,14 @@ export default function ProjectForm() {
           </StyledLabel>
           &nbsp;
         </div>
-        <StyledLabel>
+        <StyledLabel htmlFor="materials">
           Materials
           {materialsFields.map((item, index) => {
             return (
               <StyledMaterials key={item.id}>
-                <StyledLabel>
+                <StyledLabel htmlFor="amount">
                   <StyledInput
+                    id="amount"
                     {...register(`materials.${index}.amount`, {
                       required: "Amount is required",
                     })}
@@ -201,8 +207,9 @@ export default function ProjectForm() {
                   )}
                 </StyledLabel>
 
-                <StyledLabel>
+                <StyledLabel htmlFor="material">
                   <StyledInput
+                    id="material"
                     {...register(`materials.${index}.material`, {
                       required: "Material is required",
                     })}
@@ -217,6 +224,7 @@ export default function ProjectForm() {
                 </StyledLabel>
 
                 <StyledButton
+                  aria-label="remove material and amount"
                   type="button"
                   name="icon-red"
                   onClick={() => removeMaterials(index)}
@@ -233,6 +241,7 @@ export default function ProjectForm() {
             );
           })}
           <StyledButton
+            aria-label="add more materials"
             type="button"
             name="icon-blue"
             onClick={() => {
@@ -248,12 +257,13 @@ export default function ProjectForm() {
           </StyledButton>
         </StyledLabel>
         &nbsp;
-        <StyledLabel>
+        <StyledLabel htmlFor="instructions">
           Instructions
           {instructionsFields.map((item, index) => (
             <StyledInstructions key={item.id}>
-              <StyledLabel>
+              <StyledLabel htmlFor="instruction steps">
                 <StyledTextarea
+                  id="instruction steps"
                   {...register(`instructions.${index}.steps`, {
                     required: "Steps are required",
                   })}
@@ -268,6 +278,7 @@ export default function ProjectForm() {
                 )}
               </StyledLabel>
               <StyledButton
+                aria-label="remove instruction"
                 type="button"
                 name="icon-red"
                 onClick={() => removeInstructions(index)}
@@ -283,6 +294,7 @@ export default function ProjectForm() {
             </StyledInstructions>
           ))}
           <StyledButton
+            aria-label="add more steps"
             type="button"
             name="icon-blue"
             onClick={() => {
@@ -299,8 +311,10 @@ export default function ProjectForm() {
         </StyledLabel>
         &nbsp;
         <div>
-          <StyledLink href="/">Cancel</StyledLink>
-          <StyledButton type="submit" name="outline">
+          <StyledLink aria-label="cancel project creation" href="/">
+            Cancel
+          </StyledLink>
+          <StyledButton aria-label="save project" type="submit" name="outline">
             Create
           </StyledButton>
         </div>
