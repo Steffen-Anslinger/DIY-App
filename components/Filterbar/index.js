@@ -68,7 +68,7 @@ export default function FilterBar({
                 <option value="hard">hard</option>
               </StyledSelect>
               <StyledButton
-                aria-label="reset diffuculty filter"
+                aria-label="reset difficulty filter"
                 type="button"
                 name="icon-blue"
                 onClick={handleDifficultyReset}
@@ -113,7 +113,7 @@ export default function FilterBar({
             </Wrapper>
           </StyledLabel>
           <StyledButton
-            aria-label="reset all filter"
+            aria-label="reset all filters"
             type="button"
             name="orange"
             onClick={handleFilterReset}

@@ -140,7 +140,7 @@ export default function Projects({ projects, favourites, onToggleFavourite }) {
                     <TagDuration aria-label="duration">
                       {project.duration}
                     </TagDuration>
-                    <TagDifficulty aria-label="diffuculty">
+                    <TagDifficulty aria-label="difficulty">
                       {project.difficulty}
                     </TagDifficulty>
                   </TagLine>
