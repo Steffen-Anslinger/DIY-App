@@ -45,13 +45,19 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  const [theme, setTheme] = useState("Theme Light");
+  const [theme, setTheme] = useLocalStorageState("theme", {
+    defaultValue: "Theme Light",
+  });
+
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const toggleDarkMode = () => {
+    setIsButtonClicked(true); // Mark that the button has been clicked
     setTheme((prevTheme) =>
       prevTheme === "Theme Light" ? "Theme Dark" : "Theme Light"
     );
   };
+
   const { data: projects, isLoading } = useSWR("/api/projects", fetcher);
   if (isLoading) {
     return theme === "Theme Light" ? (
@@ -78,6 +84,7 @@ export default function App({ Component, pageProps }) {
               projects={projects}
               onToggleFavourite={handleToggleFavourite}
               favourites={favourites}
+              isButtonClicked={isButtonClicked}
             />
           </StyledSection>
           <Navigation theme={theme} />
