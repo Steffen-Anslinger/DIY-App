@@ -3,6 +3,7 @@ import Image from "next/image";
 import FavouriteButton from "../FavouriteButton";
 import styled from "styled-components";
 import color from "@/utils/Colors";
+import themes from "../Design/Theme";
 
 const StyledCardTitle = styled.h2`
   margin: 0;
@@ -65,7 +66,7 @@ const StyledImage = styled(Image)`
 `;
 
 const StyledMIWrapper = styled.div`
-  background-color: ${color.grey[100]};
+  background-color: ${(props) => themes[props.theme].DetailsBackgroundColor};
   border-radius: 5px;
   padding: 5px 0px;
   margin: 20px 0px;
@@ -95,6 +96,7 @@ export default function ProjectDetails({
   onToggleFavourite,
   isFavourite,
   favourites,
+  theme,
 }) {
   return (
     <DetailWrapper>
@@ -126,7 +128,7 @@ export default function ProjectDetails({
           <strong> Difficulty:</strong>
           <Tag>{project.difficulty}</Tag>
         </Tagline>
-        <StyledMIWrapper>
+        <StyledMIWrapper theme={theme}>
           {project.materials && (
             <StyledMaterials>
               <h3>Material</h3>

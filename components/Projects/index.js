@@ -7,6 +7,7 @@ import { React } from "react";
 import Masonry from "@mui/lab/Masonry";
 import color from "../../utils/Colors";
 import { createTheme } from "@mui/material/styles";
+import themes from "../Design/Theme";
 
 const StyledList = styled.ul`
   display: flex;

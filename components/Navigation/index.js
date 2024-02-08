@@ -3,8 +3,8 @@ import styled from "styled-components";
 import color from "../../utils/Colors";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 import HomeSVG from "@/components/Design/SVGs/HomeIcon";
+import themes from "../Design/Theme";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -25,7 +25,7 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledNav = styled.nav`
-  background-color: ${color.grey[50]};
+  background-color: ${(props) => themes[props.theme].navigationColor};
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -44,25 +44,24 @@ const StyledList = styled.ul`
 `;
 
 const StyledLinkNav = styled.li`
-  background-color: ${color.grey[50]};
+  background-color: ${(props) => themes[props.theme].navigationColor};
   width: 100%;
   height: 100%;
   cursor: pointer;
 `;
 
-export default function Navigation() {
+export default function Navigation({ theme }) {
   const pathname = usePathname();
-  const { data: session } = useSession();
   return (
-    <StyledNav>
+    <StyledNav theme={theme}>
       <StyledList>
-        <StyledLinkNav>
+        <StyledLinkNav theme={theme}>
           <StyledLink className={pathname == "/" ? "active" : ""} href="/">
             <HomeSVG />
           </StyledLink>
         </StyledLinkNav>
 
-        <StyledLinkNav>
+        <StyledLinkNav theme={theme}>
           <StyledLink
             className={pathname == "/create" ? "active" : ""}
             href="/create"
@@ -76,7 +75,7 @@ export default function Navigation() {
           </StyledLink>
         </StyledLinkNav>
 
-        <StyledLinkNav>
+        <StyledLinkNav theme={theme}>
           <StyledLink
             className={pathname == "/favourite" ? "active" : ""}
             href="/favourite"
@@ -89,7 +88,7 @@ export default function Navigation() {
             />
           </StyledLink>
         </StyledLinkNav>
-        <StyledLinkNav>
+        <StyledLinkNav theme={theme}>
           <StyledLink
             className={pathname == "/profile" ? "active" : ""}
             href="/profile"

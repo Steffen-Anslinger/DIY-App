@@ -10,7 +10,7 @@ import Masonry from "@mui/lab/Masonry";
 import { createTheme } from "@mui/material/styles";
 import LoginButton from "@/components/LoginButton";
 import InfoSVG from "@/components/Design/SVGs/InfoIcon";
-import StyledBanner from "@/components/Design/StyledBanner";
+import InfoBanner from "@/components/Design/StyledBanner";
 
 const StyledList = styled.ul`
   display: flex;
@@ -138,14 +138,14 @@ export default function ProfilePage({
   if (!session) {
     return (
       <>
-        <StyledBanner type="information">
+        <InfoBanner>
           <InfoSVG />
           <h2>
             You are not logged in. Please Login to see your projects and
             profile!
           </h2>
           <LoginButton />
-        </StyledBanner>
+        </InfoBanner>
       </>
     );
   }

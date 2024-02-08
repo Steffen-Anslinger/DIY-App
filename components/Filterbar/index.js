@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Image from "next/image";
 import StyledSelect from "../Design/FormStyles/StyledSelect";
 import StyledButton from "../Design/StyledButtons";
-import color from "../../utils/Colors";
 import StyledLabel from "../Design/FormStyles/StyledLabel";
+import themes from "../Design/Theme";
 
 const StyledFilter = styled.div`
   display: flex;
@@ -13,8 +13,8 @@ const StyledFilter = styled.div`
   padding: 8px 20px;
   margin-top: 10px;
   gap: 10px;
-  background-color: ${color.grey[100]};
   border-radius: 5px;
+  background-color: ${(props) => themes[props.theme].DetailsBackgroundColor};
   @media (max-width: 450px) {
     flex-direction: column;
     align-items: start;
@@ -35,6 +35,7 @@ export default function FilterBar({
   setDurationFilter,
   setDifficultyFilter,
   filterMode,
+  theme,
 }) {
   const handleFilterReset = () => {
     setDifficultyFilter("");
@@ -52,7 +53,7 @@ export default function FilterBar({
   return (
     <>
       {filterMode ? (
-        <StyledFilter>
+        <StyledFilter theme={theme}>
           <StyledLabel>
             Difficulty:
             <Wrapper>
@@ -104,7 +105,7 @@ export default function FilterBar({
               </StyledButton>
             </Wrapper>
           </StyledLabel>
-          <StyledButton type="button" name="grey" onClick={handleFilterReset}>
+          <StyledButton type="button" name="orange" onClick={handleFilterReset}>
             Reset
           </StyledButton>
         </StyledFilter>

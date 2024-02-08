@@ -35,7 +35,7 @@ const greyButtonStyles = css`
   background-color: ${color.grey[900]};
   color: ${color.red[50]};
   &:hover {
-    background-color: ${color.grey[950]};
+    background-color: ${color.orange[600]};
   }
 `;
 
