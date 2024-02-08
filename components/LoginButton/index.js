@@ -6,7 +6,12 @@ export default function LoginButton() {
   if (session) {
     return (
       <>
-        <StyledButton type="button" name="outline" onClick={() => signOut()}>
+        <StyledButton
+          aria-label="sign out"
+          type="button"
+          name="outline"
+          onClick={() => signOut()}
+        >
           Sign out
         </StyledButton>
       </>
@@ -14,7 +19,12 @@ export default function LoginButton() {
   }
   return (
     <>
-      <StyledButton type="button" name="orange" onClick={() => signIn()}>
+      <StyledButton
+        aria-label="sign in"
+        type="button"
+        name="orange"
+        onClick={() => signIn()}
+      >
         Sign in
       </StyledButton>
     </>

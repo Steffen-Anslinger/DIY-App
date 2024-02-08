@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
 import StyledSection from "@/components/Design/StyledSection";
 import LoadingAnimation from "@/components/Design/LoadingAnimation";
+import LoadingAnimationDetailpage from "@/components/LoadingAnimationDetailpage";
 import { SessionProvider } from "next-auth/react";
 import { useState } from "react";
 
@@ -44,16 +45,26 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  const [theme, setTheme] = useState("Theme Light");
+  const [theme, setTheme] = useLocalStorageState("theme", {
+    defaultValue: "Theme Light",
+  });
+
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const toggleDarkMode = () => {
+    setIsButtonClicked(true);
     setTheme((prevTheme) =>
       prevTheme === "Theme Light" ? "Theme Dark" : "Theme Light"
     );
   };
+
   const { data: projects, isLoading } = useSWR("/api/projects", fetcher);
   if (isLoading) {
-    return <LoadingAnimation />;
+    return theme === "Theme Light" ? (
+      <LoadingAnimation />
+    ) : (
+      <LoadingAnimationDetailpage />
+    );
   }
 
   if (!projects) {
@@ -73,6 +84,7 @@ export default function App({ Component, pageProps }) {
               projects={projects}
               onToggleFavourite={handleToggleFavourite}
               favourites={favourites}
+              isButtonClicked={isButtonClicked}
             />
           </StyledSection>
           <Navigation theme={theme} />

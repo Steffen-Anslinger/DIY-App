@@ -82,7 +82,7 @@ export default function EditDetails({
             favourites={favourites}
           />
           <StyledButtons>
-            <StyledLink href="/">
+            <StyledLink aria-label="link back to home page" href="/">
               <Image
                 src={
                   "/assets/keyboard_backspace_FILL0_wght400_GRAD0_opsz24.svg"
@@ -95,6 +95,7 @@ export default function EditDetails({
             {session && (
               <>
                 <StyledButton
+                  aria-label="edit project"
                   type="button"
                   name="icon-blue"
                   onClick={() => setEditMode(true)}
@@ -108,6 +109,7 @@ export default function EditDetails({
                 </StyledButton>
 
                 <StyledButton
+                  aria-label="delete project"
                   type="button"
                   name="icon-red"
                   onClick={handleDeleteProject}

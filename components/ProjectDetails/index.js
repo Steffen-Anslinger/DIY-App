@@ -116,16 +116,18 @@ export default function ProjectDetails({
               isFavourite={isFavourite}
             />
           </FavouriteWrapper>
-          <StyledCardTitle>{project.title}</StyledCardTitle>
+          <StyledCardTitle aria-label="project title">
+            {project.title}
+          </StyledCardTitle>
         </Container>
       </ImageWrapper>
       <StyledText>
-        <p>{project.description}</p>
+        <p aria-label="project descrition">{project.description}</p>
         <Tagline>
-          <strong>Duration:</strong>
+          <h4>Duration:</h4>
           <Tag>{project.duration}</Tag>
           &nbsp;
-          <strong> Difficulty:</strong>
+          <h4> Difficulty:</h4>
           <Tag>{project.difficulty}</Tag>
         </Tagline>
         <StyledMIWrapper theme={theme}>

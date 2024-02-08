@@ -35,7 +35,11 @@ export default function FavouriteButton({
   const findFavourite = favourites.find((favourite) => favourite.id === id);
   const isFavourite = findFavourite ? findFavourite.isFavourite : false;
   return (
-    <Button type="button" onClick={(event) => onToggleFavourite(id, event)}>
+    <Button
+      aria-label="favourite button"
+      type="button"
+      onClick={(event) => onToggleFavourite(id, event)}
+    >
       <Image
         src={
           isFavourite

@@ -137,8 +137,12 @@ export default function Projects({ projects, favourites, onToggleFavourite }) {
               <Container>
                 <TagButtonLine>
                   <TagLine>
-                    <TagDuration>{project.duration}</TagDuration>
-                    <TagDifficulty>{project.difficulty}</TagDifficulty>
+                    <TagDuration aria-label="duration">
+                      {project.duration}
+                    </TagDuration>
+                    <TagDifficulty aria-label="difficulty">
+                      {project.difficulty}
+                    </TagDifficulty>
                   </TagLine>
                   <FavouriteButton
                     onToggleFavourite={onToggleFavourite}

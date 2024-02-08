@@ -27,7 +27,12 @@ const StyledHeader = styled.div`
 export default function Header({ theme, toggleDarkMode }) {
   return (
     <StyledHeaderContainer theme={theme}>
-      <StyledButton type="button" name="icon-blue" onClick={toggleDarkMode}>
+      <StyledButton
+        aria-label="toggle dark mode button"
+        type="button"
+        name="icon-blue"
+        onClick={toggleDarkMode}
+      >
         <Image
           src="/assets/brightness_6_FILL0_wght400_GRAD0_opsz24.svg"
           width={25}

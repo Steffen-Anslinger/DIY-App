@@ -2,6 +2,7 @@ import EditDetails from "@/components/EditDetails";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import LoadingAnimation from "@/components/Design/LoadingAnimation";
+import LoadingAnimationDetailpage from "@/components/LoadingAnimationDetailpage";
 
 export default function ProjectDetailsPage({
   theme,
@@ -13,7 +14,11 @@ export default function ProjectDetailsPage({
   const { data: project, isLoading } = useSWR(`/api/projects/${id}`);
 
   if (isLoading) {
-    return <LoadingAnimation />;
+    return theme === "Theme Light" ? (
+      <LoadingAnimation />
+    ) : (
+      <LoadingAnimationDetailpage />
+    );
   }
 
   if (!project) {
