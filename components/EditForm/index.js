@@ -82,9 +82,10 @@ export default function EditForm({ project, setEditMode }) {
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <h2>Edit your project</h2>
-        <StyledLabel>
+        <StyledLabel htmlFor="project title">
           Project title
           <StyledInput
+            id="project title"
             {...register("title", { required: "Please enter a title!" })}
             placeholder="Title"
             defaultValue={project.title}
@@ -96,9 +97,14 @@ export default function EditForm({ project, setEditMode }) {
             </StyledErrorMessage>
           )}
         </StyledLabel>
-        <StyledLabel>
+        <StyledLabel htmlFor="cover image">
           Cover
-          <input name="cover" type="file" {...register("cover")} />
+          <input
+            id="cover image"
+            name="cover"
+            type="file"
+            {...register("cover")}
+          />
           {errors.cover && (
             <StyledErrorMessage>
               <WarningSVG />
@@ -118,9 +124,10 @@ export default function EditForm({ project, setEditMode }) {
           </p>
         )}
         &nbsp;
-        <StyledLabel>
+        <StyledLabel htmlFor="description">
           Description
           <StyledTextarea
+            id="description"
             {...register("description", {
               required: "Please describe your project!",
             })}
@@ -135,9 +142,10 @@ export default function EditForm({ project, setEditMode }) {
           )}
         </StyledLabel>
         &nbsp;
-        <StyledLabel>
+        <StyledLabel htmlFor="duration">
           Duration
           <StyledSelect
+            id="duration"
             name="duration"
             {...register("duration", {
               required: "Please select the duration of your project!",
@@ -159,9 +167,10 @@ export default function EditForm({ project, setEditMode }) {
           )}
         </StyledLabel>
         &nbsp;
-        <StyledLabel>
+        <StyledLabel htmlFor="difficulty">
           Difficulty
           <StyledSelect
+            id="difficulty"
             name="difficulty"
             {...register("difficulty", {
               required: "Please select the difficulty of your project!",
@@ -184,12 +193,13 @@ export default function EditForm({ project, setEditMode }) {
         </StyledLabel>
         &nbsp;
         {materialsFields.length > 0 && (
-          <StyledLabel>
+          <StyledLabel htmlFor="materials">
             Materials
             {materialsFields.map((item, index) => (
               <StyledMaterials key={item.id}>
-                <StyledLabel>
+                <StyledLabel htmlFor="amount">
                   <StyledInput
+                    id="amount"
                     {...register(`materials.${index}.amount`, {
                       required: "Please enter the amount!",
                     })}
@@ -206,8 +216,9 @@ export default function EditForm({ project, setEditMode }) {
                   )}
                 </StyledLabel>
 
-                <StyledLabel>
+                <StyledLabel htmlFor="material">
                   <StyledInput
+                    id="material"
                     {...register(`materials.${index}.material`, {
                       required: "Please enter your material!",
                     })}
@@ -223,6 +234,7 @@ export default function EditForm({ project, setEditMode }) {
                 </StyledLabel>
 
                 <StyledButton
+                  aria-label="remove material and amount"
                   type="button"
                   name="icon-red"
                   onClick={() => removeMaterials(index)}
@@ -238,6 +250,7 @@ export default function EditForm({ project, setEditMode }) {
               </StyledMaterials>
             ))}
             <StyledButton
+              aria-label="add more materials"
               type="button"
               name="icon-blue"
               onClick={() => {
@@ -255,12 +268,13 @@ export default function EditForm({ project, setEditMode }) {
         )}
         &nbsp;
         {instructionsFields.length > 0 && (
-          <StyledLabel>
+          <StyledLabel htmlFor="instructions">
             Instructions
             {instructionsFields.map((item, index) => (
               <StyledInstructions key={item.id}>
-                <StyledLabel>
+                <StyledLabel htmlFor="instruction steps">
                   <StyledTextarea
+                    id="instruction steps"
                     {...register(`instructions.${index}.steps`, {
                       required:
                         "Please provide some steps for the instructions!",
@@ -277,6 +291,7 @@ export default function EditForm({ project, setEditMode }) {
                 </StyledLabel>
 
                 <StyledButton
+                  aria-label="remove instruction"
                   type="button"
                   name="icon-red"
                   onClick={() => removeInstructions(index)}
@@ -292,6 +307,7 @@ export default function EditForm({ project, setEditMode }) {
               </StyledInstructions>
             ))}
             <StyledButton
+              aria-label="add more steps"
               type="button"
               name="icon-blue"
               onClick={() => {
@@ -308,13 +324,14 @@ export default function EditForm({ project, setEditMode }) {
           </StyledLabel>
         )}
         <StyledButton
+          aria-label="cancel the editing process"
           type="button"
           name="grey"
           onClick={() => setEditMode(false)}
         >
           Cancel
         </StyledButton>
-        <StyledButton type="submit" name="orange">
+        <StyledButton type="submit" name="orange" aria-label="save changes">
           Save
         </StyledButton>
       </StyledForm>
