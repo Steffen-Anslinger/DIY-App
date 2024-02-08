@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
+import color from "@/utils/Colors";
 
 const CenteredContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-color: ${color.grey[950]};
 `;
 
 const LoadingAnimationDetailpage = () => {
